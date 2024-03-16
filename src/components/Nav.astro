@@ -1,0 +1,27 @@
+---
+import NavLink from '../components/NavLink.astro';
+---
+
+<ul class="flex-row">
+  <slot/>
+</ul>
+
+<style>
+ul {
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul > :global(li) {
+  margin-right: var(--margin-sm);
+}
+
+ul > :global(li):last-child {
+  margin-right: 0;
+}
+
+ul > :global(li) + :global(li) {
+  margin-left: var(--margin-sm);
+}
+</style>

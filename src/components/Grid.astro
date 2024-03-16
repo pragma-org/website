@@ -1,0 +1,37 @@
+---
+interface Prop {
+  alive?: Set<Number>,
+  rows: Number,
+}
+
+const perColumn = 28;
+const perRow = 4;
+
+let { alive, rows } = Astro.props;
+
+if (!alive) {
+  alive = new Set([...Array(perColumn*perRow*rows).keys()].map(i => {
+    return Math.random() < 0.25 ? i : null;
+  }).filter(x => x !== null));
+}
+
+---
+
+<div id="grid">
+  {[...Array(perColumn * perRow * rows).keys()].map(i => (<div class={alive.has(i) ? "alive" : ""}></div>))}
+</div>
+
+<style define:vars={{ perColumn, perRow }}>
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(var(--perColumn), 1fr);
+
+    & > div {
+      height: calc(100vw / var(--perColumn));
+    }
+
+    & > div.alive {
+      background: var(--color-secondary);
+    }
+  }
+</style>

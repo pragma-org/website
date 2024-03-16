@@ -1,0 +1,35 @@
+---
+import NavLink from '../components/NavLink.astro';
+import Nav from '../components/Nav.astro';
+---
+
+<header class="flex-row">
+  <svg style="color: var(--color-secondary);"><use xlink:href="#logo-mark"/></svg>
+  <Nav>
+    <NavLink href="/projects">Projects</NavLink>
+    <NavLink href="/contributing">Contributing</NavLink>
+    <NavLink href="/members">Members</NavLink>
+    <NavLink href="/faq">FAQ</NavLink>
+    <NavLink href="/about">About</NavLink>
+  </Nav>
+</header>
+
+<style>
+  header {
+    height: var(--height-header);
+    padding: var(--padding);
+    width: 100%;
+    position: relative;
+    justify-content: center;
+
+    & > svg {
+      --logo-height: calc(var(--height-header) - 2 * var(--padding));
+
+      position: absolute;
+      top: var(--padding);
+      left: var(--padding);
+      width: calc(2 * var(--logo-height));
+      height: var(--logo-height);
+    }
+  }
+</style>

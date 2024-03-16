@@ -1,0 +1,95 @@
+---
+import ExternalLink from '../components/ExternalLink.astro';
+import Grid from '../components/Grid.astro';
+
+import { socials } from '../config.json';
+
+const githubUrl = `https://github.com/${socials.github}`;
+const discordUrl = `https://discord.com/${socials.discord}`;
+const twitterUrl = `https://twitter.com/${socials.twitter}`;
+---
+
+<Grid rows=2 />
+
+<footer class="flex-col flex-center">
+  <div class="flex-row">
+    <svg style="color: var(--color-secondary);"><use xlink:href="#logo-mark"/></svg>
+    <aside>
+      <h2>Build together. With PRAGMA.</h2>
+
+      <ul class="flex-col">
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+        <li><a href="/statutes">Legal Statutes</a></li>
+      </ul>
+
+      <ul class="flex-col">
+        <li><ExternalLink href={githubUrl}>GitHub</ExternalLink></li>
+        <li><ExternalLink href={discordUrl}>Discord</ExternalLink></li>
+        <li><ExternalLink href={twitterUrl}>Twitter/X</ExternalLink></li>
+      </ul>
+
+      <a style="text-align: right;" href="mailto:contact@pragma.org">contact@pragma.org</a>
+    </aside>
+  </div>
+  <p id="copyright">© 2024 PRAGMA. All rights reserved.</p>
+</footer>
+
+<style>
+  footer {
+    width: 100%;
+    margin-top: var(--margin);
+    padding: var(--padding);
+    padding-bottom: var(--padding-sm);
+
+    & svg {
+      --logo-height: calc(var(--height-header) - 2 * var(--padding));
+      width: calc(2 * var(--logo-height));
+      height: var(--logo-height);
+    }
+
+    & > div {
+      width: 100%;
+    }
+
+    & #copyright {
+      margin-top: var(--margin);
+      font-size: 0.75em;
+      opacity: 0.75;
+    }
+  }
+
+  aside {
+    width: 100%;
+    max-width: 40vw;
+    margin-left: auto;
+    display: grid;
+    grid-template:
+      "title title title" auto
+      "  .     .     .  " auto
+      / 1fr 1fr 1fr;
+  }
+
+  h2 {
+    grid-area: title;
+    font-size: 2em;
+    margin-bottom: var(--margin);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+
+    & > :global(li) {
+      margin-bottom: var(--margin-xs);
+    }
+
+    & > :global(li) + :global(li) {
+      margin-top: var(--margin-xs);
+    }
+
+    & > :global(li):last-child {
+      margin-bottom: unset;
+    }
+  }
+</style>

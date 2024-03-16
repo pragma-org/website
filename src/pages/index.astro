@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/base.astro';
+
+import Card from '../components/Card.astro';
+import Grid from '../components/Grid.astro';
+
+/*
+NOTE:
+  - Less-random grid pattern as defined on the design wireframes.
+  - Requires rows=3
+
+const gridInitialConfiguration = new Set([
+   0,  3, 29, 58, 84, 87,
+   4,  7, 33, 62, 88, 91,
+   8, 11, 37, 66, 92, 95,
+   124, 127, 153, 182, 208, 211,
+   128, 131, 157, 186, 212, 215,
+   132, 135, 161, 190, 216, 219,
+   248, 251, 277, 306, 332, 335,
+]);
+*/
+---
+
+<Layout description="A member-based, non-for-profit open-source association for blockchain software projects">
+  <section class="flex-row flex-center" id="hero">
+    <svg><use xlink:href="#logo-typography"/></svg>
+    <p>A member-based, not-for-profit open-source association for blockchain software projects</p>
+  </section>
+
+  <Grid rows=2 />
+
+  <section class="flex-col flex-center" id="projects">
+    <span class="tagline">Projects</span>
+    <h2>Hosting open-source projects and helping them to thrive</h2>
+
+    <div class="flex-row flex-center" id="cards">
+      <Card title="Polaris" href="/projects/polaris">
+        An alternative Rust node client for the Cardano blockchain. Aimed as an entrypoint for client applications initially, it aspires to become a full block-producing node running side-by-side the Haskell nodes to further increase the decentralisation of the platform while fostering its rich open source ecosystem.
+      </Card>
+      <Card title="Aiken" href="/projects/aiken">
+        Aiken is a novel and accessible programming language, specifically created to both simplify and enhance the development of smart contracts on Cardano. It comes in an easy to learn syntax, designed for effortless integration with other tools and languages, plus includes various state-of-the-art features that meet the current expectations of developers.
+      </Card>
+    </div>
+  </section>
+
+  <section class="flex-col flex-center" id="who">
+    <span class="tagline">Who we are</span>
+    <h2>PRAGMA is a team of passionate software engineers from various backgrounds.</h2>
+    <div class="flex-row">
+      <div id="members">
+        <img alt="Cardano Foundation" src="/img/members/cardanofoundation.webp" loading=lazy/>
+        <img alt="TxPipe" src="/img/members/txpipe.svg" loading=lazy/>
+        <img alt="Blink Labs" src="/img/members/blinklabs.svg" loading=lazy/>
+        <img alt="Sundae Labs" src="/img/members/sundaelabs.svg" loading=lazy/>
+        <img alt="dcSpark" src="/img/members/dcspark.svg" loading=lazy/>
+      </div>
+      <p class="justified">PRAGMA aims to foster an alternative open-source ecosystem for Cardano <i>and beyond</i>. Said differently, we are a team of passionate software engineers from various backgrounds who build open-source tools for developers aiming for mass adoption.
+
+      <a href="/about">Learn about PRAGMA <svg><use xlink:href="#arrow-right"/></a>
+      </p>
+    </div>
+  </section>
+
+  <section class="flex-col flex-center" id="contribute">
+    <span class="tagline">Contribute</span>
+    <h2>An efficient and collective open-source strategy</h2>
+    <p class="justified">
+      We want to build software solutions that increase blockchain’s utility and
+      adoption, inasmuch as they also provide business value for ecosystem actors.
+      <br/>
+      <br/>
+      By delivering solutions in small steps, we intend to involve other
+      builders to create strong open-source communities. Projects under PRAGMA
+      are open to contributions and will onboard those who want to get
+      involved.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  #hero {
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-height: 75vh;
+    padding: var(--padding);
+
+    & > svg {
+      width: 100%;
+      padding-right: 10vw;
+      aspect-ratio: 6/1;
+    }
+
+    & > p {
+      max-width: 17.5rem;
+      text-align: right;
+    }
+  }
+
+  @media (orientation: portrait) {
+    #hero {
+      max-height: 25vh;
+    }
+  }
+
+  section {
+    padding: var(--padding);
+  }
+
+  h2 {
+    font-size: 2.5em;
+    max-width: 50vw;
+    text-align: center;
+    margin-bottom: var(--padding);
+  }
+
+  span.tagline {
+    display: inline-block;
+    font-family: var(--font-mono);
+    color: var(--color-secondary);
+    margin-bottom: var(--margin);
+    margin-top: var(--margin-xl);
+  }
+
+  #projects > #cards {
+    max-width: 70vw;
+    gap: var(--padding);
+  }
+
+  #who {
+    & h2 {
+      font-size: 4em;
+      max-width: unset;
+      padding: 0 var(--padding);
+    }
+
+    & p {
+      max-width: 30vw;
+      min-width: 20rem;
+      margin-top: var(--margin);
+      margin-left: auto;
+      padding: 0 var(--padding);
+    }
+
+    & a {
+      font-family: var(--font-mono);
+      font-variant: small-caps;
+      margin-top: var(--margin);
+      float: right;
+    }
+
+    & a:hover {
+      text-decoration: none;
+    }
+  }
+
+  #members {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 3rem;
+    justify-items: center;
+    align-items: center;
+    padding: var(--padding) var(--padding-lg);
+    gap: var(--margin);
+
+    & > img {
+      grid-column-end: span 2;
+      object-fit: contain;
+      width: 100%;
+      display: inline-block;
+    }
+
+    & > img:nth-child(4) {
+      grid-column-start: 2;
+    }
+  }
+
+  #contribute {
+    & > p {
+      max-width: 30vw;
+    }
+  }
+</style>
