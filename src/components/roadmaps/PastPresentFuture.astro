@@ -1,0 +1,224 @@
+---
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+
+import Pattern from '../../components/Pattern.astro';
+import Section from '../../components/Section.astro';
+import ExternalLink from '../../components/ExternalLink.astro';
+
+const { roadmap, title } = Astro.props;
+
+const render = (md) =>
+  unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .processSync(md);
+---
+
+<Section tag="Roadmap" id="roadmap" title={title}>
+  <section class="cards recently">
+    <h3>Recently</h3>
+    <p>Important milestone recently completed.</p>
+    {
+      roadmap.recently.map(({ title, description, href }) => (
+        <article class="item">
+          <h5>{title}</h5>
+          {render(description)}
+          <a class="no-effect" target="_blank" href={href} aria-label={title} />
+          <span class="more">
+            Read more{' '}
+            <svg class="icon slide">
+              <use xlink:href="#external-link" />
+            </svg>
+          </span>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="cards currently">
+    <h3>Currently</h3>
+    <p>Items currently being worked on.</p>
+    {
+      roadmap.currently.map(({ title, description, href }) => (
+        <article class="item">
+          <h5>{title}</h5>
+          {render(description)}
+          <a class="no-effect" target="_blank" href={href} aria-label={title} />
+          <span class="more">
+            Read more{' '}
+            <svg class="icon slide">
+              <use xlink:href="#external-link" />
+            </svg>
+          </span>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="cards next">
+    <h3>Next</h3>
+    <p>Upcoming steps already planned for development.</p>
+    {
+      roadmap.next.map(({ title, description, href }) => (
+        <article class="item">
+          <h5>{title}</h5>
+          {render(description)}
+          <a class="no-effect" target="_blank" href={href} aria-label={title} />
+          <span class="more">
+            Read more{' '}
+            <svg class="icon slide">
+              <use xlink:href="#external-link" />
+            </svg>
+          </span>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="cards discussions">
+    <h3>Under discussion</h3>
+    <p>Discussions and design under consideration.</p>
+    {
+      roadmap.discussions.map(({ title, description, href }) => (
+        <article class="item">
+          <h5>{title}</h5>
+          {render(description)}
+          <a class="no-effect" target="_blank" href={href} aria-label={title} />
+          <span class="more">
+            Read more{' '}
+            <svg class="icon slide">
+              <use xlink:href="#external-link" />
+            </svg>
+          </span>
+        </article>
+      ))
+    }
+  </section>
+</Section>
+
+<style>
+  section.cards {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 'h h h' 'p p p' 'a b c';
+    gap: var(--gap-md);
+    padding: 0 var(--gap-lg);
+
+    & h3 {
+      grid-area: h;
+    }
+
+    & > p {
+      grid-area: p;
+    }
+
+    & article.item {
+      color: var(--color-primary-dark);
+      background: var(--color);
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: 4em auto min-content;
+      gap: var(--gap-sm);
+      padding: var(--gap-sm) var(--gap-md);
+
+      position: relative;
+
+      & span.more {
+        display: inline-block;
+        color: var(--color-secondary);
+        font-family: var(--font-mono);
+        margin-top: auto;
+        text-decoration: none;
+        font-size: 0.8em;
+        text-align: right;
+        text-transform: uppercase;
+        position: relative;
+
+        & > svg.icon.slide {
+          position: absolute;
+          top: 0.2em;
+          right: 0;
+          opacity: 0;
+          transition: all 100ms ease-in;
+        }
+      }
+
+      & a {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 2;
+
+        &:focus,
+        &:hover {
+          border: 1px solid var(--color-secondary-light);
+          text-decoration: none;
+
+          & ~ span > svg.icon.slide {
+            right: -1.5em;
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &.recently article.item {
+      --color-secondary: var(--color-primary);
+      --color: #99c2ff;
+    }
+
+    &.currently article.item {
+      --color-secondary: var(--color-primary);
+      --color: #f7b262;
+    }
+
+    &.next article.item {
+      --color-secondary: var(--color-primary);
+      --color: #d8829d;
+    }
+
+    &.discussions article.item {
+      color: var(--color-secondary);
+      background: var(--color-primary-dark);
+      & a {
+        &:focus,
+        &:hover {
+          border: 1px solid var(--color-secondary);
+        }
+      }
+    }
+  }
+
+  section + section {
+    margin-top: var(--gap-lg);
+  }
+
+  @media (max-width: 1100px) {
+    section.cards {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: 'h h' 'p p' 'a a';
+      padding: 0 var(--gap-md);
+    }
+  }
+
+  @media (max-width: 900px) {
+    section.cards {
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 650px) {
+    section.cards {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'h' 'p' 'a';
+      padding: 0;
+    }
+  }
+</style>

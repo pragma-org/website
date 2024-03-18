@@ -4,13 +4,23 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write ."
   },
-  "dependencies": {
-    "astro": "^4.5.5"
-  },
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "yarn@1.22.22",
+  "devDependencies": {
+    "@astrojs/check": "^0.5.9",
+    "@types/node": "^20.11.30",
+    "astro": "^4.5.6",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
+    "remark": "^15.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.0",
+    "remark-stringify": "^11.0.0",
+    "typescript": "^5.4.2",
+    "unified": "^11.0.4"
+  }
 }

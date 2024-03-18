@@ -1,0 +1,466 @@
+---
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+
+import Pattern from '../../components/Pattern.astro';
+import Section from '../../components/Section.astro';
+import ExternalLink from '../../components/ExternalLink.astro';
+
+const { roadmap, title } = Astro.props;
+
+const render = (md) =>
+  unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .processSync(md);
+---
+
+<Section tag="Journey" id="journey" title={title}>
+  <div class="wrapper">
+    <>
+      {
+        roadmap.phases.flatMap((phase, ix) => {
+          const milestones = phase.milestones.flatMap((milestone, jx) => (
+            <>
+              <input
+                type="radio"
+                name="roadmap"
+                id={`milestone-${ix + 1}-${jx + 1}`}
+                class={`milestone phase-${ix + 1} milestone-${jx + 1}`}
+                value={milestone.title}
+              />
+              <label
+                style={`--color: ${phase.color}`}
+                for={`milestone-${ix + 1}-${jx + 1}`}
+                class="milestone">
+                <>
+                  <span />
+                  <span>{milestone.when}</span>
+                </>
+              </label>
+            </>
+          ));
+          const checked = ix === 0;
+          return (
+            <>
+              <input
+                type="radio"
+                name="roadmap"
+                id={`phase-${ix + 1}`}
+                class={`phase phase-${ix + 1}`}
+                value={`Phase ${ix + 1}`}
+                {checked}
+              />
+              <label
+                style={`--color: ${phase.color}`}
+                data-number={ix + 1}
+                for={`phase-${ix + 1}`}
+                class="phase">
+                <>
+                  <span>Phase {ix + 1}</span>
+                  <span>{phase.start}</span>
+                </>
+              </label>
+              <>{milestones}</>
+            </>
+          );
+        })
+      }
+    </>
+
+    <main>
+      <>
+        {
+          roadmap.phases.map((phase, ix) => (
+            <article data-phase={ix + 1} style={`--color: ${phase.color};`}>
+              <h3 data-number={ix + 1}>{phase.name}</h3>
+              <>{render(phase.description)}</>
+              <hr />
+              <>
+                {phase.milestones.map((milestone, jx) => (
+                  <div data-milestone={jx + 1} class="milestone">
+                    <div class="content">
+                      <Pattern actives={new Set(milestone.pattern)} />
+                      <div class="flex-col">
+                        <h4
+                          data-milesone={`${ix + 1}.${jx + 1}`}
+                          data-when={milestone.when}>
+                          {milestone.title}
+                        </h4>
+                        <>{render(milestone.description)}</>
+                        {milestone.link ? <hr /> : null}
+                        {milestone.link ? (
+                          <ExternalLink href={milestone.link} class="more">
+                            Read more
+                          </ExternalLink>
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </>
+              <div class="wrapper">
+                <ul>
+                  {phase.packages.map((pkg, jx) => {
+                    const checked = jx === 0;
+                    return (
+                      <li>
+                        <input
+                          type="radio"
+                          name={`work-packages-${ix + 1}`}
+                          id={`pkg-${ix + 1}-${jx + 1}`}
+                          value={pkg.title}
+                          class="package"
+                          checked={checked}
+                        />
+                        <label for={`pkg-${ix + 1}-${jx + 1}`}>
+                          {pkg.title}
+                        </label>
+                        <aside class={`pkg-${ix + 1}-${jx + 1}`}>
+                          <h4 data-pkg={`${ix + 1}.${jx + 1}`}>{pkg.title}</h4>
+                          <>{render(pkg.description)}</>
+                          {pkg.link ? <hr /> : null}
+                          {pkg.link ? (
+                            <ExternalLink href={pkg.link} class="more">
+                              Read more
+                            </ExternalLink>
+                          ) : null}
+                        </aside>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </>
+    </main>
+  </div>
+</Section>
+
+<style>
+  ul {
+    margin: 0;
+    list-style: none;
+  }
+
+  input[type='radio'].phase,
+  input[type='radio'].milestone,
+  input[type='radio'].package {
+    display: none;
+  }
+
+  input[type='radio'] + label {
+    cursor: pointer;
+  }
+
+  label.phase,
+  label.milestone {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    color: var(--color);
+    height: 5rem;
+    width: 20%;
+    min-width: 12rem;
+
+    & > span {
+      width: 50%;
+    }
+
+    & > span:first-child {
+      text-align: right;
+      margin-right: 1rem;
+    }
+
+    & > span:last-child {
+      text-align: left;
+      margin-left: 1rem;
+    }
+
+    &:not([data-number='4'])::before {
+      content: '';
+      height: 100%;
+      width: 1px;
+      background-color: var(--color);
+      position: absolute;
+      left: calc(50%);
+      top: 0.1em;
+    }
+
+    &::after {
+      content: '';
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      border: 1px solid var(--color);
+      background-color: var(--color-primary);
+      position: absolute;
+      left: calc(50% - 0.5rem);
+      transition: background-color 200ms ease-out;
+      top: 0.1em;
+    }
+  }
+
+  label.milestone {
+    &::after {
+      width: 0.6rem;
+      height: 0.6rem;
+      left: calc(50% - 0.3rem);
+      top: 0.4em;
+    }
+  }
+
+  input[type='radio']:checked + label {
+    &::after {
+      background-color: var(--color);
+    }
+  }
+
+  #journey {
+    & .wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    & input.phase-1:checked ~ main article[data-phase='1'],
+    & input.phase-2:checked ~ main article[data-phase='2'],
+    & input.phase-3:checked ~ main article[data-phase='3'],
+    & input.phase-4:checked ~ main article[data-phase='4'] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & input.milestone-1:checked ~ main div[data-milestone='1'],
+    & input.milestone-2:checked ~ main div[data-milestone='2'],
+    & input.milestone-3:checked ~ main div[data-milestone='3'],
+    & input.milestone-4:checked ~ main div[data-milestone='4'] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & input.milestone-1:checked ~ main div.wrapper,
+    & input.milestone-2:checked ~ main div.wrapper,
+    & input.milestone-3:checked ~ main div.wrapper,
+    & input.milestone-4:checked ~ main div.wrapper {
+      display: none;
+    }
+
+    & main {
+      position: absolute;
+      width: auto;
+      top: 0;
+      left: max(15rem, 20%);
+
+      & article {
+        --color-secondary: var(--color);
+        display: none;
+      }
+
+      & :global(p) {
+        padding: var(--gap-xs) 0;
+      }
+
+      & hr {
+        border-color: var(--color);
+        margin: var(--gap-md) 0;
+        opacity: 0.6;
+      }
+
+      & h3,
+      & h4 {
+        color: var(--color);
+      }
+
+      & div.milestone {
+        display: none;
+
+        & h4 {
+          position: relative;
+        }
+
+        & > .content {
+          display: grid;
+          grid-template-columns: 12.5rem auto;
+          grid-template-rows: auto;
+          gap: var(--gap-md);
+          padding: var(--gap-md) var(--gap-lg);
+
+          & > :global(svg) {
+            color: var(--color);
+          }
+        }
+
+        & h4::after {
+          content: 'Milestone ' attr(data-milesone) ' — ' attr(data-when);
+          font-size: 0.3em;
+          opacity: 0.5;
+          position: absolute;
+          top: -1.5em;
+          left: 0;
+        }
+      }
+
+      & div.wrapper {
+        display: flex;
+      }
+
+      & ul {
+        display: inline-flex;
+        flex-direction: column;
+      }
+
+      & ul > li {
+        margin: var(--gap-xs) 0;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        & > label {
+          display: inline-flex;
+          width: 100%;
+          padding: var(--gap-xs) var(--gap-sm);
+          color: var(--color);
+        }
+
+        & > aside {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: auto;
+          display: none;
+          padding: 0 var(--gap-md);
+
+          & h4::before {
+            content: 'Work package ' attr(data-pkg);
+            font-size: 0.3em;
+            opacity: 0.5;
+            position: relative;
+            left: 0;
+            margin-top: -1em;
+            display: block;
+          }
+        }
+
+        & > input.package:checked ~ aside {
+          display: inline-flex;
+          flex-direction: column;
+
+          & > hr {
+            margin-top: auto;
+          }
+        }
+
+        & > input.package:checked ~ label {
+          background-color: var(--color);
+          color: var(--color-primary);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 950px) {
+    #journey {
+      & .wrapper {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        gap: var(--gap-sm);
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        grid-template-areas:
+          '. .'
+          '. .'
+          'm m';
+      }
+
+      & label.phase {
+        padding-left: 1.5em;
+        display: flex;
+        min-width: unset;
+        width: unset;
+        height: unset;
+
+        & > span:first-child {
+          text-align: center;
+          margin: 0;
+        }
+
+        & > span:last-child {
+          display: none;
+          margin: 0;
+        }
+
+        &::before {
+          display: none;
+        }
+
+        &::after {
+          left: calc(50% - 3em);
+        }
+      }
+
+      & label.milestone {
+        display: none;
+      }
+
+      & main {
+        grid-area: m;
+        position: initial;
+
+        & article {
+          padding: var(--gap-sm) 0;
+        }
+
+        & article > hr {
+          display: none;
+        }
+
+        & ul {
+          margin-top: var(--gap-md);
+        }
+
+        & ul > li {
+          border-bottom: 1px solid var(--color);
+          padding: var(--gap-sm) 0;
+          margin: 0;
+
+          &:first-child {
+            border-top: 1px solid var(--color);
+          }
+
+          &:last-child {
+            border-bottom: 0;
+          }
+
+          & > aside {
+            position: initial;
+            padding: 0;
+
+            & hr {
+              display: none;
+            }
+
+            & h4 {
+              margin-top: var(--gap-md);
+            }
+
+            & h4::before {
+              font-size: 0.6em;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

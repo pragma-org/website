@@ -2,34 +2,48 @@
 import ExternalLink from '../components/ExternalLink.astro';
 import Grid from '../components/Grid.astro';
 
-import { socials } from '../config.json';
+import { socials, email } from '../config.json';
 
 const githubUrl = `https://github.com/${socials.github}`;
-const discordUrl = `https://discord.com/${socials.discord}`;
+const discordUrl = `https://discord.gg/${socials.discord}`;
 const twitterUrl = `https://twitter.com/${socials.twitter}`;
 ---
 
-<Grid rows=2 />
+<Grid
+  style="margin-top: auto;"
+  rows={1}
+  actives={new Set([0, 1, 10, 11, 12, 13, 18, 19, 22, 23, 24, 25, 28, 29])}
+/>
 
 <footer class="flex-col flex-center">
   <div class="flex-row">
-    <svg style="color: var(--color-secondary);"><use xlink:href="#logo-mark"/></svg>
+    <svg style="color: var(--color-secondary);">
+      <use xlink:href="#logo-mark"></use>
+    </svg>
     <aside>
-      <h2>Build together. With PRAGMA.</h2>
+      <h4>Build together. With PRAGMA.</h4>
 
       <ul class="flex-col">
-        <li><a href="/privacy-policy">Privacy Policy</a></li>
         <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
-        <li><a href="/statutes">Legal Statutes</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
       </ul>
 
       <ul class="flex-col">
-        <li><ExternalLink href={githubUrl}>GitHub</ExternalLink></li>
-        <li><ExternalLink href={discordUrl}>Discord</ExternalLink></li>
-        <li><ExternalLink href={twitterUrl}>Twitter/X</ExternalLink></li>
+        <li>
+          <svg class="icon"><use xlink:href="#github"></use></svg>
+          <ExternalLink href={githubUrl}>GitHub</ExternalLink>
+        </li>
+        <li>
+          <svg class="icon"><use xlink:href="#discord"></use></svg>
+          <ExternalLink href={discordUrl}>Discord</ExternalLink>
+        </li>
+        <li>
+          <svg class="icon"><use xlink:href="#twitter"></use></svg>
+          <ExternalLink href={twitterUrl}>Twitter/X</ExternalLink>
+        </li>
       </ul>
 
-      <a style="text-align: right;" href="mailto:contact@pragma.org">contact@pragma.org</a>
+      <a class="no-effect" href=`mailto:${email}`>{email}</a>
     </aside>
   </div>
   <p id="copyright">© 2024 PRAGMA. All rights reserved.</p>
@@ -38,12 +52,12 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
 <style>
   footer {
     width: 100%;
-    margin-top: var(--margin);
-    padding: var(--padding);
-    padding-bottom: var(--padding-sm);
+    padding: var(--gap-md);
+    padding-bottom: var(--gap-sm);
+    background: var(--color-primary-dark);
 
     & svg {
-      --logo-height: calc(var(--height-header) - 2 * var(--padding));
+      --logo-height: calc(var(--height-header) - 2 * var(--gap-md));
       width: calc(2 * var(--logo-height));
       height: var(--logo-height);
     }
@@ -53,7 +67,7 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
     }
 
     & #copyright {
-      margin-top: var(--margin);
+      margin-top: var(--gap-md);
       font-size: 0.75em;
       opacity: 0.75;
     }
@@ -61,35 +75,81 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
 
   aside {
     width: 100%;
-    max-width: 40vw;
+    max-width: max(500px, 40vw);
     margin-left: auto;
     display: grid;
     grid-template:
-      "title title title" auto
-      "  .     .     .  " auto
+      'title title title' auto
+      '  .     .     .  ' auto
       / 1fr 1fr 1fr;
+
+    & > a {
+      text-align: right;
+    }
   }
 
-  h2 {
+  h4 {
     grid-area: title;
-    font-size: 2em;
-    margin-bottom: var(--margin);
   }
 
   ul {
     list-style: none;
     margin: 0;
+    color: var(--color-secondary);
 
     & > :global(li) {
-      margin-bottom: var(--margin-xs);
+      & > .icon {
+        margin-right: var(--gap-xs);
+      }
+
+      margin-bottom: var(--gap-xs);
     }
 
     & > :global(li) + :global(li) {
-      margin-top: var(--margin-xs);
+      margin-top: var(--gap-xs);
     }
 
     & > :global(li):last-child {
       margin-bottom: unset;
+    }
+  }
+
+  @media (max-width: 770px) {
+    footer {
+      gap: var(--gap-md);
+      & svg {
+        display: none;
+      }
+      & > div {
+        flex-direction: column;
+      }
+    }
+
+    h2 {
+      font-size: 1.75em;
+      margin: 0;
+    }
+
+    aside {
+      text-align: center;
+      max-width: unset;
+      margin-left: unset;
+      gap: var(--gap-xl);
+      grid-template:
+        'title title title' auto
+        '  .     .     .  ' auto
+        '  .     .     .  ' auto
+        '  .     .     .  ' auto
+        / 1fr 1fr 1fr;
+
+      & > a {
+        width: 100%;
+        text-align: center;
+      }
+
+      & > * {
+        grid-column-start: span 3;
+      }
     }
   }
 </style>

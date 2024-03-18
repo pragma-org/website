@@ -1,0 +1,33 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import Grid from '../components/Grid.astro';
+
+interface Props extends HTMLAttributes<'section'> {
+  title: string;
+  tag: string;
+}
+
+const { title, tag, ...props } = Astro.props;
+---
+
+<header {...props}>
+  <span class="tag">{tag}</span>
+  <h1>{title}</h1>
+  <slot />
+</header>
+
+<Grid rows={1} actives={new Set([2, 3, 6, 7, 8, 9, 12, 13, 18, 19])} />
+
+<style>
+  header {
+    padding: var(--gap-md);
+  }
+
+  span.tag {
+    font-size: 0.8em;
+    display: inline-block;
+    font-family: var(--font-mono);
+    color: var(--color-secondary);
+  }
+</style>

@@ -1,0 +1,324 @@
+---
+import { getEntry } from 'astro:content';
+
+import Layout from '../layouts/base.astro';
+
+import { Image } from 'astro:assets';
+import Card from '../components/Card.astro';
+import Pattern from '../components/Pattern.astro';
+import Section from '../components/Section.astro';
+import Journey from '../components/roadmaps/Journey.astro';
+import PastPresentFuture from '../components/roadmaps/PastPresentFuture.astro';
+
+const { project } = Astro.props;
+
+const maintainers = await Promise.all(
+  project.data.maintainers.map(async (id: string) => {
+    const { data } = await getEntry('maintainers', id.toLowerCase());
+    return data;
+  }),
+);
+
+const { Content } = await project.render();
+---
+
+<Layout title={project.data.name} description={project.data.shortDescription}>
+  <main>
+    <header id="project" class="flex-col flex-center">
+      <span class="tag">Project</span>
+      <h1>{project.data.name}</h1>
+      <Pattern actives={new Set([1, 6, 7, 10, 20, 24, 25, 30])} nRow={2} />
+      <Pattern actives={new Set([1, 6, 7, 10, 20, 24, 25, 30])} nRow={2} />
+      <p>{project.data.summary}</p>
+    </header>
+
+    <Section tag="Goal" id="goal">
+      <Content id="content" />
+    </Section>
+
+    <Section tag="Maintainers" id="maintainers">
+      <div class="wrapper">
+        {
+          maintainers.map((m) => (
+            <article>
+              <Image
+                alt={`${m.id}'s avatar`}
+                src={`https://github.com/${m.github}.png`}
+                width="48"
+                height="48"
+                loading="lazy"
+              />
+              <span style="color: var(--color-secondary);">
+                {m.firstname} {m.lastname}
+              </span>
+              <span>
+                {m.role} @ {m.company}
+              </span>
+              <aside>
+                <a href={`https://github.com/${m.github}`} class="no-effect">
+                  <svg class="icon">
+                    <title>Github</title>
+                    <use xlink:href="#github" />
+                  </svg>
+                </a>
+                {m.twitter ? (
+                  <a href={`https://x.com/${m.twitter}`} class="no-effect">
+                    <svg class="icon">
+                      <title>Twitter/X</title>
+                      <use xlink:href="#twitter" />
+                    </svg>
+                  </a>
+                ) : null}
+                {m.linkedIn ? (
+                  <a
+                    href={`https://linkedin.com/in/${m.linkedIn}`}
+                    class="no-effect">
+                    <svg class="icon">
+                      <title>LinkedIn</title>
+                      <use xlink:href="#linkedIn" />
+                    </svg>
+                  </a>
+                ) : null}
+              </aside>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    {
+      project.data.roadmap.type === 'journey' ? (
+        <Journey
+          roadmap={project.data.roadmap}
+          title={project.data.roadmap.title}
+        />
+      ) : null
+    }
+
+    {
+      project.data.roadmap.type === 'past-present-future' ? (
+        <PastPresentFuture
+          roadmap={project.data.roadmap}
+          title={project.data.roadmap.title}
+        />
+      ) : null
+    }
+
+    <Section
+      tag="Getting started"
+      title="Explore and contribute."
+      id="getting-started">
+      <nav>
+        {
+          project.data.links.map((link) => (
+            <Card title={link.to} href={link.href} />
+          ))
+        }
+      </nav>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  ul {
+    margin: 0;
+    list-style: none;
+  }
+
+  main > :global(section):not(:first-child) {
+    margin-top: var(--gap-lg);
+  }
+
+  #project {
+    position: relative;
+    padding: var(--gap-md);
+    margin-bottom: calc(2 * var(--gap-lg));
+
+    & span.tag {
+      font-size: 0.8em;
+      display: inline-block;
+      font-family: var(--font-mono);
+      color: var(--color-secondary);
+    }
+
+    & > :global(h2) {
+      font-size: 4em;
+    }
+
+    & > :global(p) {
+      margin: var(--gap-sm) 0;
+      max-width: 30rem;
+      text-align: center;
+    }
+
+    & :global(svg) {
+      --size-pattern: 12rem;
+      width: var(--size-pattern);
+      position: absolute;
+      top: var(--gap-lg);
+      color: var(--color-secondary);
+
+      &:nth-child(3) {
+        left: 0;
+      }
+
+      &:nth-child(4) {
+        right: 0;
+        transform-origin: center;
+        transform: scaleX(-1);
+      }
+    }
+  }
+
+  #goal {
+    margin-top: var(--gap-lg);
+
+    display: grid;
+    gap: var(--gap-md);
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 't t t t' 'h h h h' 'a a b b';
+    align-items: start;
+
+    & :global(span) {
+      grid-area: t;
+      text-align: center;
+    }
+
+    & :global(h2) {
+      grid-area: h;
+    }
+
+    & :global(p) {
+      max-width: 30rem;
+
+      &:nth-child(2n + 1) {
+        grid-area: a;
+      }
+
+      &:nth-child(2n) {
+        grid-area: b;
+      }
+    }
+  }
+
+  #maintainers {
+    background: var(--color-primary-dark);
+    display: flex;
+
+    & .wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      gap: var(--gap-md);
+      justify-content: center;
+      margin-top: var(--gap-md);
+    }
+
+    & article {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      max-width: 30vw;
+      gap: var(--gap-xs);
+
+      & > img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+      }
+
+      & > aside {
+        display: flex;
+        gap: var(--gap-sm);
+        justify-content: flex-end;
+        margin-top: auto;
+        padding-top: var(--gap-sm);
+        border-top: 1px solid var(--color-secondary);
+      }
+    }
+  }
+
+  #getting-started {
+    width: 100%;
+
+    & nav {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      gap: var(--gap-lg);
+      padding: 0 var(--gap-lg);
+
+      & > :global(article) {
+        min-height: unset;
+        height: max(min(40vh, 40vw), 14rem);
+      }
+    }
+  }
+
+  @media (max-width: 950px) {
+    #project {
+      & :global(svg) {
+        --size-pattern: 9rem;
+      }
+    }
+  }
+
+  @media (max-width: 770px) {
+    #maintainers {
+      & .wrapper {
+        flex-direction: column;
+      }
+
+      & article {
+        max-width: 100vw;
+
+        & > aside {
+          padding-bottom: var(--gap-md);
+          border-top: none;
+          border-bottom: 1px solid var(--color-secondary);
+        }
+
+        &:last-child > aside {
+          border-bottom: none;
+        }
+      }
+    }
+
+    #project {
+      & :global(svg) {
+        --size-pattern: 25vw;
+
+        top: unset;
+        bottom: var(--gap-sm);
+
+        &:nth-child(3) {
+          left: 0;
+          transform: rotate(90deg);
+          transform-origin: bottom left;
+        }
+
+        &:nth-child(4) {
+          right: 0;
+          transform: rotate(-90deg);
+          transform-origin: bottom right;
+        }
+      }
+    }
+
+    #goal {
+      margin-top: calc(25vw + var(--gap-lg));
+      grid-template-areas: 't t t t' 'h h h h' 'a a a a' 'b b b b';
+    }
+  }
+
+  @media (max-width: 650px) {
+    #getting-started {
+      & nav {
+        grid-template-columns: 1fr;
+        padding: 0;
+      }
+    }
+  }
+</style>

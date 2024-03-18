@@ -1,0 +1,134 @@
+---
+import { getCollection } from 'astro:content';
+
+import Layout from '../layouts/base.astro';
+
+import Hero from '../components/Hero.astro';
+
+const members = await Promise.all(
+  (await getCollection('members')).map(async (q) => {
+    return { ...q.data, ...(await q.render()) };
+  }),
+);
+---
+
+<Layout
+  title="Members"
+  description="A steadfast committee of dedicated industry experts.">
+  <main>
+    <Hero
+      tag="Members"
+      title="Unwavering industry experts, dedicated to improving the blockchain ecosystem."
+    />
+
+    <section id="members">
+      {
+        members.map(
+          ({ name, logo, website, github, discord, twitter, Content }) => (
+            <article>
+              <img alt={name} src={logo} loading="lazy" />
+              <Content />
+              <aside>
+                <a href={website}>
+                  Visit website{' '}
+                  <svg class="icon slide">
+                    <use xlink:href="#external-link" />
+                  </svg>
+                </a>
+                <a href={github} class="no-effect">
+                  <svg class="icon">
+                    <use xlink:href="#github" />
+                  </svg>
+                </a>
+                <a href={twitter} class="no-effect">
+                  <svg class="icon">
+                    <use xlink:href="#twitter" />
+                  </svg>
+                </a>
+                <a href={discord} class="no-effect">
+                  <svg class="icon">
+                    <use xlink:href="#discord" />
+                  </svg>
+                </a>
+              </aside>
+            </article>
+          ),
+        )
+      }
+    </section>
+  </main>
+</Layout>
+
+<style>
+  #members {
+    display: grid;
+    gap: var(--gap-lg);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    padding: var(--gap-md);
+
+    & > article {
+      display: flex;
+      flex-direction: column;
+      padding: var(--gap-md) 0;
+
+      & img {
+        display: inline-block;
+        max-height: 3.5rem;
+        object-fit: contain;
+        width: 100%;
+        margin-bottom: var(--gap-sm);
+
+        & + :global(p) {
+          margin-bottom: var(--gap-sm);
+          font-family: var(--font-secondary);
+          opacity: 0.8;
+        }
+      }
+
+      & :global(p) {
+        text-align: justify;
+        word-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.25em;
+      }
+
+      & :global(p):not(:last-child) {
+        margin-bottom: var(--gap-sm);
+      }
+
+      & :global(p) + :global(p) {
+        margin-top: auto;
+      }
+
+      & > aside {
+        margin-top: auto;
+        display: flex;
+        width: 100%;
+        padding: var(--gap-sm) 0;
+        gap: var(--gap-sm);
+        border-bottom: 1px solid var(--color-secondary);
+
+        & > *:nth-child(2) {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    #members {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    #members {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+  }
+</style>

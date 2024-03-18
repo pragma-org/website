@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/base.astro';
+
+const { frontmatter } = Astro.props;
+const { title } = frontmatter;
+---
+
+<Layout title={title}>
+  <main>
+    <slot />
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding: var(--gap-lg);
+
+    & :global(p) {
+      max-width: 50rem;
+      text-align: left;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+
+    & :global(p) + :global(p) {
+      margin-top: var(--gap-sm);
+    }
+
+    & :global(h2),
+    & :global(h3) {
+      max-width: 55rem;
+      margin: var(--gap-lg) 0 var(--gap-sm) 0;
+    }
+
+    & :global(h4) {
+      max-width: 55rem;
+      margin: var(--gap-md) 0 var(--gap-xs) 0;
+    }
+
+    & :global(ul) {
+      margin: var(--gap-md);
+
+      & :global(li) {
+        max-width: 45rem;
+      }
+
+      & :global(li) + :global(li) {
+        margin-top: var(--gap-sm);
+      }
+    }
+
+    & :global(hr) {
+      color: transparent;
+      margin-top: var(--gap-md);
+
+      & + :global(p) {
+        font-size: 0.75em;
+        opacity: 0.75;
+      }
+    }
+  }
+</style>

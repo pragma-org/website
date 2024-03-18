@@ -1,27 +1,82 @@
----
-import NavLink from '../components/NavLink.astro';
----
-
-<ul class="flex-row">
-  <slot/>
+<ul>
+  <slot />
 </ul>
 
 <style>
-ul {
-  list-style: none;
-  justify-content: space-between;
-  align-items: center;
-}
+  ul {
+    list-style: none;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
 
-ul > :global(li) {
-  margin-right: var(--margin-sm);
-}
+  ul > :global(li) {
+    margin-right: var(--gap-sm);
 
-ul > :global(li):last-child {
-  margin-right: 0;
-}
+    & :global(a) {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-ul > :global(li) + :global(li) {
-  margin-left: var(--margin-sm);
-}
+    & :global(a)::after {
+      content: attr(data-title);
+      content: attr(data-title) / '';
+      height: 0;
+      visibility: hidden;
+      overflow: hidden;
+      user-select: none;
+      pointer-events: none;
+      font-weight: bolder;
+    }
+  }
+
+  ul > :global(li):last-child {
+    margin-right: 0;
+  }
+
+  ul > :global(li) + :global(li) {
+    margin-left: var(--gap-sm);
+  }
+
+  @media speech {
+    ul > :global(li) :global(a)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 770px) {
+    ul {
+      padding-top: var(--height-header);
+      flex-direction: column;
+      font-size: 150%;
+
+      & > :global(li) {
+        margin: var(--gap-md) 0;
+        position: relative;
+
+        & > :global(a):focus {
+          color: var(--color-secondary-light);
+          font-weight: bolder;
+        }
+
+        &:not(:first-child)::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: calc(-1 * var(--gap-md));
+          left: calc(50% - 30vw);
+          width: 60vw;
+          height: 1px;
+          background: var(--color-primary);
+        }
+      }
+
+      & > :global(li) + :global(li) {
+        margin-left: unset;
+      }
+    }
+  }
 </style>

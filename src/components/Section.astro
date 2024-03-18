@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'section'> {
+  title?: string;
+  tag: string;
+}
+
+const { title, tag, ...props } = Astro.props;
+---
+
+<section class="flex-col flex-center" {...props}>
+  <span class="tag">{tag}</span>
+  {title ? <h2>{title}</h2> : ''}
+  <slot />
+</section>
+
+<style>
+  section {
+    padding: var(--gap-md);
+
+    & h2 {
+      max-width: 55vw;
+      text-align: center;
+    }
+  }
+
+  span.tag {
+    font-size: 0.8em;
+    display: inline-block;
+    font-family: var(--font-mono);
+    color: var(--color-secondary);
+  }
+
+  @media (max-width: 770px) {
+    section h2 {
+      max-width: unset;
+    }
+  }
+</style>

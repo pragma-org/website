@@ -1,35 +1,146 @@
 ---
 import NavLink from '../components/NavLink.astro';
 import Nav from '../components/Nav.astro';
+
+const isHome = Astro.url.pathname === '/';
+const aspectRatio = isHome ? 1 : 550 / 120;
 ---
 
+<input id="hamburger" type="checkbox" />
+<label aria-label="menu" for="hamburger">
+  <svg class="close-menu"><use xlink:href="#close"></use></svg>
+  <svg class="open-menu"><use xlink:href="#menu"></use></svg>
+</label>
 <header class="flex-row">
-  <svg style="color: var(--color-secondary);"><use xlink:href="#logo-mark"/></svg>
+  <a id="logo" class="no-effect" href="/" aria-label="homepage">
+    <svg><use xlink:href={isHome ? '#logo-mark' : '#logo'}></use></svg>
+  </a>
   <Nav>
-    <NavLink href="/projects">Projects</NavLink>
-    <NavLink href="/contributing">Contributing</NavLink>
-    <NavLink href="/members">Members</NavLink>
-    <NavLink href="/faq">FAQ</NavLink>
-    <NavLink href="/about">About</NavLink>
+    <NavLink href={isHome ? '#projects' : '/#projects'} title="Projects" />
+    <NavLink href="/members" title="Members" />
+    <NavLink href="/faq" title="FAQ" />
+    <NavLink href="/about" title="About" />
   </Nav>
 </header>
 
-<style>
+<style define:vars={{ aspectRatio }}>
+  #hamburger,
+  #hamburger + label {
+    display: none;
+  }
+
   header {
+    background: var(--color-primary);
     height: var(--height-header);
-    padding: var(--padding);
+    padding: var(--gap-md);
     width: 100%;
-    position: relative;
     justify-content: center;
 
-    & > svg {
-      --logo-height: calc(var(--height-header) - 2 * var(--padding));
+    top: 0;
+    position: sticky;
+    z-index: 99;
 
+    & > a#logo {
+      --height-logo: calc(var(--height-header) - 2 * var(--gap-md));
+      display: inline-block;
       position: absolute;
-      top: var(--padding);
-      left: var(--padding);
-      width: calc(2 * var(--logo-height));
-      height: var(--logo-height);
+      top: var(--gap-md);
+      left: var(--gap-md);
+      color: var(--color-secondary);
+
+      &:hover > svg {
+        right: unset;
+      }
+
+      & > svg {
+        height: var(--height-logo);
+        width: calc(var(--aspectRatio) * var(--height-logo));
+      }
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    header {
+      justify-content: flex-end;
+    }
+  }
+
+  @media screen and (max-width: 770px) {
+    header {
+      flex-direction: column;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.25s ease-out;
+    }
+
+    #hamburger + label {
+      display: block;
+      z-index: 100;
+      cursor: pointer;
+
+      & svg {
+        position: fixed;
+        width: calc(0.9 * var(--height-header) - 2 * var(--gap-md));
+        height: calc(0.9 * var(--height-header) - 2 * var(--gap-md));
+        top: 2.5rem;
+        right: var(--gap-md);
+        transform-origin: center;
+        transition: all 0.25s ease-out;
+      }
+
+      & svg.close-menu {
+        opacity: 0;
+        color: var(--color-primary);
+      }
+
+      & svg.open-menu {
+        opacity: 1;
+        color: var(--color-secondary);
+      }
+    }
+
+    #hamburger:checked {
+      & + label > svg.close-menu {
+        opacity: 1;
+        transform: rotate(-90deg);
+      }
+
+      & + label > svg.open-menu {
+        opacity: 0;
+        transform: rotate(-90deg);
+      }
+
+      & ~ header {
+        height: 100vh;
+        background: var(--color-secondary);
+        color: var(--color-primary);
+
+        & a,
+        & a:visited {
+          color: var(--color-primary);
+        }
+
+        & a.active {
+          color: var(--color-secondary-light);
+        }
+
+        & > a#logo {
+          color: var(--color-primary);
+        }
+
+        & :global(ul) {
+          display: flex;
+        }
+      }
+    }
+
+    #hamburger:not(:checked) {
+      & ~ header :global(ul) {
+        display: none;
+      }
     }
   }
 </style>

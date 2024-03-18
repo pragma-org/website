@@ -1,37 +1,53 @@
 ---
-interface Prop {
-  alive?: Set<Number>,
-  rows: Number,
+import Pattern from './Pattern.astro';
+
+interface Props {
+  actives?: Set<number>;
+  rows: number;
+  style?: string;
 }
 
-const perColumn = 28;
-const perRow = 4;
+let { actives, rows, style } = Astro.props;
 
-let { alive, rows } = Astro.props;
+const nCol = 7;
+const nRow = rows;
 
-if (!alive) {
-  alive = new Set([...Array(perColumn*perRow*rows).keys()].map(i => {
-    return Math.random() < 0.25 ? i : null;
-  }).filter(x => x !== null));
+if (!actives) {
+  actives = new Set(
+    [...Array(32).keys()]
+      .map((i) => {
+        return Math.random() < 0.25 ? i : null;
+      })
+      .filter((x) => x !== null),
+  );
 }
-
 ---
 
-<div id="grid">
-  {[...Array(perColumn * perRow * rows).keys()].map(i => (<div class={alive.has(i) ? "alive" : ""}></div>))}
+<div id="grid" style={style || ''}>
+  <Pattern actives={actives} nCol={nCol} nRow={nRow} />
 </div>
 
-<style define:vars={{ perColumn, perRow }}>
+<style define:vars={{ nCol, nRow }}>
   #grid {
     display: grid;
-    grid-template-columns: repeat(var(--perColumn), 1fr);
+    width: 100%;
+    color: var(--color-secondary);
+    overflow-x: hidden;
 
-    & > div {
-      height: calc(100vw / var(--perColumn));
+    & :global(svg) {
+      width: 100vw;
     }
+  }
 
-    & > div.alive {
-      background: var(--color-secondary);
+  @media (max-width: 770px) {
+    #grid :global(svg) {
+      width: calc(10 * 100vw / var(--nCol));
+    }
+  }
+
+  @media (max-width: 500px) {
+    #grid :global(svg) {
+      width: calc(14 * 100vw / var(--nCol));
     }
   }
 </style>

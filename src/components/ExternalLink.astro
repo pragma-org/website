@@ -6,6 +6,6 @@ type Props = HTMLAttributes<'a'>;
 const { href, ...attributes } = Astro.props;
 ---
 
-<a href={href} {...attributes}>
-  <slot /><svg><use xlink:href="#external-link"/></svg>
+<a href={href} target="_blank" {...attributes}>
+  <slot /><svg class="icon slide"><use xlink:href="#external-link"></use></svg>
 </a>
