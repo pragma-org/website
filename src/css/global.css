@@ -72,6 +72,9 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-color: var(--color-primary);
   color: var(--color-secondary-light);
 }
@@ -88,10 +91,16 @@ a {
   display: inline-block;
   text-decoration: none;
   color: var(--color-secondary) !important;
+  position: relative;
 
   &:hover {
     text-decoration: underline;
     color: var(--color-secondary-light) !important;
+
+    & > svg {
+      right: -1.5em;
+      opacity: 1;
+    }
   }
 
   &.active {
@@ -100,12 +109,14 @@ a {
   }
 
   & > svg {
-    position: relative;
+    position: absolute;
     top: 0.1em;
-    left: 0.25em;
+    right: 0;
     aspect-ratio: 1/1;
     display: inline-block;
     height: 1em;
+    opacity: 0;
+    transition: all 100ms ease-in;
   }
 }
 

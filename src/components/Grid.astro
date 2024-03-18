@@ -1,37 +1,43 @@
 ---
 interface Prop {
-  alive?: Set<Number>,
+  actives?: Set<Number>,
   rows: Number,
 }
 
-const perColumn = 28;
-const perRow = 4;
+import Pictogram from './Pictogram.astro';
 
-let { alive, rows } = Astro.props;
+const perPictogram = 8*4;
+const perRow = 7;
 
-if (!alive) {
-  alive = new Set([...Array(perColumn*perRow*rows).keys()].map(i => {
+let { actives, rows } = Astro.props;
+
+if (!actives) {
+  actives = new Set([...Array(perPictogram*rows).keys()].map(i => {
     return Math.random() < 0.25 ? i : null;
   }).filter(x => x !== null));
-}
 
+  // 0, 7, 9, 14, 17, 20, 21, 27, 32, 33, 35, 36, 40, 42, 46, 47, 50, 52, 54, 56, 57, 60, 61, 62
+
+  console.log("Pictogram: ", actives);
+}
 ---
 
 <div id="grid">
-  {[...Array(perColumn * perRow * rows).keys()].map(i => (<div class={alive.has(i) ? "alive" : ""}></div>))}
+  {[...Array(parseInt(rows, 10)).keys()].map(_ => [...Array(perRow).keys()].map(_ =>
+    (<Pictogram actives={actives} />)
+  ))}
 </div>
 
-<style define:vars={{ perColumn, perRow }}>
+<style define:vars={{ perRow }}>
   #grid {
     display: grid;
-    grid-template-columns: repeat(var(--perColumn), 1fr);
+    grid-template-columns: repeat(var(--perRow), 1fr);
+    color: var(--color-secondary);
 
-    & > div {
-      height: calc(100vw / var(--perColumn));
-    }
-
-    & > div.alive {
-      background: var(--color-secondary);
+    & :global(svg) {
+      width: calc(100vw / var(--perRow));
+      height: calc(100vw / var(--perRow));
+      aspect-ratio: 1/1;
     }
   }
 </style>
