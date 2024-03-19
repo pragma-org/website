@@ -38,7 +38,7 @@ import Section from '../components/Section.astro';
         </div>
         <p class="justified">PRAGMA aims to foster an alternative open-source ecosystem for Cardano <i>and beyond</i>. Said differently, we are a team of passionate software engineers from various backgrounds who build open-source tools for developers aiming for mass adoption.
 
-        <a href="/about">Learn about PRAGMA<svg><use xlink:href="#arrow-right"/></a>
+        <a href="/about">Learn about PRAGMA<svg class="link-icon"><use xlink:href="#arrow-right"/></a>
         </p>
       </div>
     </Section>
@@ -81,6 +81,10 @@ import Section from '../components/Section.astro';
         svg.id = 'pragma';
         svg.appendChild(link);
 
+        const href = document.createElement('a');
+        href.setAttribute('href', '/');
+        href.appendChild(svg);
+
         document.addEventListener('DOMContentLoaded', () => {
           let pos = window.scrollY;
 
@@ -95,7 +99,7 @@ import Section from '../components/Section.astro';
             setProgress();
           }
 
-          document.querySelector('#hero').prepend(svg);
+          document.querySelector('#hero').appendChild(href);
 
           document.addEventListener('scroll', () => {
             pos = window.scrollY;
@@ -126,14 +130,15 @@ import Section from '../components/Section.astro';
     & :global(#pragma) {
       --progress: 0;
       color: var(--color-secondary-light);
+      cursor: default;
 
       aspect-ratio: 6/1;
       position: fixed;
       z-index: 100;
 
-      width: calc(70% - var(--progress) * 0.5%);
-      top: calc(21rem - var(--progress) * 0.19rem);
-      left: calc(2rem + var(--progress) * 0.05rem);
+      width: calc(160px + (100 - var(--progress)) * 0.5%);
+      top: calc(21.70rem - var(--progress) * 0.19rem);
+      left: calc(0.75rem + var(--progress) * 0.05rem);
 
       transition-property: all;
       transition-duration: 120ms;
@@ -144,6 +149,7 @@ import Section from '../components/Section.astro';
       &[data-progress="95"],
       &[data-progress="100"] {
         color: var(--color-secondary);
+        cursor: pointer;
       }
     }
 

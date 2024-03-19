@@ -1,10 +1,15 @@
 ---
 import NavLink from '../components/NavLink.astro';
 import Nav from '../components/Nav.astro';
+
+const isHome = Astro.url.pathname === '/';
+const aspectRatio = isHome ? 1 : 550/120;
 ---
 
 <header class="flex-row">
-  <svg style="color: var(--color-secondary);"><use xlink:href="#logo-mark"/></svg>
+  <a id="logo" href="/">
+    <svg><use xlink:href={isHome ? "#logo-mark" : "#logo" }/></svg>
+  </a>
   <Nav>
     <NavLink href="/projects">Projects</NavLink>
     <NavLink href="/contributing">Contributing</NavLink>
@@ -14,7 +19,7 @@ import Nav from '../components/Nav.astro';
   </Nav>
 </header>
 
-<style>
+<style define:vars={{ aspectRatio }}>
   header {
     background: var(--color-primary);
     height: var(--height-header);
@@ -26,13 +31,22 @@ import Nav from '../components/Nav.astro';
     position: sticky;
     z-index: 99;
 
-    & > svg {
+    & > a#logo {
       --height-logo: calc(var(--height-header) - 2 * var(--gap-md));
+      display: inline-block;
       position: absolute;
       top: var(--gap-md);
       left: var(--gap-md);
-      width: calc(2 * var(--height-logo));
-      height: var(--height-logo);
+
+      &:hover > svg {
+        right: unset;
+      }
+
+      & > svg {
+        color: var(--color-secondary);
+        height: var(--height-logo);
+        width: calc(var(--aspectRatio) * var(--height-logo));
+      }
     }
   }
 </style>
