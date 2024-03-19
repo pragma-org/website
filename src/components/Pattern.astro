@@ -1,0 +1,43 @@
+---
+import { createHash } from 'node:crypto';
+
+const { actives, nCol, nRow } = Astro.props;
+
+const cls = id => actives.has(id) ? "active" : "";
+
+const width = (nCol || 1) * 40;
+const height = (nRow || 1) * 40;
+
+const patternId = createHash('sha256').update(Buffer.from(Array.from(actives))).digest('hex');
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" viewbox=`0 0 ${width} ${height}` stroke-width="0">
+  <defs>
+    <pattern id={patternId} x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      {[0,1,2,3].map(row => [0,1,2,3].map(col => {
+        const id = 2 * col + 8 * row;
+        const flip = row % 2 ? !(col % 2) : col % 2;
+        return (
+            <path id={id}     class={cls(id)}   d=`M ${col*10} ${row*10 + (flip ? 10 : 0)} v ${flip ? -10 : 10} h 10 Z` />
+            <path id={id + 1} class={cls(id+1)} d=`M ${col*10} ${row*10 + (flip ? 10 : 0)} h 10 v ${flip ? -10 : 10} Z` />
+        );
+      }))}
+    </pattern>
+    <filter filterUnits="userSpaceOnUse" id="outline" >
+      <feMorphology in="SourceGraphic" result="DILATED" operator="dilate" radius="0.025" />
+    </filter>
+  </defs>
+  <rect fill=`url(#${patternId})` width={width} height={height} />
+</svg>
+
+<style>
+  svg pattern > path {
+    filter: url(#outline);
+    fill: transparent;
+
+    &.active {
+      fill: currentColor;
+      stroke: currentColor;
+    }
+  }
+</style>

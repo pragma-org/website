@@ -4,35 +4,33 @@ interface Prop {
   rows: Number,
 }
 
-import Pictogram from './Pictogram.astro';
-
-const perPictogram = 8*4;
-const perRow = 7;
+import Pattern from './Pattern.astro';
 
 let { actives, rows } = Astro.props;
 
+const nCol = 7;
+const nRow = rows;
+
 if (!actives) {
-  actives = new Set([...Array(perPictogram*rows).keys()].map(i => {
+  actives = new Set([...Array(32).keys()].map(i => {
     return Math.random() < 0.25 ? i : null;
   }).filter(x => x !== null));
 }
 ---
 
 <div id="grid">
-  {[...Array(parseInt(rows, 10)).keys()].map(_ => [...Array(perRow).keys()].map(_ =>
-    (<Pictogram actives={actives} />)
-  ))}
+  <Pattern actives={actives} nCol={nCol} nRow={nRow} />
 </div>
 
-<style define:vars={{ perRow }}>
+<style define:vars={{ nCol, nRow }}>
   #grid {
     display: grid;
-    grid-template-columns: repeat(var(--perRow), 1fr);
+    grid-template-columns: repeat(var(--nCol), 1fr);
     color: var(--color-secondary);
 
     & :global(svg) {
-      width: calc(100vw / var(--perRow));
-      height: calc(100vw / var(--perRow));
+      width: 100vw;
+      height: calc(var(--nRow) * 100vw / var(--nCol));
       aspect-ratio: 1/1;
     }
   }
