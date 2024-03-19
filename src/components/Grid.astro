@@ -15,10 +15,6 @@ if (!actives) {
   actives = new Set([...Array(perPictogram*rows).keys()].map(i => {
     return Math.random() < 0.25 ? i : null;
   }).filter(x => x !== null));
-
-  // 0, 7, 9, 14, 17, 20, 21, 27, 32, 33, 35, 36, 40, 42, 46, 47, 50, 52, 54, 56, 57, 60, 61, 62
-
-  console.log("Pictogram: ", actives);
 }
 ---
 

@@ -8,20 +8,7 @@ import Pictogram from '../components/Pictogram.astro';
 
 <Layout description="A member-based, non-for-profit open-source association for blockchain software projects">
   <section class="flex-row flex-center" id="hero">
-    <svg class="morph"><use xlink:href="#logo-typography"/></svg>
-    <script>
-      const el = document.querySelector("#hero > svg.morph");
-      const progress = Math.min(100, 10 * Math.round(window.scrollY / 30));
-      el.style = `--progress: ${progress};`;
-      if (progress >= 85) {
-        el.classList.add('in-header');
-      }
-      if (progress >= 100) {
-        setTimeout(() => { el.classList.add('visible') }, 150);
-      } else {
-        el.classList.add('visible');
-      }
-    </script>
+    <noscript><svg id="pragma" style="position: absolute; z-index: 1;"><use xlink:href="#logo-typography"></svg></noscript>
     <p>A member-based, not-for-profit open-source association for blockchain software projects</p>
   </section>
 
@@ -92,22 +79,32 @@ import Pictogram from '../components/Pictogram.astro';
   <script>
     ;(function withScroll() {
       let throttle;
-      let pos = window.scrollY;
+
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+      const link = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      link.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#logo-typography');
+      svg.id = 'pragma';
+      svg.appendChild(link);
 
       document.addEventListener('DOMContentLoaded', () => {
-        const el = document.querySelector('#hero > svg.morph');
+        let pos = window.scrollY;
+
+        const setProgress = () => {
+          throttle = false;
+          const progress = Math.min(100, 5 * Math.round(pos / 15));
+          svg.setAttribute('data-progress', progress);
+          svg.style.setProperty('--progress', progress);
+        }
+
+        if (!window.location.hash || pos != 0) {
+          setProgress();
+        }
+
+        document.querySelector('#hero').prepend(svg);
+
         document.addEventListener('scroll', () => {
           pos = window.scrollY;
-          if (!throttle) {
-            requestAnimationFrame(() => {
-              throttle = false;
-              const progress = Math.min(100, 10 * Math.round(pos / 30));
-              el.style = `--progress: ${progress};`;
-              if (progress >= 85) {
-                el.classList.add('in-header');
-              }
-            });
-          }
+          if (!throttle) { requestAnimationFrame(setProgress) }
           throttle = true;
         })
       });
@@ -123,12 +120,13 @@ import Pictogram from '../components/Pictogram.astro';
     padding: var(--padding);
     justify-content: end;
 
-    & > svg {
+    & :global(#pragma) {
+      --progress: 0;
       color: var(--color-secondary-light);
+
       aspect-ratio: 6/1;
       position: fixed;
       z-index: 100;
-      opacity: 0;
 
       width: calc(70% - var(--progress) * 0.5%);
       top: calc(21rem - var(--progress) * 0.19rem);
@@ -138,23 +136,17 @@ import Pictogram from '../components/Pictogram.astro';
       transition-duration: 120ms;
       transition-timing-function: linear;
 
-      &.visible {
-        opacity: 1;
-      }
-      &.in-header {
+      &[data-progress="85"],
+      &[data-progress="90"],
+      &[data-progress="95"],
+      &[data-progress="100"] {
         color: var(--color-secondary);
       }
-   }
+    }
 
     & > p {
       max-width: 17.5rem;
       text-align: right;
-    }
-  }
-
-  @media (orientation: portrait) {
-    #hero {
-      max-height: 25vh;
     }
   }
 
@@ -198,7 +190,6 @@ import Pictogram from '../components/Pictogram.astro';
     }
 
     & a {
-      font-family: var(--font-mono);
       font-variant: small-caps;
       margin-top: var(--margin);
       float: right;
@@ -244,7 +235,6 @@ import Pictogram from '../components/Pictogram.astro';
     }
 
     & h3 {
-      font-family: var(--font-mono);
       text-align: center;
       margin-bottom: var(--margin);
     }
