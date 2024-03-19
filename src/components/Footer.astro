@@ -2,7 +2,7 @@
 import ExternalLink from '../components/ExternalLink.astro';
 import Grid from '../components/Grid.astro';
 
-import { socials } from '../config.json';
+import { socials, email } from '../config.json';
 
 const githubUrl = `https://github.com/${socials.github}`;
 const discordUrl = `https://discord.com/${socials.discord}`;
@@ -29,7 +29,7 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
         <li><ExternalLink href={twitterUrl}>Twitter/X</ExternalLink></li>
       </ul>
 
-      <a style="text-align: right;" href="mailto:contact@pragma.org">contact@pragma.org</a>
+      <a style="text-align: right;" href=`mailto:${email}`>{email}</a>
     </aside>
   </div>
   <p id="copyright">© 2024 PRAGMA. All rights reserved.</p>

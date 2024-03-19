@@ -1,0 +1,178 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+
+import Layout from '../layouts/base.astro';
+
+import Pattern from '../components/Pattern.astro';
+import ExternalLink from '../components/ExternalLink.astro';
+
+import { socials, email } from '../config.json';
+
+const questions = await Promise.all((await getCollection('questions')).map(async q => {
+  return { title: q.data.title, ...await q.render() };
+}));
+
+const discordUrl = `https://discord.com/${socials.discord}`;
+const twitterUrl = `https://twitter.com/${socials.twitter}`;
+---
+
+<Layout description="Transparency starts with providing answers to questions.">
+  <main>
+    <h1>Simplicity, <u>transparency</u> and efficiency.</h1>
+    <aside>
+      <Pattern actives={new Set([2,3,4,5,8,9,14,15,16,17,18,19,22,23,26,27,28,29])} />
+      <h3>Have more questions?</h3>
+      <p>
+        Feel free to reach out!
+        <ul class="flex-col">
+          <li><ExternalLink href=`mailto:${email}`>Email</ExternalLink></li>
+          <li><ExternalLink href={discordUrl}>Discord</ExternalLink></li>
+          <li><ExternalLink href={twitterUrl}>Twitter/X</ExternalLink></li>
+        </ul>
+      </p>
+    </aside>
+    <section id="questions">
+      <h2>FAQ</h2>
+      {questions.map(({ title, Content }) =>
+        <details>
+          <summary>{title}<svg class="maximise"><use xlink:href="#maximise" /></svg><svg class="minimise"><use xlink:href="#minimise" /></svg></summary>
+          <Content />
+        </details>
+      )}
+    </section>
+  </main>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="maximise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 3 21 3 21 9"></polyline>
+      <polyline points="9 21 3 21 3 15"></polyline>
+      <line x1="21" y1="3" x2="14" y2="10"></line>
+      <line x1="3" y1="21" x2="10" y2="14"></line>
+    </symbol>
+    <symbol id="minimise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4 14 10 14 10 20"></polyline>
+      <polyline points="20 10 14 10 14 4"></polyline>
+      <line x1="14" y1="10" x2="21" y2="3"></line>
+      <line x1="3" y1="21" x2="10" y2="14"></line>
+    </symbol>
+  </svg>
+</Layout>
+
+<style>
+  main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+      "h1 h1 h1 h1"
+      "aside q q q";
+  }
+
+  h1 {
+    grid-area: h1;
+    font-size: 4em;
+    text-align: center;
+  }
+
+  aside {
+    grid-area: aside;
+    min-width: 20rem;
+    padding: var(--padding);
+
+    & > :global(svg) {
+      color: var(--color-secondary);
+      display: flex;
+      margin: 0 auto var(--margin) auto;
+      max-width: 75%;
+    }
+
+    & h3 {
+      font-family: var(--font-mono);
+      color: var(--color-secondary);
+      margin-bottom: var(--margin);
+    }
+
+    & ul {
+      list-style: none;
+      margin: var(--margin-xs) 0;
+
+      & > :global(li) {
+        margin-bottom: calc(var(--margin-xs) / 2);
+      }
+
+      & > :global(li) + :global(li) {
+        margin-top: calc(var(--margin-xs) / 2);
+      }
+
+      & > :global(li):last-child {
+        margin-bottom: unset;
+      }
+    }
+  }
+
+  #questions {
+    grid-area: q;
+    width: 100%;
+    padding: var(--padding);
+
+    & h2 {
+      font-size: 2.5em;
+      margin-bottom: var(--margin);
+    }
+
+    & > details {
+      border-bottom: 1px solid var(--color-secondary);
+      padding: var(--padding) 0;
+
+      & > :global(p) {
+        padding-top: var(--padding);
+      }
+
+      & summary {
+        width: 100%;
+        list-style: none;
+        position: relative;
+        cursor: pointer;
+        color: var(--color-secondary);
+
+        &:hover {
+          color: var(--color-secondary-light);
+        }
+
+        & svg {
+          height: 1rem;
+          min-width: 1rem;
+          position: absolute;
+          right: 0;
+          transition: .3s ease;
+          width: 1rem;
+
+          &.minimise {
+            opacity: 0;
+          }
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &::-webkit-details-marker {
+          display: none
+        }
+      }
+
+      &:nth-child(2) {
+        border-top: 1px solid var(--color-secondary);
+      }
+
+      &[open] {
+        & summary svg.minimise {
+          opacity: 1;
+        }
+
+        & summary svg.maximise {
+          opacity: 0;
+        }
+      }
+    }
+  }
+</style>

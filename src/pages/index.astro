@@ -7,117 +7,122 @@ import Pattern from '../components/Pattern.astro';
 ---
 
 <Layout description="A member-based, non-for-profit open-source association for blockchain software projects">
-  <section class="flex-row flex-center" id="hero">
-    <noscript><svg id="pragma" style="position: absolute; z-index: 1;"><use xlink:href="#logo-typography"></svg></noscript>
-    <p>A member-based, not-for-profit open-source association for blockchain software projects</p>
-  </section>
+  <main>
+    <section class="flex-row flex-center" id="hero">
+      <noscript><svg id="pragma" style="position: absolute; z-index: 1;"><use xlink:href="#logo-typography"></svg></noscript>
+      <p>A member-based, not-for-profit open-source association for blockchain software projects</p>
+    </section>
 
-  <Grid rows=2 actives={new Set([3,4,10,13,19,20,25, 30])} />
+    <Grid rows=2 actives={new Set([3,4,10,13,19,20,25, 30])} />
 
-  <section class="flex-col flex-center" id="projects">
-    <span class="tagline">Projects</span>
-    <h2>Hosting open-source projects and helping them to thrive</h2>
+    <section class="flex-col flex-center" id="projects">
+      <span class="tagline">Projects</span>
+      <h2>Hosting open-source projects and helping them to thrive</h2>
 
-    <div class="flex-row flex-center" id="cards">
-      <Card title="Polaris" href="/projects/polaris">
-        An alternative Rust node client for the Cardano blockchain. Aimed as an entrypoint for client applications initially, it aspires to become a full block-producing node running side-by-side the Haskell nodes to further increase the decentralisation of the platform while fostering its rich open source ecosystem.
-      </Card>
-      <Card title="Aiken" href="/projects/aiken">
-        Aiken is a novel and accessible programming language, specifically created to both simplify and enhance the development of smart contracts on Cardano. It comes in an easy to learn syntax, designed for effortless integration with other tools and languages, plus includes various state-of-the-art features that meet the current expectations of developers.
-      </Card>
-    </div>
-  </section>
-
-  <section class="flex-col flex-center" id="who-we-are">
-    <span class="tagline">Who we are</span>
-    <h2>PRAGMA is a team of passionate software engineers from various backgrounds.</h2>
-    <div class="flex-row">
-      <div id="members">
-        <img alt="Cardano Foundation" src="/img/members/cardanofoundation.webp" loading=lazy/>
-        <img alt="TxPipe" src="/img/members/txpipe.svg" loading=lazy/>
-        <img alt="Blink Labs" src="/img/members/blinklabs.svg" loading=lazy/>
-        <img alt="Sundae Labs" src="/img/members/sundaelabs.svg" loading=lazy/>
-        <img alt="dcSpark" src="/img/members/dcspark.svg" loading=lazy/>
+      <div class="flex-row flex-center" id="cards">
+        <Card title="Polaris" href="/projects/polaris">
+          An alternative Rust node client for the Cardano blockchain. Aimed as an entrypoint for client applications initially, it aspires to become a full block-producing node running side-by-side the Haskell nodes to further increase the decentralisation of the platform while fostering its rich open source ecosystem.
+        </Card>
+        <Card title="Aiken" href="/projects/aiken">
+          Aiken is a novel and accessible programming language, specifically created to both simplify and enhance the development of smart contracts on Cardano. It comes in an easy to learn syntax, designed for effortless integration with other tools and languages, plus includes various state-of-the-art features that meet the current expectations of developers.
+        </Card>
       </div>
-      <p class="justified">PRAGMA aims to foster an alternative open-source ecosystem for Cardano <i>and beyond</i>. Said differently, we are a team of passionate software engineers from various backgrounds who build open-source tools for developers aiming for mass adoption.
+    </section>
 
-      <a href="/about">Learn about PRAGMA<svg><use xlink:href="#arrow-right"/></a>
+    <section class="flex-col flex-center" id="who-we-are">
+      <span class="tagline">Who we are</span>
+      <h2>PRAGMA is a team of passionate software engineers from various backgrounds.</h2>
+      <div class="flex-row">
+        <div id="members">
+          <img alt="Cardano Foundation" src="/img/members/cardanofoundation.webp" loading=lazy/>
+          <img alt="TxPipe" src="/img/members/txpipe.svg" loading=lazy/>
+          <img alt="Blink Labs" src="/img/members/blinklabs.svg" loading=lazy/>
+          <img alt="Sundae Labs" src="/img/members/sundaelabs.svg" loading=lazy/>
+          <img alt="dcSpark" src="/img/members/dcspark.svg" loading=lazy/>
+        </div>
+        <p class="justified">PRAGMA aims to foster an alternative open-source ecosystem for Cardano <i>and beyond</i>. Said differently, we are a team of passionate software engineers from various backgrounds who build open-source tools for developers aiming for mass adoption.
+
+        <a href="/about">Learn about PRAGMA<svg><use xlink:href="#arrow-right"/></a>
+        </p>
+      </div>
+    </section>
+
+    <section id="principles">
+      <div>
+        <h3>Simple, transparent, efficient</h3>
+        <Pattern actives={new Set([2,3,4,5,8,9,14,15,16,17,22,23,26,27,28,29])} />
+      </div>
+      <div>
+        <h3>A home for blockchain open-source projects</h3>
+        <Pattern actives={new Set([3,4,9,10,11,12,13,14,16,17,19,20,22,23,24,25,27,28,30,31])} />
+      </div>
+      <div>
+        <h3>Step-by-step, in useful increments</h3>
+        <Pattern actives={new Set([6,7,12,13,14,15,18,19,20,21,22,23,24,25,26,27,28,29,30,31])} />
+      </div>
+    </section>
+
+    <section class="flex-col flex-center" id="contribute">
+      <span class="tagline">Contribute</span>
+      <h2>A collective open-source strategy</h2>
+      <p class="justified">
+        We want to build software solutions that increase blockchain’s utility and
+        adoption, inasmuch as they also provide business value for ecosystem actors.
+        <br/>
+        <br/>
+        By delivering solutions in small steps, we intend to involve other
+        builders to create strong open-source communities. Projects under PRAGMA
+        are open to contributions and will onboard those who want to get
+        involved.
       </p>
-    </div>
-  </section>
+    </section>
 
-  <section id="principles">
-    <div>
-      <h3>Simple, transparent, efficient</h3>
-      <Pattern actives={new Set([2,3,4,5,8,9,14,15,16,17,22,23,26,27,28,29])} />
-    </div>
-    <div>
-      <h3>A home for blockchain open-source projects</h3>
-      <Pattern actives={new Set([3,4,9,10,11,12,13,14,16,17,19,20,22,23,24,25,27,28,30,31])} />
-    </div>
-    <div>
-      <h3>Step-by-step, in useful increments</h3>
-      <Pattern actives={new Set([6,7,12,13,14,15,18,19,20,21,22,23,24,25,26,27,28,29,30,31])} />
-    </div>
-  </section>
+    <script>
+      ;(function withScroll() {
+        let throttle;
 
-  <section class="flex-col flex-center" id="contribute">
-    <span class="tagline">Contribute</span>
-    <h2>A collective open-source strategy</h2>
-    <p class="justified">
-      We want to build software solutions that increase blockchain’s utility and
-      adoption, inasmuch as they also provide business value for ecosystem actors.
-      <br/>
-      <br/>
-      By delivering solutions in small steps, we intend to involve other
-      builders to create strong open-source communities. Projects under PRAGMA
-      are open to contributions and will onboard those who want to get
-      involved.
-    </p>
-  </section>
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+        const link = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        link.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#logo-typography');
+        svg.id = 'pragma';
+        svg.appendChild(link);
 
-  <script>
-    ;(function withScroll() {
-      let throttle;
+        document.addEventListener('DOMContentLoaded', () => {
+          let pos = window.scrollY;
 
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-      const link = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-      link.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#logo-typography');
-      svg.id = 'pragma';
-      svg.appendChild(link);
+          const setProgress = () => {
+            throttle = false;
+            const progress = Math.min(100, 5 * Math.round(pos / 15));
+            svg.setAttribute('data-progress', progress);
+            svg.style.setProperty('--progress', progress);
+          }
 
-      document.addEventListener('DOMContentLoaded', () => {
-        let pos = window.scrollY;
+          if (!window.location.hash || pos != 0) {
+            setProgress();
+          }
 
-        const setProgress = () => {
-          throttle = false;
-          const progress = Math.min(100, 5 * Math.round(pos / 15));
-          svg.setAttribute('data-progress', progress);
-          svg.style.setProperty('--progress', progress);
-        }
+          document.querySelector('#hero').prepend(svg);
 
-        if (!window.location.hash || pos != 0) {
-          setProgress();
-        }
-
-        document.querySelector('#hero').prepend(svg);
-
-        document.addEventListener('scroll', () => {
-          pos = window.scrollY;
-          if (!throttle) { requestAnimationFrame(setProgress) }
-          throttle = true;
-        })
-      });
-    }());
-  </script>
+          document.addEventListener('scroll', () => {
+            pos = window.scrollY;
+            if (!throttle) { requestAnimationFrame(setProgress) }
+            throttle = true;
+          })
+        });
+      }());
+    </script>
+  </main>
 </Layout>
 
 <style>
+  section {
+    padding: var(--padding);
+  }
+
   #hero {
     width: 100%;
     aspect-ratio: 16/9;
     max-height: 40rem;
-    padding: var(--padding);
     justify-content: end;
 
     & :global(#pragma) {
@@ -148,10 +153,6 @@ import Pattern from '../components/Pattern.astro';
       max-width: 17.5rem;
       text-align: right;
     }
-  }
-
-  section {
-    padding: var(--padding);
   }
 
   h2 {

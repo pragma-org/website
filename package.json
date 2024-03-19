@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.5.5"
+    "astro": "^4.5.6"
   },
   "packageManager": "yarn@1.22.22"
 }
