@@ -1,0 +1,29 @@
+---
+const { title, tag, ...props } = Astro.props;
+---
+
+<section class="flex-col flex-center" {...props}>
+  <span class="tag">{tag}</span>
+  {title ? (<h2>{title}</h2>) : ''}
+  <slot/>
+</section>
+
+<style>
+  section {
+    padding: var(--gap-md);
+
+    & h2 {
+      font-size: 2.5em;
+      max-width: 50vw;
+      text-align: center;
+      margin-bottom: var(--gap-md);
+    }
+  }
+
+  span.tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    color: var(--color-secondary);
+    margin-bottom: var(--gap-md);
+  }
+</style>

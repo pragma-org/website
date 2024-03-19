@@ -10,15 +10,11 @@
   --font-secondary: SpaceGrotesk;
   --font-mono: SpaceMono;
 
-  --margin-xs: 0.5rem;
-  --margin-sm: 1rem;
-  --margin: 2rem;
-  --margin-lg: 4rem;
-  --margin-xl: 8rem;
-
-  --padding-sm: 1rem;
-  --padding: 2rem;
-  --padding-lg: 4rem;
+  --gap-xs: 0.5rem;
+  --gap-sm: 1rem;
+  --gap-md: 2rem;
+  --gap-lg: 4rem;
+  --gap-xl: 8rem;
 
   --height-header: 7rem;
 }
@@ -139,7 +135,7 @@ a {
 
 .justified {
   text-align: justify;
-  word-wrap: break;
+  word-wrap: break-word;
   hyphens: auto;
   line-height: 1.25em;
 }

@@ -38,13 +38,13 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
 <style>
   footer {
     width: 100%;
-    margin-top: var(--margin);
-    padding: var(--padding);
-    padding-bottom: var(--padding-sm);
+    margin-top: var(--gap-md);
+    padding: var(--gap-md);
+    padding-bottom: var(--gap-sm);
     background: var(--color-primary-dark);
 
     & svg {
-      --logo-height: calc(var(--height-header) - 2 * var(--padding));
+      --logo-height: calc(var(--height-header) - 2 * var(--gap-md));
       width: calc(2 * var(--logo-height));
       height: var(--logo-height);
     }
@@ -54,7 +54,7 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
     }
 
     & #copyright {
-      margin-top: var(--margin);
+      margin-top: var(--gap-md);
       font-size: 0.75em;
       opacity: 0.75;
     }
@@ -74,7 +74,7 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
   h2 {
     grid-area: title;
     font-size: 2em;
-    margin-bottom: var(--margin);
+    margin-bottom: var(--gap-md);
   }
 
   ul {
@@ -82,11 +82,11 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
     margin: 0;
 
     & > :global(li) {
-      margin-bottom: var(--margin-xs);
+      margin-bottom: var(--gap-xs);
     }
 
     & > :global(li) + :global(li) {
-      margin-top: var(--margin-xs);
+      margin-top: var(--gap-xs);
     }
 
     & > :global(li):last-child {

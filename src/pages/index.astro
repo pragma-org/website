@@ -4,6 +4,7 @@ import Layout from '../layouts/base.astro';
 import Card from '../components/Card.astro';
 import Grid from '../components/Grid.astro';
 import Pattern from '../components/Pattern.astro';
+import Section from '../components/Section.astro';
 ---
 
 <Layout description="A member-based, non-for-profit open-source association for blockchain software projects">
@@ -15,10 +16,7 @@ import Pattern from '../components/Pattern.astro';
 
     <Grid rows=2 actives={new Set([3,4,10,13,19,20,25, 30])} />
 
-    <section class="flex-col flex-center" id="projects">
-      <span class="tagline">Projects</span>
-      <h2>Hosting open-source projects and helping them to thrive</h2>
-
+    <Section tag="Projects" title="Hosting open-source projects and helping them to thrive" id="projects">
       <div class="flex-row flex-center" id="cards">
         <Card title="Polaris" href="/projects/polaris">
           An alternative Rust node client for the Cardano blockchain. Aimed as an entrypoint for client applications initially, it aspires to become a full block-producing node running side-by-side the Haskell nodes to further increase the decentralisation of the platform while fostering its rich open source ecosystem.
@@ -27,11 +25,9 @@ import Pattern from '../components/Pattern.astro';
           Aiken is a novel and accessible programming language, specifically created to both simplify and enhance the development of smart contracts on Cardano. It comes in an easy to learn syntax, designed for effortless integration with other tools and languages, plus includes various state-of-the-art features that meet the current expectations of developers.
         </Card>
       </div>
-    </section>
+    </Section>
 
-    <section class="flex-col flex-center" id="who-we-are">
-      <span class="tagline">Who we are</span>
-      <h2>PRAGMA is a team of passionate software engineers from various backgrounds.</h2>
+    <Section tag="Who we are" title="PRAGMA is a team of passionate software engineers from various backgrounds." id="who-we-are">
       <div class="flex-row">
         <div id="members">
           <img alt="Cardano Foundation" src="/img/members/cardanofoundation.webp" loading=lazy/>
@@ -45,7 +41,7 @@ import Pattern from '../components/Pattern.astro';
         <a href="/about">Learn about PRAGMA<svg><use xlink:href="#arrow-right"/></a>
         </p>
       </div>
-    </section>
+    </Section>
 
     <section id="principles">
       <div>
@@ -62,9 +58,7 @@ import Pattern from '../components/Pattern.astro';
       </div>
     </section>
 
-    <section class="flex-col flex-center" id="contribute">
-      <span class="tagline">Contribute</span>
-      <h2>A collective open-source strategy</h2>
+    <Section tag="Contribute" title="A collective open-source strategy" id="contribute">
       <p class="justified">
         We want to build software solutions that increase blockchain’s utility and
         adoption, inasmuch as they also provide business value for ecosystem actors.
@@ -75,7 +69,7 @@ import Pattern from '../components/Pattern.astro';
         are open to contributions and will onboard those who want to get
         involved.
       </p>
-    </section>
+    </Section>
 
     <script>
       ;(function withScroll() {
@@ -116,7 +110,11 @@ import Pattern from '../components/Pattern.astro';
 
 <style>
   section {
-    padding: var(--padding);
+    padding: var(--gap-md);
+
+    & :global(.tag) {
+      margin-top: var(--gap-xl);
+    }
   }
 
   #hero {
@@ -155,44 +153,23 @@ import Pattern from '../components/Pattern.astro';
     }
   }
 
-  h2 {
-    font-size: 2.5em;
-    max-width: 50vw;
-    text-align: center;
-    margin-bottom: var(--padding);
-  }
-
-  span.tagline {
-    display: inline-block;
-    font-family: var(--font-mono);
-    color: var(--color-secondary);
-    margin-bottom: var(--margin);
-    margin-top: var(--margin-xl);
-  }
-
   #projects > #cards {
     max-width: 70vw;
-    gap: var(--padding);
+    gap: var(--gap-md);
   }
 
   #who-we-are {
-    & h2 {
-      font-size: 4em;
-      max-width: unset;
-      padding: 0 var(--padding);
-    }
-
     & p {
       max-width: 30vw;
       min-width: 20rem;
-      margin-top: var(--margin);
+      margin-top: var(--gap-md);
       margin-left: auto;
-      padding: 0 var(--padding);
+      padding: 0 var(--gap-md);
     }
 
     & a {
       font-variant: small-caps;
-      margin-top: var(--margin);
+      margin-top: var(--gap-md);
       float: right;
     }
 
@@ -207,8 +184,8 @@ import Pattern from '../components/Pattern.astro';
     grid-template-rows: 3rem;
     justify-items: center;
     align-items: center;
-    padding: var(--padding) var(--padding-lg);
-    gap: var(--margin);
+    padding: var(--gap-md) var(--gap-lg);
+    gap: var(--gap-md);
 
     & > img {
       grid-column-end: span 2;
@@ -226,7 +203,7 @@ import Pattern from '../components/Pattern.astro';
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     color: var(--color-secondary);
-    padding: var(--padding-lg);
+    padding: var(--gap-lg);
 
     & > * {
       display: flex;
@@ -237,7 +214,7 @@ import Pattern from '../components/Pattern.astro';
 
     & h3 {
       text-align: center;
-      margin-bottom: var(--margin);
+      margin-bottom: var(--gap-md);
     }
   }
 

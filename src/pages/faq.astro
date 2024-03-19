@@ -16,7 +16,7 @@ const discordUrl = `https://discord.com/${socials.discord}`;
 const twitterUrl = `https://twitter.com/${socials.twitter}`;
 ---
 
-<Layout description="Transparency starts with providing answers to questions.">
+<Layout title="FAQ" description="Simplicity, transparency and efficiency.">
   <main>
     <h1>Simplicity, <u>transparency</u> and efficiency.</h1>
     <aside>
@@ -76,31 +76,31 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
   aside {
     grid-area: aside;
     min-width: 20rem;
-    padding: var(--padding);
+    padding: var(--gap-md);
 
     & > :global(svg) {
       color: var(--color-secondary);
       display: flex;
-      margin: 0 auto var(--margin) auto;
+      margin: 0 auto var(--gap-md) auto;
       max-width: 75%;
     }
 
     & h3 {
       font-family: var(--font-mono);
       color: var(--color-secondary);
-      margin-bottom: var(--margin);
+      margin-bottom: var(--gap-md);
     }
 
     & ul {
       list-style: none;
-      margin: var(--margin-xs) 0;
+      margin: var(--gap-xs) 0;
 
       & > :global(li) {
-        margin-bottom: calc(var(--margin-xs) / 2);
+        margin-bottom: calc(var(--gap-xs) / 2);
       }
 
       & > :global(li) + :global(li) {
-        margin-top: calc(var(--margin-xs) / 2);
+        margin-top: calc(var(--gap-xs) / 2);
       }
 
       & > :global(li):last-child {
@@ -112,19 +112,19 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
   #questions {
     grid-area: q;
     width: 100%;
-    padding: var(--padding);
+    padding: var(--gap-md);
 
     & h2 {
       font-size: 2.5em;
-      margin-bottom: var(--margin);
+      margin-bottom: var(--gap-md);
     }
 
     & > details {
       border-bottom: 1px solid var(--color-secondary);
-      padding: var(--padding) 0;
+      padding: var(--gap-md) 0;
 
       & > :global(p) {
-        padding-top: var(--padding);
+        padding-top: var(--gap-md);
       }
 
       & summary {

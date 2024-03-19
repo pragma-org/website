@@ -18,7 +18,7 @@ import Nav from '../components/Nav.astro';
   header {
     background: var(--color-primary);
     height: var(--height-header);
-    padding: var(--padding);
+    padding: var(--gap-md);
     width: 100%;
     justify-content: center;
 
@@ -27,12 +27,12 @@ import Nav from '../components/Nav.astro';
     z-index: 99;
 
     & > svg {
-      --logo-height: calc(var(--height-header) - 2 * var(--padding));
+      --height-logo: calc(var(--height-header) - 2 * var(--gap-md));
       position: absolute;
-      top: var(--padding);
-      left: var(--padding);
-      width: calc(2 * var(--logo-height));
-      height: var(--logo-height);
+      top: var(--gap-md);
+      left: var(--gap-md);
+      width: calc(2 * var(--height-logo));
+      height: var(--height-logo);
     }
   }
 </style>
