@@ -8,7 +8,6 @@
     "build": "astro build",
     "preview": "astro preview",
     "sync": "astro sync",
-    "check": "astro check",
     "astro": "astro",
     "format": "prettier --write ."
   },

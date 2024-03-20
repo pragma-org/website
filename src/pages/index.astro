@@ -21,7 +21,7 @@ import Section from '../components/Section.astro';
         </p>
       </noscript>
 
-      <Grid rows="2" actives={new Set([3, 4, 10, 13, 19, 20, 25, 30])} />
+      <Grid rows={2} actives={new Set([3, 4, 10, 13, 19, 20, 25, 30])} />
 
       <Section
         tag="Projects"
@@ -55,20 +55,20 @@ import Section from '../components/Section.astro';
             <img
               alt="Cardano Foundation"
               src="/img/members/cardanofoundation.webp"
-              loading="lazy/"
+              loading="lazy"
             />
-            <img alt="TxPipe" src="/img/members/txpipe.svg" loading="lazy/" />
+            <img alt="TxPipe" src="/img/members/txpipe.svg" loading="lazy" />
             <img
               alt="Blink Labs"
               src="/img/members/blinklabs.svg"
-              loading="lazy/"
+              loading="lazy"
             />
             <img
               alt="Sundae Labs"
               src="/img/members/sundaelabs.svg"
-              loading="lazy/"
+              loading="lazy"
             />
-            <img alt="dcSpark" src="/img/members/dcspark.svg" loading="lazy/" />
+            <img alt="dcSpark" src="/img/members/dcspark.svg" loading="lazy" />
           </div>
           <p class="justified">
             PRAGMA aims to foster an alternative open-source ecosystem for
@@ -131,20 +131,20 @@ import Section from '../components/Section.astro';
 
         <script>
           (function withScroll() {
-            let throttle;
+            let throttle: boolean;
 
             const svg = document.createElementNS(
               'http://www.w3.org/2000/svg',
-              'svg',
+              'svg'
             );
             const link = document.createElementNS(
               'http://www.w3.org/2000/svg',
-              'use',
+              'use'
             );
             link.setAttributeNS(
               'http://www.w3.org/1999/xlink',
               'xlink:href',
-              '#logo-typography',
+              '#logo-typography'
             );
             svg.id = 'pragma';
             svg.appendChild(link);
@@ -159,8 +159,8 @@ import Section from '../components/Section.astro';
               const setProgress = () => {
                 throttle = false;
                 const progress = Math.min(100, 5 * Math.round(pos / 15));
-                svg.setAttribute('data-progress', progress);
-                svg.style.setProperty('--progress', progress);
+                svg.setAttribute('data-progress', progress.toString());
+                svg.style.setProperty('--progress', progress.toString());
               };
 
               if (!window.location.hash || pos != 0) {

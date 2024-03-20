@@ -6,7 +6,7 @@ interface Props {
 
 import { createHash } from 'crypto';
 
-const { title, href } = Astro.props;
+const { title } = Astro.props;
 
 const digest = createHash('sha256').update(title).digest('hex');
 
