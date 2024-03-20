@@ -4,32 +4,38 @@ interface Props {
   href: string;
 }
 
-import { createHash } from "crypto";
+import { createHash } from 'crypto';
 
 const { title, href } = Astro.props;
 
 const digest = createHash('sha256').update(title).digest('hex');
 
-const pixels = Array.from(digest).map(digit => {
+const pixels = Array.from(digest).map((digit) => {
   const n = parseInt(digit, 16);
   return { x: n >> 1 % 5, y: n % 3 };
 });
-
 ---
 
 <article class="flex-col">
   <div class="pixel" data-x={pixels[0].x} data-y="0"></div>
   <div class="pixel" data-x={pixels[1].x} data-y="0"></div>
   <div class="pixel" data-x={pixels[2].x} data-y="0"></div>
-  <h3>{ title }</h3>
+  <h3>{title}</h3>
   <p class="justified"><slot /></p>
-  <span class="more">Read more <svg><use xlink:href="#arrow-right"/></svg></span>
+  <span class="more"
+    >Read more <svg><use xlink:href="#arrow-right"></use></svg></span
+  >
   <a href="{href}" aria-label={title}></a>
-  <div class="pixel" data-invert-y data-x={pixels[2].x} data-y={pixels[2].y}></div>
-  <div class="pixel" data-invert-y data-x={pixels[3].x} data-y={pixels[3].y}></div>
-  <div class="pixel" data-invert-y data-x={pixels[4].x} data-y={pixels[4].y}></div>
-  <div class="pixel" data-invert-y data-x={pixels[5].x} data-y={pixels[5].y}></div>
-  <div class="pixel" data-invert-y data-x={pixels[6].x} data-y={pixels[6].y}></div>
+  <div class="pixel" data-invert-y data-x={pixels[2].x} data-y={pixels[2].y}>
+  </div>
+  <div class="pixel" data-invert-y data-x={pixels[3].x} data-y={pixels[3].y}>
+  </div>
+  <div class="pixel" data-invert-y data-x={pixels[4].x} data-y={pixels[4].y}>
+  </div>
+  <div class="pixel" data-invert-y data-x={pixels[5].x} data-y={pixels[5].y}>
+  </div>
+  <div class="pixel" data-invert-y data-x={pixels[6].x} data-y={pixels[6].y}>
+  </div>
 </article>
 
 <style>
@@ -58,12 +64,24 @@ const pixels = Array.from(digest).map(digit => {
       bottom: calc(var(--pixel-size) * var(--y));
     }
 
-    &[data-x="1"] { --x: 1; }
-    &[data-x="2"] { --x: 2; }
-    &[data-x="3"] { --x: 3; }
-    &[data-x="4"] { --x: 4; }
-    &[data-y="1"] { --y: 1; }
-    &[data-y="2"] { --y: 2; }
+    &[data-x='1'] {
+      --x: 1;
+    }
+    &[data-x='2'] {
+      --x: 2;
+    }
+    &[data-x='3'] {
+      --x: 3;
+    }
+    &[data-x='4'] {
+      --x: 4;
+    }
+    &[data-y='1'] {
+      --y: 1;
+    }
+    &[data-y='2'] {
+      --y: 2;
+    }
   }
 
   article:hover {
@@ -100,7 +118,6 @@ const pixels = Array.from(digest).map(digit => {
       display: inline-block;
       height: 1em;
     }
-
   }
 
   a {

@@ -7,36 +7,100 @@ import Pattern from '../components/Pattern.astro';
 
 <Layout title="About" description="">
   <main class="flex-col">
-    <Section tag="About us" title="A cooperative effort amongst different organizations with a similar outlook and mindset regarding open source." id="hero"></Section>
+    <Section
+      tag="About us"
+      title="A cooperative effort amongst different organizations with a similar outlook and mindset regarding open source."
+      id="hero"
+    />
 
-    <Section tag="Who we are" title="A team of passionate software engineers" id="who-we-are">
-      <p class="justified">PRAGMA is a member-based, not-for-profit Open Source Association for blockchain software projects. It aims to foster an alternative open-source ecosystem for Cardano and beyond. Said differently, we are a team of passionate software engineers from various backgrounds who build open-source tools for developers aiming for mass adoption.</p>
+    <Section
+      tag="Who we are"
+      title="A team of passionate software engineers"
+      id="who-we-are">
+      <p class="justified">
+        PRAGMA is a member-based, not-for-profit Open Source Association for
+        blockchain software projects. It aims to foster an alternative
+        open-source ecosystem for Cardano and beyond. Said differently, we are a
+        team of passionate software engineers from various backgrounds who build
+        open-source tools for developers aiming for mass adoption.
+      </p>
       <div class="flex-row flex-center decorated right">
-        <p class="justified"><span class="highlight">PRAGMA focuses on delivering perennial open-source software for the public good.</span>Therefore, it is a cooperative effort amongst organisations with a similar outlook and mindset regarding Open Source and the Cardano ecosystem. Each of its founding members is an entity deeply focused on IT development and engineering in the Cardano ecosystem.</p>
-        <Pattern actives={new Set([0,1,4,5,6,7,10,11,20,21,22,23,28,29])} />
+        <p class="justified">
+          <span class="highlight"
+            >PRAGMA focuses on delivering perennial open-source software for the
+            public good.</span
+          >Therefore, it is a cooperative effort amongst organisations with a
+          similar outlook and mindset regarding Open Source and the Cardano
+          ecosystem. Each of its founding members is an entity deeply focused on
+          IT development and engineering in the Cardano ecosystem.
+        </p>
+        <Pattern
+          actives={new Set([0, 1, 4, 5, 6, 7, 10, 11, 20, 21, 22, 23, 28, 29])}
+        />
       </div>
       <div class="flex-row flex-center decorated left">
-        <Pattern actives={new Set([2,3,4,5,8,9,12,13,14,15,16,17,18,19,22,23,26,27,28,29])} />
-        <p class="justified"><span class="highlight">PRAGMA provides a space of common practices and high-quality standards, strongly focused on developer experience.</span> It is an invitation to developers who fancy building in the open and collaborating to reconcile adoption and software excellence. In the long run, we hope it can be a home to blockchain-related open-source projects that seek collective ownership.
+        <Pattern
+          actives={new Set([
+            2, 3, 4, 5, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 22, 23, 26, 27,
+            28, 29,
+          ])}
+        />
+        <p class="justified">
+          <span class="highlight"
+            >PRAGMA provides a space of common practices and high-quality
+            standards, strongly focused on developer experience.</span
+          > It is an invitation to developers who fancy building in the open and
+          collaborating to reconcile adoption and software excellence. In the long
+          run, we hope it can be a home to blockchain-related open-source projects
+          that seek collective ownership.
         </p>
       </div>
     </Section>
 
     <Section tag="Our goals" id="our-goals">
       <ul>
-        <li data-counter="1">PRAGMA's primary goal is to foster an open-source ecosystem for Cardano by hosting existing projects and helping them to thrive.</li>
-        <li data-counter="2">It also aims at facilitating the development and emergence of new meaningful tools where needed.</li>
-        <li data-counter="3">In a sense, PRAGMA is about democratising software development for the Cardano ecosystem and in the long run in blockchain as a whole, using proven open-source methodologies.</li>
-        <li data-counter="4">We want to give an opportunity for <i>anyone</i> to contribute to the development of key projects in Cardano -- <i>and beyond</i>.</li>
+        <li data-counter="1">
+          PRAGMA's primary goal is to foster an open-source ecosystem for
+          Cardano by hosting existing projects and helping them to thrive.
+        </li>
+        <li data-counter="2">
+          It also aims at facilitating the development and emergence of new
+          meaningful tools where needed.
+        </li>
+        <li data-counter="3">
+          In a sense, PRAGMA is about democratising software development for the
+          Cardano ecosystem and in the long run in blockchain as a whole, using
+          proven open-source methodologies.
+        </li>
+        <li data-counter="4">
+          We want to give an opportunity for <i>anyone</i> to contribute to the development
+          of key projects in Cardano -- <i>and beyond</i>.
+        </li>
       </ul>
     </Section>
 
-    <Section tag="Our principles" title="Simplicity, transparency and efficiency." id="our-principles">
+    <Section
+      tag="Our principles"
+      title="Simplicity, transparency and efficiency."
+      id="our-principles">
       <p class="justified">
-        We want to build software solutions that increase blockchain’s utility and adoption, inasmuch as they also provide business value for ecosystem actors. We want to give an example of a decentralised and transparent organisation dedicated to developing blockchain infrastructure, starting with Cardano. We aim to deliver solutions in small steps and build a structure to help support and incubate other projects in the long run.
+        We want to build software solutions that increase blockchain’s utility
+        and adoption, inasmuch as they also provide business value for ecosystem
+        actors. We want to give an example of a decentralised and transparent
+        organisation dedicated to developing blockchain infrastructure, starting
+        with Cardano. We aim to deliver solutions in small steps and build a
+        structure to help support and incubate other projects in the long run.
       </p>
       <p class="justified">
-        <span class="highlight">We believe that an open-source alliance between multiple capable actors is necessary to carry this mission.</span> An endeavour of that magnitude, maintained through the years, is only possible via an efficient and collective open-source strategy. PRAGMA materialises a common vision between amicable and like-minded organisations who have already been successfully working together on many occasions. PRAGMA is therefore an attempt to consolidate forces and propose a model of operations that others may choose to follow.
+        <span class="highlight"
+          >We believe that an open-source alliance between multiple capable
+          actors is necessary to carry this mission.</span
+        > An endeavour of that magnitude, maintained through the years, is only possible
+        via an efficient and collective open-source strategy. PRAGMA materialises
+        a common vision between amicable and like-minded organisations who have already
+        been successfully working together on many occasions. PRAGMA is therefore
+        an attempt to consolidate forces and propose a model of operations that others
+        may choose to follow.
       </p>
     </Section>
   </main>
@@ -49,7 +113,6 @@ import Pattern from '../components/Pattern.astro';
 
     & > * {
       width: 100%;
-
     }
 
     & .decorated {
@@ -78,7 +141,6 @@ import Pattern from '../components/Pattern.astro';
     & .decorated.right {
       margin-left: auto;
     }
-
   }
 
   .highlight {

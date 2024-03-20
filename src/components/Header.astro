@@ -3,12 +3,12 @@ import NavLink from '../components/NavLink.astro';
 import Nav from '../components/Nav.astro';
 
 const isHome = Astro.url.pathname === '/';
-const aspectRatio = isHome ? 1 : 550/120;
+const aspectRatio = isHome ? 1 : 550 / 120;
 ---
 
 <header class="flex-row">
   <a id="logo" href="/">
-    <svg><use xlink:href={isHome ? "#logo-mark" : "#logo" }/></svg>
+    <svg><use xlink:href={isHome ? '#logo-mark' : '#logo'}></use></svg>
   </a>
   <Nav>
     <NavLink href="/projects">Projects</NavLink>

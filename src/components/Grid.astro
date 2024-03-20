@@ -1,10 +1,10 @@
 ---
-interface Prop {
-  actives?: Set<Number>,
-  rows: Number,
-}
-
 import Pattern from './Pattern.astro';
+
+interface Props {
+  actives?: Set<number>;
+  rows: number;
+}
 
 let { actives, rows } = Astro.props;
 
@@ -12,9 +12,13 @@ const nCol = 7;
 const nRow = rows;
 
 if (!actives) {
-  actives = new Set([...Array(32).keys()].map(i => {
-    return Math.random() < 0.25 ? i : null;
-  }).filter(x => x !== null));
+  actives = new Set(
+    [...Array(32).keys()]
+      .map((i) => {
+        return Math.random() < 0.25 ? i : null;
+      })
+      .filter((x) => x !== null),
+  );
 }
 ---
 

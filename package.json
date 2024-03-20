@@ -7,10 +7,20 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "sync": "astro sync",
+    "check": "astro check",
+    "astro": "astro",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "astro": "^4.5.6"
+    "@astrojs/check": "^0.5.9",
+    "astro": "^4.5.6",
+    "typescript": "^5.4.2"
   },
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "yarn@1.22.22",
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0"
+  }
 }

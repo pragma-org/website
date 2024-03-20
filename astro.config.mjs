@@ -9,7 +9,7 @@ export default defineConfig({
 
 // https://docs.astro.build/en/guides/content-collections
 export const collections = {
-  'questions': defineCollection({
+  questions: defineCollection({
     type: 'content',
     schema: z.object({
       title: z.string(),

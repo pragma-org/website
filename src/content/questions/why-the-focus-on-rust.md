@@ -1,6 +1,7 @@
 ---
 title: Why the focus on Rust?
 ---
+
 Cardano is well-known for its functional programming affinity, with in particular the use of Haskell for the development of many of its core components. So one may ask, why Rust?
 
 First, because we seek to meet developers where they are. To successfully bootstrap an open source ecosystem, we need enthusiasts and professionals who feel comfortable in contributing. Rust has ranked 1st most admired technology in Stack Overflow’s 2023 developer survey and it is particularly strong in the blockchain ecosystem (Polkadot, HyperLedger, Solana, Elrond, Near, O1(Labs), …).

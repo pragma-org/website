@@ -8,9 +8,11 @@ import ExternalLink from '../components/ExternalLink.astro';
 
 import { socials, email } from '../config.json';
 
-const questions = await Promise.all((await getCollection('questions')).map(async q => {
-  return { title: q.data.title, ...await q.render() };
-}));
+const questions = await Promise.all(
+  (await getCollection('questions')).map(async (q) => {
+    return { title: q.data.title, ...(await q.render()) };
+  }),
+);
 
 const discordUrl = `https://discord.com/${socials.discord}`;
 const twitterUrl = `https://twitter.com/${socials.twitter}`;
@@ -20,7 +22,11 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
   <main>
     <h1>Simplicity, <u>transparency</u> and efficiency.</h1>
     <aside>
-      <Pattern actives={new Set([2,3,4,5,8,9,14,15,16,17,18,19,22,23,26,27,28,29])} />
+      <Pattern
+        actives={new Set([
+          2, 3, 4, 5, 8, 9, 14, 15, 16, 17, 18, 19, 22, 23, 26, 27, 28, 29,
+        ])}
+      />
       <h3>Have more questions?</h3>
       <p>
         Feel free to reach out!
@@ -33,22 +39,46 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
     </aside>
     <section id="questions">
       <h2>FAQ</h2>
-      {questions.map(({ title, Content }) =>
-        <details>
-          <summary>{title}<svg class="maximise"><use xlink:href="#maximise" /></svg><svg class="minimise"><use xlink:href="#minimise" /></svg></summary>
-          <Content />
-        </details>
-      )}
+      {
+        questions.map(({ title, Content }) => (
+          <details>
+            <summary>
+              {title}
+              <svg class="maximise">
+                <use xlink:href="#maximise" />
+              </svg>
+              <svg class="minimise">
+                <use xlink:href="#minimise" />
+              </svg>
+            </summary>
+            <Content />
+          </details>
+        ))
+      }
     </section>
   </main>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <symbol id="maximise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <symbol
+      id="maximise"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
       <polyline points="15 3 21 3 21 9"></polyline>
       <polyline points="9 21 3 21 3 15"></polyline>
       <line x1="21" y1="3" x2="14" y2="10"></line>
       <line x1="3" y1="21" x2="10" y2="14"></line>
     </symbol>
-    <symbol id="minimise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <symbol
+      id="minimise"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
       <polyline points="4 14 10 14 10 20"></polyline>
       <polyline points="20 10 14 10 14 4"></polyline>
       <line x1="14" y1="10" x2="21" y2="3"></line>
@@ -63,8 +93,8 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     grid-template-areas:
-      "h1 h1 h1 h1"
-      "aside q q q";
+      'h1 h1 h1 h1'
+      'aside q q q';
   }
 
   h1 {
@@ -143,7 +173,7 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
           min-width: 1rem;
           position: absolute;
           right: 0;
-          transition: .3s ease;
+          transition: 0.3s ease;
           width: 1rem;
 
           &.minimise {
@@ -156,7 +186,7 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
         }
 
         &::-webkit-details-marker {
-          display: none
+          display: none;
         }
       }
 

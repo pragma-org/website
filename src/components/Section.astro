@@ -1,11 +1,18 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'section'> {
+  title?: string;
+  tag: string;
+}
+
 const { title, tag, ...props } = Astro.props;
 ---
 
 <section class="flex-col flex-center" {...props}>
   <span class="tag">{tag}</span>
-  {title ? (<h2>{title}</h2>) : ''}
-  <slot/>
+  {title ? <h2>{title}</h2> : ''}
+  <slot />
 </section>
 
 <style>
