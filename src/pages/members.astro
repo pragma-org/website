@@ -1,0 +1,124 @@
+---
+import { getCollection } from 'astro:content';
+
+import Layout from '../layouts/base.astro';
+
+import Grid from '../components/Grid.astro';
+import Section from '../components/Section.astro';
+
+const members = await Promise.all(
+  (await getCollection('members')).map(async (q) => {
+    return { ...q.data, ...(await q.render()) };
+  }),
+);
+---
+
+<Layout
+  title="members"
+  description="A steadfast committee of dedicated industry experts.">
+  <main>
+    <Section
+      tag="Members"
+      title="Unwavering industry experts, dedicated to improving the blockchain ecosystem."
+    />
+
+    <Grid rows={1} actives={new Set([2, 3, 6, 7, 8, 9, 12, 13, 18, 19])} />
+
+    <section id="members">
+      {
+        members.map(
+          ({ name, logo, website, github, discord, twitter, Content }) => (
+            <article>
+              <img alt={name} src={logo} loading="lazy" />
+              <Content />
+              <aside>
+                <a href={website}>
+                  Visit website{' '}
+                  <svg>
+                    <use xlink:href="#external-link" />
+                  </svg>
+                </a>
+                <a href={github}>
+                  <svg>
+                    <use xlink:href="#github" />
+                  </svg>
+                </a>
+                <a href={twitter}>
+                  <svg>
+                    <use xlink:href="#twitter" />
+                  </svg>
+                </a>
+                <a href={discord}>
+                  <svg>
+                    <use xlink:href="#discord" />
+                  </svg>
+                </a>
+              </aside>
+            </article>
+          ),
+        )
+      }
+    </section>
+  </main>
+</Layout>
+
+<style>
+  #members {
+    display: grid;
+    gap: var(--gap-lg);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    padding: var(--gap-md);
+
+    & > article {
+      display: flex;
+      flex-direction: column;
+      padding: var(--gap-md) 0;
+
+      & img {
+        display: inline-block;
+        max-height: 3.5rem;
+        object-fit: contain;
+        width: 100%;
+        margin-bottom: var(--gap-sm);
+
+        & + :global(p) {
+          margin-bottom: var(--gap-sm);
+          text-align: center;
+          font-family: var(--font-secondary);
+        }
+      }
+
+      & :global(p) {
+        text-align: justify;
+        word-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.25em;
+      }
+
+      & :global(p) + :global(p) {
+        margin-top: var(--gap-sm);
+      }
+
+      & > aside {
+        margin-top: auto;
+        display: flex;
+        width: 100%;
+        padding: var(--gap-sm) 0;
+        gap: var(--gap-sm);
+        border-bottom: 1px solid var(--color-secondary);
+
+        & > *:nth-child(2) {
+          margin-left: auto;
+        }
+
+        & svg {
+          height: 1rem;
+          max-height: 1rem;
+          width: 1rem;
+          max-width: 1rem;
+        }
+      }
+    }
+  }
+</style>

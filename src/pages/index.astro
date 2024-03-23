@@ -1,10 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
+
 import Layout from '../layouts/base.astro';
 
 import Card from '../components/Card.astro';
 import Grid from '../components/Grid.astro';
 import Pattern from '../components/Pattern.astro';
 import Section from '../components/Section.astro';
+
+const members = await getCollection('members');
 ---
 
 <Layout
@@ -53,23 +57,11 @@ import Section from '../components/Section.astro';
       id="who-we-are">
       <div class="flex-row">
         <div id="members">
-          <img
-            alt="Cardano Foundation"
-            src="/img/members/cardanofoundation.webp"
-            loading="lazy"
-          />
-          <img alt="TxPipe" src="/img/members/txpipe.svg" loading="lazy" />
-          <img
-            alt="Blink Labs"
-            src="/img/members/blinklabs.svg"
-            loading="lazy"
-          />
-          <img
-            alt="Sundae Labs"
-            src="/img/members/sundaelabs.svg"
-            loading="lazy"
-          />
-          <img alt="dcSpark" src="/img/members/dcspark.svg" loading="lazy" />
+          {
+            members.map(({ data: { name, logo } }) => (
+              <img alt={name} src={logo} loading="lazy" />
+            ))
+          }
         </div>
         <p class="justified">
           PRAGMA aims to foster an alternative open-source ecosystem for Cardano <i
