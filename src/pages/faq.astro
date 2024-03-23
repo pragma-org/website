@@ -11,7 +11,7 @@ import { socials, email } from '../config.json';
 const questions = await Promise.all(
   (await getCollection('questions')).map(async (q) => {
     return { title: q.data.title, ...(await q.render()) };
-  })
+  }),
 );
 
 const discordUrl = `https://discord.com/${socials.discord}`;
