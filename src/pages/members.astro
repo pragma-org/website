@@ -14,7 +14,7 @@ const members = await Promise.all(
 ---
 
 <Layout
-  title="members"
+  title="Members"
   description="A steadfast committee of dedicated industry experts.">
   <main>
     <Section
@@ -34,22 +34,22 @@ const members = await Promise.all(
               <aside>
                 <a href={website}>
                   Visit website{' '}
-                  <svg>
+                  <svg class="icon slide">
                     <use xlink:href="#external-link" />
                   </svg>
                 </a>
-                <a href={github}>
-                  <svg>
+                <a href={github} class="no-effect">
+                  <svg class="icon">
                     <use xlink:href="#github" />
                   </svg>
                 </a>
-                <a href={twitter}>
-                  <svg>
+                <a href={twitter} class="no-effect">
+                  <svg class="icon">
                     <use xlink:href="#twitter" />
                   </svg>
                 </a>
-                <a href={discord}>
-                  <svg>
+                <a href={discord} class="no-effect">
+                  <svg class="icon">
                     <use xlink:href="#discord" />
                   </svg>
                 </a>
@@ -110,13 +110,6 @@ const members = await Promise.all(
 
         & > *:nth-child(2) {
           margin-left: auto;
-        }
-
-        & svg {
-          height: 1rem;
-          max-height: 1rem;
-          width: 1rem;
-          max-width: 1rem;
         }
       }
     }

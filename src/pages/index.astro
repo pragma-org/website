@@ -70,8 +70,8 @@ const members = await getCollection('members');
           from various backgrounds who build open-source tools for developers
           aiming for mass adoption.
 
-          <a href="/about"
-            >Learn about PRAGMA<svg class="link-icon"
+          <a href="/about">
+            Learn about PRAGMA<svg class="icon slide"
               ><use xlink:href="#arrow-right"></use></svg
             >
           </a>
@@ -146,6 +146,7 @@ const members = await getCollection('members');
 
         const href = document.createElement('a');
         href.setAttribute('href', '/');
+        href.setAttribute('aria-label', 'homepage');
         href.appendChild(svg);
 
         document.addEventListener('DOMContentLoaded', () => {

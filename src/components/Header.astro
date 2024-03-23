@@ -7,11 +7,11 @@ const aspectRatio = isHome ? 1 : 550 / 120;
 ---
 
 <header class="flex-row">
-  <a id="logo" href="/">
+  <a id="logo" class="no-effect" href="/" aria-label="homepage">
     <svg><use xlink:href={isHome ? '#logo-mark' : '#logo'}></use></svg>
   </a>
   <Nav>
-    <NavLink href="/projects">Projects</NavLink>
+    <NavLink href={isHome ? '#projects' : '/#projects'}>Projects</NavLink>
     <NavLink href="/contributing">Contributing</NavLink>
     <NavLink href="/members">Members</NavLink>
     <NavLink href="/faq">FAQ</NavLink>
@@ -37,13 +37,13 @@ const aspectRatio = isHome ? 1 : 550 / 120;
       position: absolute;
       top: var(--gap-md);
       left: var(--gap-md);
+      color: var(--color-secondary);
 
       &:hover > svg {
         right: unset;
       }
 
       & > svg {
-        color: var(--color-secondary);
         height: var(--height-logo);
         width: calc(var(--aspectRatio) * var(--height-logo));
       }

@@ -16,9 +16,9 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
 
 <footer class="flex-col flex-center">
   <div class="flex-row">
-    <svg style="color: var(--color-secondary);"
-      ><use xlink:href="#logo-mark"></use></svg
-    >
+    <svg style="color: var(--color-secondary);">
+      <use xlink:href="#logo-mark"></use>
+    </svg>
     <aside>
       <h2>Build together. With PRAGMA.</h2>
 
@@ -29,12 +29,21 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
       </ul>
 
       <ul class="flex-col">
-        <li><ExternalLink href={githubUrl}>GitHub</ExternalLink></li>
-        <li><ExternalLink href={discordUrl}>Discord</ExternalLink></li>
-        <li><ExternalLink href={twitterUrl}>Twitter/X</ExternalLink></li>
+        <li>
+          <svg class="icon"><use xlink:href="#github"></use></svg>
+          <ExternalLink href={githubUrl}>GitHub</ExternalLink>
+        </li>
+        <li>
+          <svg class="icon"><use xlink:href="#discord"></use></svg>
+          <ExternalLink href={discordUrl}>Discord</ExternalLink>
+        </li>
+        <li>
+          <svg class="icon"><use xlink:href="#twitter"></use></svg>
+          <ExternalLink href={twitterUrl}>Twitter/X</ExternalLink>
+        </li>
       </ul>
 
-      <a style="text-align: right;" href=`mailto:${email}`>{email}</a>
+      <a class="no-effect" style="text-align: right;" href=`mailto:${email}`>{email}</a>
     </aside>
   </div>
   <p id="copyright">© 2024 PRAGMA. All rights reserved.</p>
@@ -85,8 +94,13 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
   ul {
     list-style: none;
     margin: 0;
+    color: var(--color-secondary);
 
     & > :global(li) {
+      & > .icon {
+        margin-right: var(--gap-xs);
+      }
+
       margin-bottom: var(--gap-xs);
     }
 
