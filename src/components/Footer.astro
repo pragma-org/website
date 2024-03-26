@@ -10,8 +10,9 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
 ---
 
 <Grid
-  rows={2}
-  actives={new Set([7, 9, 10, 15, 16, 17, 25, 26, 28, 35, 36, 43, 49, 52, 57])}
+  style="margin-top: auto;"
+  rows={1}
+  actives={new Set([0, 1, 10, 11, 12, 13, 18, 19, 22, 23, 24, 25, 28, 29])}
 />
 
 <footer class="flex-col flex-center">
@@ -43,9 +44,7 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
         </li>
       </ul>
 
-      <a class="no-effect" style="text-align: right;" href=`mailto:${email}`
-        >{email}</a
-      >
+      <a class="no-effect" href=`mailto:${email}`>{email}</a>
     </aside>
   </div>
   <p id="copyright">© 2024 PRAGMA. All rights reserved.</p>
@@ -54,7 +53,6 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
 <style>
   footer {
     width: 100%;
-    margin-top: var(--gap-md);
     padding: var(--gap-md);
     padding-bottom: var(--gap-sm);
     background: var(--color-primary-dark);
@@ -78,13 +76,17 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
 
   aside {
     width: 100%;
-    max-width: 40vw;
+    max-width: max(500px, 40vw);
     margin-left: auto;
     display: grid;
     grid-template:
       'title title title' auto
       '  .     .     .  ' auto
       / 1fr 1fr 1fr;
+
+    & > a {
+      text-align: right;
+    }
   }
 
   h2 {
@@ -112,6 +114,45 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
 
     & > :global(li):last-child {
       margin-bottom: unset;
+    }
+  }
+
+  @media (max-width: 770px) {
+    footer {
+      gap: var(--gap-md);
+      & svg {
+        display: none;
+      }
+      & > div {
+        flex-direction: column;
+      }
+    }
+
+    h2 {
+      font-size: 1.75em;
+      margin: 0;
+    }
+
+    aside {
+      text-align: center;
+      max-width: unset;
+      margin-left: unset;
+      gap: var(--gap-xl);
+      grid-template:
+        'title title title' auto
+        '  .     .     .  ' auto
+        '  .     .     .  ' auto
+        '  .     .     .  ' auto
+        / 1fr 1fr 1fr;
+
+      & > a {
+        width: 100%;
+        text-align: center;
+      }
+
+      & > * {
+        grid-column-start: span 3;
+      }
     }
   }
 </style>

@@ -27,24 +27,26 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
           2, 3, 4, 5, 8, 9, 14, 15, 16, 17, 18, 19, 22, 23, 26, 27, 28, 29,
         ])}
       />
-      <h3>Have more questions?</h3>
-      <p>
-        Feel free to reach out!
-        <ul class="flex-col">
-          <li>
-            <svg class="icon"><use xlink:href="#at-sign"></use></svg
-            ><ExternalLink href=`mailto:${email}`>Email</ExternalLink>
-          </li>
-          <li>
-            <svg class="icon"><use xlink:href="#discord"></use></svg
-            ><ExternalLink href={discordUrl}>Discord</ExternalLink>
-          </li>
-          <li>
-            <svg class="icon"><use xlink:href="#twitter"></use></svg
-            ><ExternalLink href={twitterUrl}>Twitter/X</ExternalLink>
-          </li>
-        </ul>
-      </p>
+      <div>
+        <h3>Have more questions?</h3>
+        <p>
+          Feel free to reach out!
+          <ul class="flex-col">
+            <li>
+              <svg class="icon"><use xlink:href="#at-sign"></use></svg
+              ><ExternalLink href=`mailto:${email}`>Email</ExternalLink>
+            </li>
+            <li>
+              <svg class="icon"><use xlink:href="#discord"></use></svg
+              ><ExternalLink href={discordUrl}>Discord</ExternalLink>
+            </li>
+            <li>
+              <svg class="icon"><use xlink:href="#twitter"></use></svg
+              ><ExternalLink href={twitterUrl}>Twitter/X</ExternalLink>
+            </li>
+          </ul>
+        </p>
+      </div>
     </aside>
     <section id="questions">
       <h2>FAQ</h2>
@@ -90,7 +92,7 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
 
   h1 {
     grid-area: h1;
-    font-size: 4em;
+    font-size: 3em;
     text-align: center;
   }
 
@@ -186,6 +188,33 @@ const twitterUrl = `https://twitter.com/${socials.twitter}`;
         & summary svg.arrow {
           transform: rotate(180deg);
         }
+      }
+    }
+  }
+
+  @media screen and (max-width: 770px) {
+    main {
+      grid-template-areas:
+        'h1      h1    h1    h1'
+        'q       q     q     q'
+        'aside aside aside aside';
+    }
+
+    aside {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--gap-md);
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+      }
+
+      & > :global(svg) {
+        max-width: 25vw;
+        margin: 0;
       }
     }
   }

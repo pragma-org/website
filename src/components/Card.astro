@@ -44,12 +44,12 @@ const pixels = Array.from(digest).map((digit) => {
     flex: 1 1 0;
     background: var(--color-primary-dark);
     padding: var(--gap-lg);
-    min-height: calc(max(28rem, 55vh));
+    min-height: calc(max(28rem, min(55vh, 55vw)));
     position: relative;
   }
 
   .pixel {
-    --pixel-size: calc(100vw / 28);
+    --pixel-size: calc(max(100vw, 100vh) / 28);
     --x: 0;
     --y: 0;
 
@@ -86,6 +86,7 @@ const pixels = Array.from(digest).map((digit) => {
     }
   }
 
+  article:focus,
   article:hover {
     & .pixel {
       background: var(--color-secondary);
@@ -126,6 +127,7 @@ const pixels = Array.from(digest).map((digit) => {
     top: 0;
     left: 0;
 
+    &:focus,
     &:hover {
       border: 1px solid var(--color-secondary);
       text-decoration: none;

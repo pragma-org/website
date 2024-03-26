@@ -20,6 +20,16 @@
   --height-header: 7rem;
 }
 
+@media (max-width: 1000px) {
+  :root {
+    --gap-xs: 0.5rem;
+    --gap-sm: 1rem;
+    --gap-md: 2rem;
+    --gap-lg: 3rem;
+    --gap-xl: 4rem;
+  }
+}
+
 /* Fonts */
 
 @font-face {
@@ -66,13 +76,6 @@ main {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
-}
-a {
-  background-color: transparent;
-}
-a:visited {
-  color: inherit;
-  text-decoration: inherit;
 }
 abbr[title] {
   -webkit-text-decoration: underline dotted;
@@ -275,7 +278,7 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--color-secondary) var(--color-primary);
   overflow: overlay;
-  font-size: max(16px, 1vw);
+  font-size: max(16px, 1.25vw);
   font-family: var(--font-primary);
   font-weight: 400;
 }
@@ -301,15 +304,16 @@ code {
   font-family: var(--font-mono);
 }
 
-a {
+a,
+a:visited {
   display: inline-block;
   text-decoration: none;
-  color: var(--color-secondary) !important;
+  color: var(--color-secondary);
   position: relative;
 
   &.active {
     font-weight: bolder;
-    color: var(--color-secondary-light) !important;
+    color: var(--color-secondary-light);
   }
 
   &:not(.no-effect) {
@@ -326,6 +330,7 @@ a {
       transition: transform 0.2s ease-in-out;
     }
 
+    &:focus::before,
     &:hover::before {
       transform-origin: left;
       transform: scaleX(1);
@@ -340,6 +345,7 @@ a {
     transition: all 100ms ease-in;
   }
 
+  &:focus,
   &:hover {
     & > svg.icon.slide {
       right: -1.5em;

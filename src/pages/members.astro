@@ -114,4 +114,20 @@ const members = await Promise.all(
       }
     }
   }
+
+  @media screen and (max-width: 1000px) {
+    #members {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    #members {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+  }
 </style>

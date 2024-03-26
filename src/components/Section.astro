@@ -33,4 +33,10 @@ const { title, tag, ...props } = Astro.props;
     color: var(--color-secondary);
     margin-bottom: var(--gap-md);
   }
+
+  @media (max-width: 770px) {
+    section h2 {
+      max-width: unset;
+    }
+  }
 </style>

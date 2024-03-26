@@ -4,9 +4,10 @@ import Pattern from './Pattern.astro';
 interface Props {
   actives?: Set<number>;
   rows: number;
+  style?: string;
 }
 
-let { actives, rows } = Astro.props;
+let { actives, rows, style } = Astro.props;
 
 const nCol = 7;
 const nRow = rows;
@@ -22,7 +23,7 @@ if (!actives) {
 }
 ---
 
-<div id="grid">
+<div id="grid" style={style || ''}>
   <Pattern actives={actives} nCol={nCol} nRow={nRow} />
 </div>
 
@@ -31,10 +32,22 @@ if (!actives) {
     display: grid;
     width: 100%;
     color: var(--color-secondary);
+    overflow-x: hidden;
 
     & :global(svg) {
-      width: 100%;
-      max-width: 100vw;
+      width: 100vw;
+    }
+  }
+
+  @media (max-width: 770px) {
+    #grid :global(svg) {
+      width: calc(10 * 100vw / var(--nCol));
+    }
+  }
+
+  @media (max-width: 500px) {
+    #grid :global(svg) {
+      width: calc(14 * 100vw / var(--nCol));
     }
   }
 </style>

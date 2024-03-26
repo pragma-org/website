@@ -9,4 +9,4 @@ discord: https://discord.gg/ghMpsVK4T7
 
 A software development company strongly focusing on user experience, working on blockchain tools and leveraging Open Source as a methodology.
 
-TxPipe brings expertise in Rust with years of experience building on Cardano and even more years building on distributed architectures. TxPipe has a large and growing developer community gathering around the TxPipe's Discord server. In the long run, TxPipe hopes to serve as mentors, incubate, support and give exposure to smaller projects beginning their journey on Cardano.
+TxPipe brings expertise in [Rust](https://www.rust-lang.org/) with years of experience building on Cardano and even more years building on distributed architectures. TxPipe has a large and growing developer community gathering around the TxPipe's Discord server. In the long run, TxPipe hopes to serve as mentors, incubate, support and give exposure to smaller projects beginning their journey on Cardano.
