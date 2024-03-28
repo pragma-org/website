@@ -1,0 +1,366 @@
+---
+import { getEntry } from 'astro:content';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify'
+
+import Layout from '../../layouts/base.astro';
+
+import Card from '../../components/Card.astro';
+import Grid from '../../components/Grid.astro';
+import Pattern from '../../components/Pattern.astro';
+import Section from '../../components/Section.astro';
+
+const project = await getEntry('projects', 'amaru');
+
+const maintainers = await Promise.all(project.data.maintainers.map(async id => {
+  const { data } = await getEntry('maintainers', id.toLowerCase());
+  return data;
+}));
+
+const { Content } = await project.render();
+
+const render = md => unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeStringify)
+  .processSync(md);
+---
+
+<Layout
+  description={project.data.shortDescription}>
+  <main>
+    <Section
+      tag="Project"
+      id="project"
+      title={project.data.name}
+    >
+    <Pattern actives={new Set([1,6,7,10,20,24,25,30])} nRow=2 />
+    <Pattern actives={new Set([1,6,7,10,20,24,25,30])} nRow=2 />
+    <Content id="content" />
+    </Section>
+    <Section tag="Maintainers" id="maintainers">
+      <div class="wrapper">
+      {
+        maintainers.map(
+          (m) => (
+            <article>
+              <img alt=`${m.id}'s avatar` src=`https://github.com/${m.github}.png` loading="lazy" />
+              <h3>{m.firstname} {m.lastname}</h3>
+              <span>{m.role} @ {m.company}</span>
+              <aside>
+                <a href=`https://github.com/${m.github}` class="no-effect"><svg class="icon"><use xlink:href="#github" /></svg></a>
+                <a href=`https://x.com/${m.twitter}` class="no-effect"><svg class="icon"><use xlink:href="#twitter" /></svg></a>
+                <a href=`https://linkedin.com/in/${m.linkedIn}` class="no-effect"><svg class="icon"><use xlink:href="#linkedIn" /></svg></a>
+              </aside>
+            </article>
+          )
+        )
+      }
+      </div>
+    </Section>
+    <Section
+        tag="Journey"
+        id="journey"
+        title="An incremental roadmap in 4-phases">
+      <div class="wrapper">
+        <>
+          {
+            project.data.roadmap.phases.flatMap(
+              (phase, ix) => {
+                const milestones = phase.milestones.flatMap((milestone, jx) => (
+                  <input type="radio" name="roadmap" id=`milestone-${ix+1}-${jx+1}` value={milestone.title} class="milestone" />
+                  <label style=`--color: ${phase.color}` for=`milestone-${ix+1}-${jx+1}` class="milestone"><span></span><span>{milestone.when}</span></label>
+                ));
+                const checked = ix === 0;
+                return (
+                  <input type="radio" name="roadmap" id=`phase-${ix+1}` value=`Phase ${ix+1}` class="phase" {checked} />
+                  <label style=`--color: ${phase.color}` data-number={ix+1} for=`phase-${ix+1}` class="phase"><span>Phase {ix+1}</span><span>{phase.start}</span></label>
+                  <>{milestones}</>
+                );
+              }
+            )
+          }
+        </>
+
+        <main>
+          {
+            project.data.roadmap.phases.map(
+              (phase, ix) => (
+                <article data-phase={ix+1} style=`--color: ${phase.color};`>
+                  <h3 data-number={ix+1}>{phase.name}</h3>
+                  <>{ render(phase.description) }</>
+                  <hr/>
+                  <div class="wrapper">
+                    <ul>
+                      {
+                        phase.packages.map(
+                          (pkg, jx) => {
+                            const checked = jx === 0;
+                            return (
+                              <li>
+                                <input type="radio" name=`work-packages-${ix+1}` id=`pkg-${ix+1}-${jx+1}` value={pkg.title} class="package" checked={checked}/>
+                                <label for=`pkg-${ix+1}-${jx+1}`>{ pkg.title }</label>
+                                <aside class=`pkg-${ix+1}-${jx+1}`>
+                                  <h4>{pkg.title}</h4>
+                                  <>{ render(pkg.description) }</>
+                                  <a href="" />
+                                </aside>
+                              </li>
+                            );
+                          }
+                        )
+                      }
+                    </ul>
+                  </div>
+                </article>
+              )
+            )
+          }
+        </main>
+      </div>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  ul {
+    margin: 0;
+    list-style: none;
+  }
+
+  #project {
+    position: relative;
+
+    & > :global(h2) {
+      font-size: 4em;
+    }
+
+    & > :global(p) {
+      margin: var(--gap-sm) 0;
+      max-width: 30rem;
+      text-align: center;
+    }
+
+    & :global(svg) {
+      --size-pattern: 12rem;
+      width: var(--size-pattern);
+      position: absolute;
+      top: var(--gap-lg);
+      color: var(--color-secondary);
+      outline: 1px solid var(--color-primary);
+      outline-offset: -1px;
+
+      &:nth-child(3) {
+        left: 0;
+      }
+
+      &:nth-child(4) {
+        right: 0;
+        transform-origin: center;
+        transform: scaleX(-1);
+      }
+    }
+  }
+
+  #maintainers {
+    background: var(--color-primary-dark);
+    display: flex;
+
+    & .wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      gap: var(--gap-md);
+      justify-content: center;
+    }
+
+    & article {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      max-width: 30vw;
+      gap: var(--gap-sm);
+
+      & > h3 {
+        color: var(--color-secondary);
+      }
+
+      & > img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+      }
+
+      & > aside {
+        display: flex;
+        gap: var(--gap-sm);
+        justify-content: flex-end;
+        margin-top: auto;
+        padding-top: var(--gap-sm);
+        border-top: 1px solid var(--color-secondary-light);
+      }
+    }
+  }
+
+
+  input[type=radio].phase,
+  input[type=radio].milestone,
+  input[type=radio].package {
+    display: none;
+  }
+
+  input[type=radio] + label {
+    cursor: pointer;
+  }
+
+  label.phase,
+  label.milestone {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    color: var(--color);
+    height: 5rem;
+    width: 20%;
+    min-width: 12rem;
+
+    & > span {
+      width: 50%;
+    }
+
+    & > span:first-child {
+      text-align: right;
+      margin-right: 1rem;
+    }
+
+    & > span:last-child {
+      text-align: left;
+      margin-left: 1rem;
+    }
+
+    &::before {
+      content: '';
+      height: 100%;
+      width: 1px;
+      background-color: var(--color);
+      position: absolute;
+      left: calc(50%);
+    }
+
+    &::after {
+      content: '';
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      border: 1px solid var(--color);
+      background-color: var(--color-primary);
+      position: absolute;
+      left: calc(50% - 0.5rem);
+      transition: background-color 200ms ease-out;
+    }
+  }
+
+  label.milestone {
+    &::after {
+      width: 0.6rem;
+      height: 0.6rem;
+      left: calc(50% - 0.3rem);
+      top: 0.3em;
+    }
+  }
+
+  input[type=radio]:checked + label {
+    &::after {
+      background-color: var(--color);
+    }
+  }
+
+  input#phase-1:checked ~ main article[data-phase=1],
+  input#phase-2:checked ~ main article[data-phase=2],
+  input#phase-3:checked ~ main article[data-phase=3],
+  input#phase-4:checked ~ main article[data-phase=4] {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  #journey {
+    & .wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    & main {
+      position: absolute;
+      width: auto;
+      top: 0;
+      left: max(15rem, 20%);
+
+      & article {
+        display: none;
+      }
+
+      & :global(p) {
+        padding: var(--gap-xs) 0;
+      }
+
+      & hr {
+        border-color: var(--color);
+        margin: var(--gap-md) 0;
+      }
+
+      & h3 ,
+      & h4 {
+        color: var(--color);
+        margin-bottom: var(--gap-md);
+      }
+
+      & div.wrapper {
+        display: flex;
+      }
+
+      & ul {
+        display: inline-flex;
+        flex-direction: column;
+      }
+
+      & ul > li {
+        margin: var(--gap-xs) 0;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        & > label {
+          display: inline-flex;
+          width: 100%;
+          padding: var(--gap-xs) var(--gap-sm);
+          color: var(--color);
+        }
+
+        & > aside {
+          position: absolute;
+          top: 0;
+          width: auto;
+          display: none;
+          padding: 0 var(--gap-md);
+        }
+
+        & > input.package:checked ~ aside {
+          display: inline-block;
+        }
+
+        & > input.package:checked ~ label {
+          background-color: var(--color);
+          color: var(--color-primary);
+        }
+      }
+    }
+  }
+</style>

@@ -6,7 +6,7 @@ interface Props {
 
 import { createHash } from 'crypto';
 
-const { title } = Astro.props;
+const { title, href } = Astro.props;
 
 const digest = createHash('sha256').update(title).digest('hex');
 
@@ -22,7 +22,7 @@ const pixels = Array.from(digest).map((digit) => {
   <div class="pixel" data-x={pixels[2].x} data-y="0"></div>
   <h3>{title}</h3>
   <p class="justified"><slot /></p>
-  <a class="no-effect" href="{href}" aria-label={title}></a>
+  <a class="no-effect" href={href} aria-label={title}></a>
   <span class="more">
     Read more <svg class="icon slide"><use xlink:href="#arrow-right"></use></svg
     >
@@ -126,6 +126,7 @@ const pixels = Array.from(digest).map((digit) => {
     height: 100%;
     top: 0;
     left: 0;
+    z-index: 2;
 
     &:focus,
     &:hover {
