@@ -43,8 +43,16 @@ const patternId = createHash('sha256')
 
             return (
               <>
-                <polygon id={id.toString()} class={cls(id)} points=`${x1},${y1} ${x1},${z1} ${x1 + 100},${z1}` />
-                <polygon id={id.toString() + 1} class={cls(id + 1)} points=`${x1},${y1} ${x1+100},${y1} ${x1 + 100},${z1}` />
+                <polygon
+                  id={id.toString()}
+                  class={cls(id)}
+                  points={`${x1},${y1} ${x1},${z1} ${x1 + 100},${z1}`}
+                />
+                <polygon
+                  id={id.toString() + 1}
+                  class={cls(id + 1)}
+                  points={`${x1},${y1} ${x1 + 100},${y1} ${x1 + 100},${z1}`}
+                />
               </>
             );
           }),

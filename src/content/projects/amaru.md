@@ -1,7 +1,7 @@
 ---
 name: Amaru
 
-shortDescription:  |
+shortDescription: |
   An alternative Rust node client for the Cardano blockchain.
 
 summary: |
