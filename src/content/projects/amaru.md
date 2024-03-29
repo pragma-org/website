@@ -23,13 +23,14 @@ links:
     href: https://github.com/orgs/pragma-org/projects/1
 
   - to: Installation instructions
-    href: '#'
+    href: '/#'
 
   - to: Documentation
-    href: '#'
+    href: '/#'
 
 roadmap:
-  type: phases
+  type: journey
+  title: An incremental roadmap in 4-phases.
   phases:
     - name: Client node
       color: '#99c2ff'
@@ -45,16 +46,9 @@ roadmap:
         this point.
       start: Q1 2024
       milestones:
-        - when: mid-April
-          title: Chain-Synchronization PoC
-          description: |
-            Perform basic chain-synchronization of the latest Cardano era
-            through [Dolos](https://github.com/txpipe/dolos) to demonstrate the
-            capabilities of the base Rust primitives.
-          link: https://github.com/pragma-org/amaru/milestone/1
-
-        - when: Buidler Fest
-          title: Workshop
+        - when: April
+          title: Workshop at Buidler Fest
+          pattern: [0, 1, 10, 11, 20, 21, 30, 31]
           description: |
             Organize workshop(s) during the [Buidler
             Fest](https://buidl.2024.cardano.org/) second day to gather
@@ -62,8 +56,40 @@ roadmap:
             alternative node.
           link: https://github.com/pragma-org/amaru/milestone/2
 
-        - when: June
+        - when: May
+          title: Chain-Synchronization PoC
+          pattern: [0, 1, 10, 11, 12, 13, 18, 19, 20, 21, 30, 31]
+          description: |
+            Perform basic chain-synchronization of the latest Cardano era
+            through [Dolos](https://github.com/txpipe/dolos) to demonstrate the
+            capabilities of the base Rust primitives.
+          link: https://github.com/pragma-org/amaru/milestone/1
+
+        - when: June/July
           title: (Partial) validator
+          pattern:
+            [
+              0,
+              1,
+              6,
+              7,
+              10,
+              11,
+              12,
+              13,
+              18,
+              19,
+              20,
+              21,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+            ]
           description: |
             Apply a subset of the ledger rules to partially validate
             transactions sent through the node in an attempt to provide better
@@ -113,12 +139,6 @@ roadmap:
             specifically, we are interested in validation that only requires
             protocol parameters but not a full ledger state yet.
 
-            This is because the communication between Amaru and its trusted
-            peer happens through node-to-node protocols.
-
-            Submitting an invalid transaction has therefore no visible effects
-            and doesn't generate feedback for the submitter.
-
         - title: Packaging & distribution
           link: https://github.com/pragma-org/amaru/issues/9
           description: |
@@ -150,7 +170,18 @@ roadmap:
         Such node doesn't yet take part in the consensus and cannot produce
         blocks. It can however fully replace any relay and is, from the
         perspective of any external observer, a Cardano relay node.
-      milestones: []
+      milestones:
+        - when: December
+          title: Hybrid Testnet
+          pattern: [0, 1, 2, 5, 6, 7, 8, 15, 16, 23, 27, 28]
+          description: |
+            While a relay node isn't capable of producing blocks on its own, it
+            should perfectly blend in a hybrid testnet comprises of classic
+            Haskell nodes acting as block producers and Amaru relay nodes.
+
+            If you are a **stake pool operator** on Cardano, we welcome you to **reach out**
+            and help us launch this into orbit.
+          link: https://github.com/pragma-org/amaru/milestone/4
       packages:
         - title: Dynamic peer management
           description: |
@@ -178,7 +209,7 @@ roadmap:
 
     - name: Full node
       color: '#d8829d'
-      start: Q1 2025
+      start: Q2 2025
       description: |
         A node that can produce blocks and take part to the consensus. It can
         monitor the leader schedule, manage a mempool, forge blocks and follow
@@ -208,7 +239,7 @@ roadmap:
             TODO
 
     - name: Archive node
-      color: '#0d0a0b'
+      color: '#b2bec3'
       description: |
         A node that can validate any historical part of the chain, including
         the Byron era of Cardano. Its purpose is to produce ledger and
@@ -230,8 +261,8 @@ roadmap:
             TODO
 ---
 
-Amaru aspires to bring an alternative node to operate the Cardano blockchain in order to further increase the decentralisation of the platform while fostering an even more rich open source ecosystem.
+## Build a new fully interoperable block-producing Cardano node.
 
-The project is ambitious and spans over many areas such as networking, cryptography or language theory. It is developed from several parts each covering a different aspect of the node and its surrounding ecosystem. One of the core objectives is to achieve a full block-producing Cardano node which can run side-by-side the existing Haskell nodes in a fully interoperable manner.
+One of the core objectives is to achieve a full block-producing Cardano node which can run side-by-side the existing Haskell nodes in a fully interoperable manner. The project is ambitious and spans over many areas such as networking, cryptography or language theory. It is developed from several parts each covering a different aspect of the node and its surrounding ecosystem.
 
-Besides, Amaru is also geared towards developer experience and aims at providing easy to grasp interfaces using widely spread technologies such as gRPC while maintaining compatibility with the strong ecosystem of middlewares, such as Ogmios or Oura, that constitutes the backbone of Cardano services.
+Besides, Amaru is also **geared towards developer experience** and aims at providing easy to grasp interfaces using widely spread technologies such as gRPC while maintaining compatibility with the strong ecosystem of middlewares, such as Ogmios or Oura, that constitutes the backbone of Cardano services.

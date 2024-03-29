@@ -71,6 +71,11 @@ const patternId = createHash('sha256')
 </svg>
 
 <style>
+  svg {
+    outline: 1px solid var(--color-primary);
+    outline-offset: -1px;
+  }
+
   svg pattern > polygon {
     filter: url(#outline);
     fill: transparent;

@@ -20,7 +20,7 @@ const pixels = Array.from(digest).map((digit) => {
   <div class="pixel" data-x={pixels[0].x} data-y="0"></div>
   <div class="pixel" data-x={pixels[1].x} data-y="0"></div>
   <div class="pixel" data-x={pixels[2].x} data-y="0"></div>
-  <h3>{title}</h3>
+  <h4>{title}</h4>
   <p class="justified"><slot /></p>
   <a class="no-effect" href={href} aria-label={title}></a>
   <span class="more">
@@ -44,7 +44,7 @@ const pixels = Array.from(digest).map((digit) => {
     flex: 1 1 0;
     background: var(--color-primary-dark);
     padding: var(--gap-lg);
-    min-height: calc(max(28rem, min(55vh, 55vw)));
+    min-height: calc(max(30rem, min(60vh, 60vw)));
     position: relative;
   }
 
@@ -93,11 +93,9 @@ const pixels = Array.from(digest).map((digit) => {
     }
   }
 
-  h3 {
+  h4 {
     font-family: var(--font-secondary);
     color: var(--color-secondary);
-    margin-bottom: var(--gap-md);
-    font-size: 1.5em;
     font-weight: 300;
   }
 
@@ -105,15 +103,16 @@ const pixels = Array.from(digest).map((digit) => {
     display: inline-block;
     color: var(--color-secondary);
     font-family: var(--font-mono);
-    font-variant: small-caps;
     margin-top: auto;
     text-decoration: none;
+    font-size: 0.8em;
     text-align: right;
+    text-transform: uppercase;
     position: relative;
 
     & > svg.icon.slide {
       position: absolute;
-      top: 0.1em;
+      top: 0.2em;
       right: 0;
       opacity: 0;
       transition: all 100ms ease-in;

@@ -3,8 +3,7 @@ import { getCollection } from 'astro:content';
 
 import Layout from '../layouts/base.astro';
 
-import Grid from '../components/Grid.astro';
-import Section from '../components/Section.astro';
+import Hero from '../components/Hero.astro';
 
 const members = await Promise.all(
   (await getCollection('members')).map(async (q) => {
@@ -17,12 +16,10 @@ const members = await Promise.all(
   title="Members"
   description="A steadfast committee of dedicated industry experts.">
   <main>
-    <Section
+    <Hero
       tag="Members"
       title="Unwavering industry experts, dedicated to improving the blockchain ecosystem."
     />
-
-    <Grid rows={1} actives={new Set([2, 3, 6, 7, 8, 9, 12, 13, 18, 19])} />
 
     <section id="members">
       {

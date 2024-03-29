@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/base.astro';
 
+import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import Pattern from '../components/Pattern.astro';
 import Grid from '../components/Grid.astro';
@@ -8,9 +9,9 @@ import Grid from '../components/Grid.astro';
 
 <Layout title="About" description="">
   <main class="flex-col">
-    <Section
+    <Hero
       tag="About us"
-      title="A cooperative effort amongst different organizations with a similar outlook and mindset regarding open source."
+      title="A cooperative effort amongst like-minded organizations."
       id="hero"
     />
 
@@ -293,6 +294,7 @@ import Grid from '../components/Grid.astro';
         padding-top: 1em;
         margin-bottom: var(--gap-md);
         position: relative;
+        max-width: 30rem;
       }
 
       & > li:before {
@@ -360,6 +362,7 @@ import Grid from '../components/Grid.astro';
       padding-left: 1.5em;
       position: relative;
       margin: var(--gap-xs) 0;
+      max-width: 30rem;
     }
 
     & > li::before {
@@ -370,6 +373,7 @@ import Grid from '../components/Grid.astro';
       max-height: 1em;
       position: absolute;
       left: 0;
+      top: 0.2em;
       display: inline-block;
       background: var(--color-secondary);
       -webkit-mask-image: var(--mask);
