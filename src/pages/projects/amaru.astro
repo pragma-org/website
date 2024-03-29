@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
-import rehypeStringify from 'rehype-stringify'
+import rehypeStringify from 'rehype-stringify';
 
 import Layout from '../../layouts/base.astro';
 
@@ -14,109 +14,162 @@ import Section from '../../components/Section.astro';
 
 const project = await getEntry('projects', 'amaru');
 
-const maintainers = await Promise.all(project.data.maintainers.map(async id => {
-  const { data } = await getEntry('maintainers', id.toLowerCase());
-  return data;
-}));
+const maintainers = await Promise.all(
+  project.data.maintainers.map(async (id: string) => {
+    const { data } = await getEntry('maintainers', id.toLowerCase());
+    return data;
+  }),
+);
 
 const { Content } = await project.render();
 
-const render = md => unified()
-  .use(remarkParse)
-  .use(remarkRehype)
-  .use(rehypeStringify)
-  .processSync(md);
+const render = (md) =>
+  unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .processSync(md);
 ---
 
-<Layout
-  description={project.data.shortDescription}>
+<Layout description={project.data.shortDescription}>
   <main>
-    <Section
-      tag="Project"
-      id="project"
-      title={project.data.name}
-    >
-    <Pattern actives={new Set([1,6,7,10,20,24,25,30])} nRow=2 />
-    <Pattern actives={new Set([1,6,7,10,20,24,25,30])} nRow=2 />
-    <Content id="content" />
+    <Section tag="Project" id="project" title={project.data.name}>
+      <Pattern actives={new Set([1, 6, 7, 10, 20, 24, 25, 30])} nRow={2} />
+      <Pattern actives={new Set([1, 6, 7, 10, 20, 24, 25, 30])} nRow={2} />
+      <Content id="content" />
     </Section>
     <Section tag="Maintainers" id="maintainers">
       <div class="wrapper">
-      {
-        maintainers.map(
-          (m) => (
+        {
+          maintainers.map((m) => (
             <article>
-              <img alt=`${m.id}'s avatar` src=`https://github.com/${m.github}.png` loading="lazy" />
-              <h3>{m.firstname} {m.lastname}</h3>
-              <span>{m.role} @ {m.company}</span>
+              <img
+                alt={`${m.id}'s avatar`}
+                src={`https://github.com/${m.github}.png`}
+                loading="lazy"
+              />
+              <h3>
+                {m.firstname} {m.lastname}
+              </h3>
+              <span>
+                {m.role} @ {m.company}
+              </span>
               <aside>
-                <a href=`https://github.com/${m.github}` class="no-effect"><svg class="icon"><use xlink:href="#github" /></svg></a>
-                <a href=`https://x.com/${m.twitter}` class="no-effect"><svg class="icon"><use xlink:href="#twitter" /></svg></a>
-                <a href=`https://linkedin.com/in/${m.linkedIn}` class="no-effect"><svg class="icon"><use xlink:href="#linkedIn" /></svg></a>
+                <a href={`https://github.com/${m.github}`} class="no-effect">
+                  <svg class="icon">
+                    <use xlink:href="#github" />
+                  </svg>
+                </a>
+                <a href={`https://x.com/${m.twitter}`} class="no-effect">
+                  <svg class="icon">
+                    <use xlink:href="#twitter" />
+                  </svg>
+                </a>
+                <a
+                  href={`https://linkedin.com/in/${m.linkedIn}`}
+                  class="no-effect">
+                  <svg class="icon">
+                    <use xlink:href="#linkedIn" />
+                  </svg>
+                </a>
               </aside>
             </article>
-          )
-        )
-      }
+          ))
+        }
       </div>
     </Section>
     <Section
-        tag="Journey"
-        id="journey"
-        title="An incremental roadmap in 4-phases">
+      tag="Journey"
+      id="journey"
+      title="An incremental roadmap in 4-phases">
       <div class="wrapper">
         <>
           {
-            project.data.roadmap.phases.flatMap(
-              (phase, ix) => {
-                const milestones = phase.milestones.flatMap((milestone, jx) => (
-                  <input type="radio" name="roadmap" id=`milestone-${ix+1}-${jx+1}` value={milestone.title} class="milestone" />
-                  <label style=`--color: ${phase.color}` for=`milestone-${ix+1}-${jx+1}` class="milestone"><span></span><span>{milestone.when}</span></label>
-                ));
-                const checked = ix === 0;
-                return (
-                  <input type="radio" name="roadmap" id=`phase-${ix+1}` value=`Phase ${ix+1}` class="phase" {checked} />
-                  <label style=`--color: ${phase.color}` data-number={ix+1} for=`phase-${ix+1}` class="phase"><span>Phase {ix+1}</span><span>{phase.start}</span></label>
+            project.data.roadmap.phases.flatMap((phase, ix) => {
+              const milestones = phase.milestones.flatMap((milestone, jx) => (
+                <>
+                  <input
+                    type="radio"
+                    name="roadmap"
+                    id={`milestone-${ix + 1}-${jx + 1}`}
+                    value={milestone.title}
+                    class="milestone"
+                  />
+                  <label
+                    style={`--color: ${phase.color}`}
+                    for={`milestone-${ix + 1}-${jx + 1}`}
+                    class="milestone">
+                    <>
+                      <span />
+                      <span>{milestone.when}</span>
+                    </>
+                  </label>
+                </>
+              ));
+              const checked = ix === 0;
+              return (
+                <>
+                  <input
+                    type="radio"
+                    name="roadmap"
+                    id={`phase-${ix + 1}`}
+                    value={`Phase ${ix + 1}`}
+                    class="phase"
+                    {checked}
+                  />
+                  <label
+                    style={`--color: ${phase.color}`}
+                    data-number={ix + 1}
+                    for={`phase-${ix + 1}`}
+                    class="phase">
+                    <>
+                      <span>Phase {ix + 1}</span>
+                      <span>{phase.start}</span>
+                    </>
+                  </label>
                   <>{milestones}</>
-                );
-              }
-            )
+                </>
+              );
+            })
           }
         </>
 
         <main>
           {
-            project.data.roadmap.phases.map(
-              (phase, ix) => (
-                <article data-phase={ix+1} style=`--color: ${phase.color};`>
-                  <h3 data-number={ix+1}>{phase.name}</h3>
-                  <>{ render(phase.description) }</>
-                  <hr/>
-                  <div class="wrapper">
-                    <ul>
-                      {
-                        phase.packages.map(
-                          (pkg, jx) => {
-                            const checked = jx === 0;
-                            return (
-                              <li>
-                                <input type="radio" name=`work-packages-${ix+1}` id=`pkg-${ix+1}-${jx+1}` value={pkg.title} class="package" checked={checked}/>
-                                <label for=`pkg-${ix+1}-${jx+1}`>{ pkg.title }</label>
-                                <aside class=`pkg-${ix+1}-${jx+1}`>
-                                  <h4>{pkg.title}</h4>
-                                  <>{ render(pkg.description) }</>
-                                  <a href="" />
-                                </aside>
-                              </li>
-                            );
-                          }
-                        )
-                      }
-                    </ul>
-                  </div>
-                </article>
-              )
-            )
+            project.data.roadmap.phases.map((phase, ix) => (
+              <article data-phase={ix + 1} style={`--color: ${phase.color};`}>
+                <h3 data-number={ix + 1}>{phase.name}</h3>
+                <>{render(phase.description)}</>
+                <hr />
+                <div class="wrapper">
+                  <ul>
+                    {phase.packages.map((pkg, jx) => {
+                      const checked = jx === 0;
+                      return (
+                        <li>
+                          <input
+                            type="radio"
+                            name={`work-packages-${ix + 1}`}
+                            id={`pkg-${ix + 1}-${jx + 1}`}
+                            value={pkg.title}
+                            class="package"
+                            checked={checked}
+                          />
+                          <label for={`pkg-${ix + 1}-${jx + 1}`}>
+                            {pkg.title}
+                          </label>
+                          <aside class={`pkg-${ix + 1}-${jx + 1}`}>
+                            <h4>{pkg.title}</h4>
+                            <>{render(pkg.description)}</>
+                            <a href="" />
+                          </aside>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </article>
+            ))
           }
         </main>
       </div>
@@ -204,14 +257,13 @@ const render = md => unified()
     }
   }
 
-
-  input[type=radio].phase,
-  input[type=radio].milestone,
-  input[type=radio].package {
+  input[type='radio'].phase,
+  input[type='radio'].milestone,
+  input[type='radio'].package {
     display: none;
   }
 
-  input[type=radio] + label {
+  input[type='radio'] + label {
     cursor: pointer;
   }
 
@@ -270,20 +322,19 @@ const render = md => unified()
     }
   }
 
-  input[type=radio]:checked + label {
+  input[type='radio']:checked + label {
     &::after {
       background-color: var(--color);
     }
   }
 
-  input#phase-1:checked ~ main article[data-phase=1],
-  input#phase-2:checked ~ main article[data-phase=2],
-  input#phase-3:checked ~ main article[data-phase=3],
-  input#phase-4:checked ~ main article[data-phase=4] {
+  input#phase-1:checked ~ main article[data-phase='1'],
+  input#phase-2:checked ~ main article[data-phase='2'],
+  input#phase-3:checked ~ main article[data-phase='3'],
+  input#phase-4:checked ~ main article[data-phase='4'] {
     display: flex;
     flex-direction: column;
   }
-
 
   #journey {
     & .wrapper {
@@ -311,7 +362,7 @@ const render = md => unified()
         margin: var(--gap-md) 0;
       }
 
-      & h3 ,
+      & h3,
       & h4 {
         color: var(--color);
         margin-bottom: var(--gap-md);
