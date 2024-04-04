@@ -8,6 +8,7 @@ import Card from '../components/Card.astro';
 import Pattern from '../components/Pattern.astro';
 import Section from '../components/Section.astro';
 import Journey from '../components/roadmaps/Journey.astro';
+import PastPresentFuture from '../components/roadmaps/PastPresentFuture.astro';
 
 const { project } = Astro.props;
 
@@ -91,8 +92,16 @@ const { Content } = await project.render();
           roadmap={project.data.roadmap}
           title={project.data.roadmap.title}
         />
-      ) : // TODO: Implement past-present-future roadmap type
-      null
+      ) : null
+    }
+
+    {
+      project.data.roadmap.type === 'past-present-future' ? (
+        <PastPresentFuture
+          roadmap={project.data.roadmap}
+          title={project.data.roadmap.title}
+        />
+      ) : null
     }
 
     <Section
@@ -102,7 +111,7 @@ const { Content } = await project.render();
       <nav>
         {
           project.data.links.map((link) => (
-            <Card title={link.to} href={link.href}></Card>
+            <Card title={link.to} href={link.href} />
           ))
         }
       </nav>
@@ -164,13 +173,32 @@ const { Content } = await project.render();
   #goal {
     margin-top: var(--gap-lg);
 
-    & :global(p) {
-      max-width: 30rem;
-      margin-left: auto;
+    display: grid;
+    gap: var(--gap-md);
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 't t t t' 'h h h h' 'a a b b';
+    align-items: start;
+
+    & :global(span) {
+      grid-area: t;
+      text-align: center;
     }
 
-    & :global(p) + :global(p) {
-      margin-top: var(--gap-md);
+    & :global(h2) {
+      grid-area: h;
+    }
+
+    & :global(p) {
+      max-width: 30rem;
+
+      &:nth-child(2n + 1) {
+        grid-area: a;
+      }
+
+      &:nth-child(2n) {
+        grid-area: b;
+      }
     }
   }
 
@@ -219,11 +247,12 @@ const { Content } = await project.render();
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto;
-      gap: var(--gap-md);
+      gap: var(--gap-lg);
+      padding: 0 var(--gap-lg);
 
       & > :global(article) {
         min-height: unset;
-        height: min(40vh, 40vw);
+        height: max(min(40vh, 40vw), 14rem);
       }
     }
   }
@@ -280,6 +309,7 @@ const { Content } = await project.render();
 
     #goal {
       margin-top: calc(25vw + var(--gap-lg));
+      grid-template-areas: 't t t t' 'h h h h' 'a a a a' 'b b b b';
     }
   }
 
@@ -287,6 +317,7 @@ const { Content } = await project.render();
     #getting-started {
       & nav {
         grid-template-columns: 1fr;
+        padding: 0;
       }
     }
   }

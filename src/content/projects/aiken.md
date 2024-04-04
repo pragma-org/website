@@ -32,9 +32,73 @@ links:
 
 roadmap:
   type: past-present-future
-  past: []
-  present: []
-  future: []
+  recently:
+    - title: Plutus V3 integration
+      description: |
+        Introduce new Plutus V3 crypto primitives for blst381-12, as detaild in
+        [CIP-0381](https://cips.cardano.org/cip/CIP-0381), new bitwise
+        primitives and revised Plutus virtual machine semantic.
+      href: https://github.com/aiken-lang/aiken/milestone/9?closed=1
+
+    - title: Property-based testing framework
+      description: |
+        Supercharge the existing unit testing framework with built-in
+        property-based testing capabilities for writing powerful tests executed
+        directly on the Plutus virtual machine.
+      href: https://github.com/aiken-lang/aiken/discussions/787
+
+    - title: Improved safety and devX on boundaries
+      description: |
+        Perform additional checks to prevent common mistakes with
+        unserialization of data provided to validators. Include also new
+        mechanism for deferring deserialization while preserving useful type
+        information.
+      href: https://github.com/aiken-lang/aiken/milestone/10?closed=1
+
+  currently:
+    - title: Functions export
+      description: |
+        Export any Aiken function as a standalone Untyped Plutus Core (UPLC)
+        program to be be evaluated via the virtual machine.
+      href: https://github.com/aiken-lang/aiken/milestone/11
+
+    - title: Separate pairs from 2-tuples
+      description: |
+        Ensure that UPLC pairs have a different syntax and semantic than
+        2-tuples. The latter are currently treated as pairs, leading to
+        confusion down the line.
+      href: https://github.com/aiken-lang/aiken/milestone/12
+
+    - title: Marlowe acceptance
+      description: |
+        Marlowe is a great example of a non-trivial validator that comes with a
+        large test suite agnostic to the implementation language. It is,
+        therefore, an ideal test bench to ensure conformance of generated UPLC
+        against an agnostic test suite.
+      href: https://github.com/aiken-lang/aiken/milestone/13
+
+  next:
+    - title: Road to β
+      description: |
+        Aiken is technically still in Alpha. There are various changes to be
+        brought to the compiler which we've enumerated and gathered under a 'Road to Beta'.
+      href: https://github.com/aiken-lang/aiken/issues/754
+
+  discussions:
+    - title: Constraining generic type arguments
+      href: https://github.com/aiken-lang/aiken/discussions/99
+
+    - title: Function specialization
+      href: https://github.com/aiken-lang/aiken/discussions/666
+
+    - title: Wrapped redeemers in foreign validators
+      href: https://github.com/aiken-lang/aiken/discussions/665
+
+    - title: Constant reference to script hashes
+      href: https://github.com/aiken-lang/aiken/discussions/676
+
+    - title: Allow upper case constants
+      href: https://github.com/aiken-lang/aiken/discussions/288
 ---
 
 ## Foster growth in the Cardano ecosystem.
