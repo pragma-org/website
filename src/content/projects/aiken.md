@@ -35,7 +35,7 @@ roadmap:
   recently:
     - title: Plutus V3 integration
       description: |
-        Introduce new Plutus V3 crypto primitives for blst381-12, as detaild in
+        Introduce new Plutus V3 crypto primitives for blst381-12, as detailed in
         [CIP-0381](https://cips.cardano.org/cip/CIP-0381), new bitwise
         primitives and revised Plutus virtual machine semantic.
       href: https://github.com/aiken-lang/aiken/milestone/9?closed=1
