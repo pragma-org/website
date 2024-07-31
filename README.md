@@ -3,7 +3,7 @@
 ---
 
 <p align="center">
-  <a href="https://github.com/pragma-org/website/actions/workflows/continuous-integration.yml"><img src="https://img.shields.io/github/actions/workflow/status/pragma-org/website/continuous-integration?style=for-the-badge"/></a>
+  <a href="https://github.com/pragma-org/website/actions/workflows/continuous-integration.yml"><img src="https://img.shields.io/github/actions/workflow/status/pragma-org/website/continuous-integration.yml?style=for-the-badge"/></a>
 </p>
 
 ---
