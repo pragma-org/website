@@ -83,7 +83,7 @@ const render = (md) =>
                 {phase.milestones.map((milestone, jx) => (
                   <div data-milestone={jx + 1} class="milestone">
                     <div class="content">
-                      <Pattern actives={new Set(milestone.pattern)} />
+                      <Pattern actives={new Set(milestone.pattern.map(Number))} />
                       <div class="flex-col">
                         <h4
                           data-milesone={`${ix + 1}.${jx + 1}`}
