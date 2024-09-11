@@ -1,5 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
+import { Markdown } from '@astropub/md'
+
+import { getCollection, getEntry } from 'astro:content';
 
 import Layout from '../layouts/base.astro';
 
@@ -8,12 +10,13 @@ import Grid from '../components/Grid.astro';
 import Pattern from '../components/Pattern.astro';
 import Section from '../components/Section.astro';
 
+const home = await getEntry('home', 'home');
 const members = await getCollection('members');
 const projects = await getCollection('projects');
 ---
 
 <Layout
-  description="A member-based, non-for-profit open-source association for blockchain software projects">
+  description={home.data.heroText}>
   <main>
     <section class="flex-row flex-center" id="hero">
       <noscript>
@@ -22,8 +25,7 @@ const projects = await getCollection('projects');
         </svg>
       </noscript>
       <p>
-        A member-based, not-for-profit open-source association for blockchain
-        software projects
+        {home.data.heroText}
       </p>
     </section>
 
@@ -31,7 +33,7 @@ const projects = await getCollection('projects');
 
     <Section
       tag="Projects"
-      title="Hosting open-source projects and helping them to thrive"
+      title={home.data.projectsTitle}
       id="projects">
       <div class="flex-row flex-center" id="cards">
         {
@@ -48,7 +50,7 @@ const projects = await getCollection('projects');
 
     <Section
       tag="Who we are"
-      title="A team of passionate software engineers"
+      title={home.data.whoWeAreTitle}
       id="who-we-are">
       <div class="flex-row">
         <div id="members">
@@ -59,11 +61,7 @@ const projects = await getCollection('projects');
           }
         </div>
         <p>
-          PRAGMA aims to foster an alternative open-source ecosystem for Cardano <i
-            >and beyond</i
-          >. We are a team of passionate software engineers from various
-          backgrounds who build open-source tools for developers aiming for mass
-          adoption.
+          <Markdown.Inline of={home.data.whoWeAreText} />
 
           <a href="/about" class="more">
             Learn about PRAGMA<svg class="icon slide"
@@ -74,47 +72,23 @@ const projects = await getCollection('projects');
       </div>
 
       <section id="principles">
-        <div>
-          <Pattern
-            actives={new Set([
-              3, 4, 9, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22, 23, 24, 25, 27,
-              28, 30, 31,
-            ])}
-          />
-          <span>A home for blockchain open-source projects</span>
-        </div>
-
-        <div>
-          <Pattern
-            actives={new Set([
-              2, 3, 4, 5, 8, 9, 14, 15, 16, 17, 22, 23, 26, 27, 28, 29,
-            ])}
-          />
-          <span>A cooperative efforts between ecosystem actors</span>
-        </div>
-
-        <div>
-          <Pattern
-            actives={new Set([6, 7, 16, 24, 25, 26, 27, 28, 29, 30, 31])}
-          />
-          <span>An inspiration for future generations</span>
-        </div>
+        {home.data.principles.map(principle => {
+          return (
+            <div>
+              <Pattern actives={new Set(principle.pattern.map(active => Number(active)))} />
+              <span>{principle.text}</span>
+            </div>
+          );
+        })}
       </section>
     </Section>
 
     <Section
       tag="Contribute"
-      title="A collective open-source strategy"
+      title={home.data.contributeTitle}
       id="contribute">
       <p class="justified">
-        We want to build software solutions that increase blockchain’s utility
-        and adoption, inasmuch as they also provide business value for ecosystem
-        actors.
-        <br />
-        <br />
-        By delivering solutions in small steps, we intend to involve other builders
-        to create strong open-source communities. Projects under PRAGMA are open
-        to contributions and will onboard those who want to get involved.
+        <Markdown.Inline of={home.data.contributeText} />
       </p>
     </Section>
 
@@ -220,9 +194,19 @@ const projects = await getCollection('projects');
   }
 
   #projects > #cards {
-    max-width: 70vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--gap-md);
+    max-width: 70vw;
   }
+
+  @media (max-width: 770px) {
+    #projects > #cards {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+    }
+  }
+
 
   #who-we-are {
     & p {
