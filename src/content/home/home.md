@@ -8,14 +8,16 @@ heroText: >-
 projectsTitle: Hosting open-source projects and helping them to thrive
 whoWeAreTitle: A team of passionate software engineers
 whoWeAreText: >
-  PRAGMA aims to foster an alternative open-source ecosystem for Cardano and
-  beyond. We are a team of passionate software engineers from various
+  PRAGMA aims to foster an alternative open-source ecosystem for Cardano *and
+  beyond*. We are a team of passionate software engineers from various
   backgrounds who build open-source tools for developers aiming for mass
   adoption.
 contributeTitle: A collective open-source strategy
 contributeText: >
   We want to build software solutions that increase blockchain’s utility and
   adoption, inasmuch as they also provide business value for ecosystem actors.
+
+
   By delivering solutions in small steps, we intend to involve other builders to
   create strong open-source communities. Projects under PRAGMA are open to
   contributions and will onboard those who want to get involved.
@@ -74,3 +76,4 @@ principles:
       - '30'
       - '31'
 ---
+

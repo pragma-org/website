@@ -87,9 +87,9 @@ const projects = await getCollection('projects');
       tag="Contribute"
       title={home.data.contributeTitle}
       id="contribute">
-      <p class="justified">
+      <div class="justified">
         <Markdown.Inline of={home.data.contributeText} />
-      </p>
+      </div>
     </Section>
 
     <script>
@@ -282,7 +282,8 @@ const projects = await getCollection('projects');
   }
 
   #contribute {
-    & > p {
+    & > div {
+      white-space: pre-wrap;
       max-width: 30vw;
     }
   }
