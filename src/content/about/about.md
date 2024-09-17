@@ -2,7 +2,7 @@
 heroText: A cooperative effort amongst like-minded organizations.
 whoWeAreTitle: A team of passionate software engineers
 whoWeAreText: >
-  **PR*AGMA*** is a member-based, not-for-profit Open Source Association for
+  **PR*A*GMA** is a member-based, not-for-profit Open Source Association for
   blockchain software projects. It aims to foster an alternative open-source
   ecosystem for Cardano and beyond. We are a team of passionate software
   engineers from various backgrounds who build open-source tools for developers
@@ -12,10 +12,10 @@ whoWeAreParagraph:
       PRAGMA focuses on delivering perennial open-source software for the public
       good.
     text: >
-      **It** *is* a cooperative effort among organisations with a similar
-      outlook and mindset regarding Open Source and the blockchain industry.
-      Each of its founding members is an entity deeply focused on IT development
-      and engineering in the Cardano ecosystem.
+      It is a cooperative effort among organisations with a similar outlook and
+      mindset regarding Open Source and the blockchain industry. Each of its
+      founding members is an entity deeply focused on IT development and
+      engineering in the Cardano ecosystem.
     pattern:
       - '0'
       - '1'
@@ -68,6 +68,8 @@ goals:
       freely available, emphasizing accessibility, inclusivity, and societal
       impact.
 
+
+
       We build enduring and impactful projects designed for long-term
       sustainability, ensuring that contributions have a lasting positive effect
       on open-source communities.
@@ -77,6 +79,8 @@ goals:
       an open-source ecosystem for blockchain software projects, promoting
       community-driven development and shared expertise.
 
+
+
       We want to give an opportunity for anyone to contribute to the development
       of key projects in Cardano and beyond.
   - title: Inspire
@@ -85,6 +89,8 @@ goals:
       ecosystem and, in the long run, in blockchain as a whole, using proven
       open-source methodologies. We want anyone to have the opportunity to
       contribute to the development of key projects in Cardano -- and beyond.
+
+
 
       PRAGMA aims to consolidate forces and propose a model of operations that
       others may choose to follow.
@@ -142,25 +148,26 @@ promisesParagraph: >
 structureTitle: 'A multi-headed association, with members operating in full-consensus.'
 structureFirstParagraph: >
   In its initial phase, PRAGMA is setup as a multi-headed association where each
-  member has a voice. The founding members constitutes the General Assembly and
-  have ultimate authority on the strategy and functioning of the association.
+  member has a voice. The founding members constitutes the **General Assembly**
+  and have ultimate authority on the strategy and functioning of the
+  association.
 
 
-  The General Assembly operates through the means of an Administrative Board who
-  is effectively running the operations. A crucial mission of the board is to
-  decide on projects and appoints Maintainer Committees to them. The committees
-  are small group of skilled software engineers in charge of developing and
-  managing projects in collaboration with their respective open-source
-  communities.
+  The **General Assembly** operates through the means of an **Administrative
+  Board** who is *effectively* running the operations. A crucial mission of the
+  board is to decide on projects and appoints **Maintainer Committees** to them.
+  The committees are small group of skilled software engineers in charge of
+  developing and managing projects in collaboration with their respective
+  open-source communities.
 structureSecondParagraph: >
-  Each project is supervised by a Maintainer Committee, who is both responsible
-  for the core development but also for managing contributions. It is in touch
-  with the project's community, and can onboard motivated contributors when
-  necessary.
+  Each project is supervised by a **Maintainer Committee**, who is both
+  responsible for the core development but also for managing contributions. It
+  is in touch with the project's community, and can onboard motivated
+  contributors when necessary.
 
 
-  The Maintainer Committees are self-organising in ways that may differ from a
-  project to another, for every project is different. While all strongly
+  The **Maintainer Committees** are self-organising in ways that may differ from
+  a project to another, for every project is different. While all strongly
   committed to the PRAGMA's principles, they may freely chose tools and
   processes that better serves the project.
 ---

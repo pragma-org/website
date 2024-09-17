@@ -225,6 +225,7 @@ const about = await getEntry('about', 'about');
         margin-bottom: var(--gap-md);
         position: relative;
         max-width: 30rem;
+        white-space: pre-wrap;
       }
 
       & > li:before {
@@ -272,7 +273,8 @@ const about = await getEntry('about', 'about');
       margin: var(--gap-md) auto;
     }
 
-    & p + p {
+    & div {
+      white-space: pre-wrap;
       margin-top: var(--gap-sm);
     }
   }

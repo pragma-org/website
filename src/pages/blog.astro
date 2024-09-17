@@ -21,6 +21,10 @@ const posts = await getCollection('blog');
       title=""
       id="recent-posts">
       <div class="grid">
+        <!--no posts-->
+        {posts.length === 0 && (
+          <div class="no-posts">No posts yet. Check back later!</div>
+        )}
         {posts.map(async post => {
           const publishDate = new Date(post.data.publishDate);
           const formattedDate = publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -147,5 +151,11 @@ const posts = await getCollection('blog');
     .post-image {
       height: auto;
     }
+  }
+
+  .no-posts {
+    display: flex;
+    align-items: center;
+    color: var(--color-secondary);
   }
 </style>
