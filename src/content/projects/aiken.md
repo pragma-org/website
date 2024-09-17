@@ -1,9 +1,7 @@
 ---
 name: Aiken
-
 shortDescription: |
   A modern smart contract platform for Cardano
-
 summary: |
   Aiken is a modern and accessible programming language, specifically
   created to both simplify and enhance the development of smart
@@ -11,25 +9,19 @@ summary: |
   for effortless integration with other tools and languages, plus
   includes various state-of-the-art features that meet the current
   expectations of developers.
-
 maintainers:
   - KtorZ
   - rvcas
   - MicroProofs
-
 links:
   - to: Source code
-    href: https://github.com/aiken-lang/aiken
-
+    href: 'https://github.com/aiken-lang/aiken'
   - to: Project tracking
-    href: https://github.com/orgs/aiken-lang/projects/2
-
+    href: 'https://github.com/orgs/aiken-lang/projects/2'
   - to: Documentation
-    href: https://aiken-lang.org
-
+    href: 'https://aiken-lang.org'
   - to: Contributing
-    href: https://github.com/aiken-lang/aiken/blob/main/CONTRIBUTING.md
-
+    href: 'https://github.com/aiken-lang/aiken/blob/main/CONTRIBUTING.md'
 roadmap:
   type: past-present-future
   recently:
@@ -37,15 +29,13 @@ roadmap:
       description: |
         Export any Aiken function as a standalone Untyped Plutus Core (UPLC)
         program to be be evaluated via the virtual machine.
-      href: https://github.com/aiken-lang/aiken/milestone/11
-
+      href: 'https://github.com/aiken-lang/aiken/milestone/11'
     - title: Separate pairs from 2-tuples
       description: |
         Ensure that UPLC pairs have a different syntax and semantic than
         2-tuples. The latter are currently treated as pairs, leading to
         confusion down the line.
-      href: https://github.com/aiken-lang/aiken/milestone/12
-
+      href: 'https://github.com/aiken-lang/aiken/milestone/12'
   currently:
     - title: Marlowe acceptance
       description: |
@@ -53,38 +43,38 @@ roadmap:
         large test suite agnostic to the implementation language. It is,
         therefore, an ideal test bench to ensure conformance of generated UPLC
         against an agnostic test suite.
-      href: https://github.com/aiken-lang/aiken/milestone/13
-
+      href: 'https://github.com/aiken-lang/aiken/milestone/13'
     - title: Road to β
-      description: |
+      description: >
         Aiken is technically still in Alpha. There are various changes to be
-        brought to the compiler which we've enumerated and gathered under a 'Road to Beta'.
-      href: https://github.com/aiken-lang/aiken/issues/754
 
+        brought to the compiler which we've enumerated and gathered under a
+        'Road to Beta'.
+      href: 'https://github.com/aiken-lang/aiken/issues/754'
   next:
     - title: DevX of parameterized validators
-      description: |
+      description: >
         The development flow around parameterized validators is currently not
-        ideal. We are, therefore, exploring two new areas to improve the experience
-        by the project configuration file and conditional compilation targets based
-        on environments.
-      href: https://github.com/aiken-lang/aiken/milestone/14
 
+        ideal. We are, therefore, exploring two new areas to improve the
+        experience
+
+        by the project configuration file and conditional compilation targets
+        based
+
+        on environments.
+      href: 'https://github.com/aiken-lang/aiken/milestone/14'
   discussions:
     - title: Constraining generic type arguments
-      href: https://github.com/aiken-lang/aiken/discussions/99
-
+      href: 'https://github.com/aiken-lang/aiken/discussions/99'
     - title: Function specialization
-      href: https://github.com/aiken-lang/aiken/discussions/666
-
+      href: 'https://github.com/aiken-lang/aiken/discussions/666'
     - title: Wrapped redeemers in foreign validators
-      href: https://github.com/aiken-lang/aiken/discussions/665
-
+      href: 'https://github.com/aiken-lang/aiken/discussions/665'
     - title: Constant reference to script hashes
-      href: https://github.com/aiken-lang/aiken/discussions/676
-
+      href: 'https://github.com/aiken-lang/aiken/discussions/676'
     - title: Allow upper case constants
-      href: https://github.com/aiken-lang/aiken/discussions/288
+      href: 'https://github.com/aiken-lang/aiken/discussions/288'
 ---
 
 ## Foster growth in the Cardano ecosystem.

@@ -5,13 +5,19 @@ import Grid from '../components/Grid.astro';
 
 interface Props extends HTMLAttributes<'section'> {
   title: string;
+  image?: string | null;
   tag: string;
 }
 
-const { title, tag, ...props } = Astro.props;
+const { title, tag, image, ...props } = Astro.props;
 ---
 
 <header {...props}>
+  {image && (
+    <div class="header-image-container">
+      <img src={image} alt={title} class="header-image" />
+    </div>
+  )}
   <span class="tag">{tag}</span>
   <h1>{title}</h1>
   <slot />
@@ -22,6 +28,7 @@ const { title, tag, ...props } = Astro.props;
 <style>
   header {
     padding: var(--gap-md);
+    overflow-x: hidden;
   }
 
   span.tag {
@@ -29,5 +36,19 @@ const { title, tag, ...props } = Astro.props;
     display: inline-block;
     font-family: var(--font-mono);
     color: var(--color-secondary);
+  }
+
+  .header-image-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  .header-image {
+    margin-bottom: var(--gap-sm);
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 </style>

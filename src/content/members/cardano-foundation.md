@@ -1,10 +1,10 @@
 ---
 name: Cardano Foundation
 logo: /img/members/cardanofoundation.webp
-website: https://cardanofoundation.org
-github: https://github.com/cardano-foundation
-twitter: https://x.com/Cardano_CF
-discord: https://discord.gg/uZZwnvWMgd
+website: 'https://cardanofoundation.org'
+twitter: 'https://x.com/Cardano_CF'
+github: 'https://github.com/cardano-foundation'
+discord: 'https://discord.gg/uZZwnvWMgd'
 ---
 
 An independent, Swiss-based not-for-profit organisation tasked with advancing the public digital infrastructure of Cardano and with supporting its community.
