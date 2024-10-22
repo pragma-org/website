@@ -23,27 +23,31 @@ const render = (md) =>
     <>
       {
         roadmap.phases.flatMap((phase, ix) => {
-          const milestones = phase.milestones.flatMap((milestone, jx) => (
-            <>
-              <input
-                type="radio"
-                name="roadmap"
-                id={`milestone-${ix + 1}-${jx + 1}`}
-                class={`milestone phase-${ix + 1} milestone-${jx + 1}`}
-                value={milestone.title}
-              />
-              <label
-                style={`--color: ${phase.color}`}
-                for={`milestone-${ix + 1}-${jx + 1}`}
-                class="milestone">
-                <>
-                  <span />
-                  <span>{milestone.when}</span>
-                </>
-              </label>
-            </>
-          ));
-          const checked = ix === 0;
+          const milestones = phase.milestones.flatMap((milestone, jx) => {
+            const checked = milestone.highlight === true;
+            return (
+              <>
+                <input
+                  type="radio"
+                  name="roadmap"
+                  id={`milestone-${ix + 1}-${jx + 1}`}
+                  class={`milestone phase-${ix + 1} milestone-${jx + 1}`}
+                  value={milestone.title}
+                  {checked}
+                />
+                <label
+                  style={`--color: ${phase.color}`}
+                  for={`milestone-${ix + 1}-${jx + 1}`}
+                  class="milestone">
+                  <>
+                    <span />
+                    <span>{milestone.when}</span>
+                  </>
+                </label>
+              </>
+            );
+          });
+          const checked = phase.highlight === true;
           return (
             <>
               <input
@@ -91,6 +95,23 @@ const render = (md) =>
                           {milestone.title}
                         </h4>
                         <>{render(milestone.description)}</>
+                        {milestone.media ? (
+                          <>
+                            <h5
+                              style={`font-size: 0.85em; position: relative; font-variant: small-caps; bottom: -0.5em; color: ${phase.color}`}>
+                              demo
+                            </h5>
+                            <div style="position: relative; padding-top: 56.25%;">
+                              <iframe
+                                src={milestone.media}
+                                loading="lazy"
+                                style={`border: 1px solid ${phase.color}; position: absolute; top: 0; left: 0; height: 100%; width: 100%;`}
+                                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                                allowfullscreen="true"
+                              />
+                            </div>
+                          </>
+                        ) : null}
                         {milestone.link ? <hr /> : null}
                         {milestone.link ? (
                           <ExternalLink href={milestone.link} class="more">

@@ -161,6 +161,7 @@ roadmap:
     - name: Relay node
       color: '#f7b262'
       start: Q3 2024
+      highlight: true
       description: |
         A node capable of validating (at least partially) blocks seen on the
         network and propagate them by taking part in the p2p gossiping between
@@ -171,6 +172,39 @@ roadmap:
         blocks. It can however fully replace any relay and is, from the
         perspective of any external observer, a Cardano relay node.
       milestones:
+        - when: October
+          title: First Steps
+          pattern:
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              15,
+              16,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+            ]
+          description: |
+            A simple pipeline showcasing an Amaru node fetching blocks from the
+            network, validating their header (VRF & KES) and forwarding them to
+            an in-memory ledger performing UTxO management and phase-2
+            validations.
+          media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/389ac82ef40edc967760457f1f6868b5/watch
+          highlight: true
+
         - when: December
           title: Hybrid Testnet
           pattern: [0, 1, 2, 5, 6, 7, 8, 15, 16, 23, 27, 28]
