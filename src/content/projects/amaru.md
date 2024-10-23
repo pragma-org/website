@@ -203,7 +203,6 @@ roadmap:
             an in-memory ledger performing UTxO management and phase-2
             validations.
           media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/389ac82ef40edc967760457f1f6868b5/watch
-          highlight: true
 
         - when: December
           title: Hybrid Testnet

@@ -24,7 +24,6 @@ const render = (md) =>
       {
         roadmap.phases.flatMap((phase, ix) => {
           const milestones = phase.milestones.flatMap((milestone, jx) => {
-            const checked = milestone.highlight === true;
             return (
               <>
                 <input
@@ -33,7 +32,6 @@ const render = (md) =>
                   id={`milestone-${ix + 1}-${jx + 1}`}
                   class={`milestone phase-${ix + 1} milestone-${jx + 1}`}
                   value={milestone.title}
-                  {checked}
                 />
                 <label
                   style={`--color: ${phase.color}`}
