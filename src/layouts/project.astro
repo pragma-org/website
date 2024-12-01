@@ -13,8 +13,8 @@ import PastPresentFuture from '../components/roadmaps/PastPresentFuture.astro';
 const { project } = Astro.props;
 
 const maintainers = await Promise.all(
-  project.data.maintainers.map(async (id: string) => {
-    const { data } = await getEntry('maintainers', id.toLowerCase());
+  project.data.maintainers.map(async (maintainerId: string) => {
+    const { data } = await getEntry('maintainers', maintainerId.toLowerCase());
     return data;
   }),
 );
@@ -42,7 +42,7 @@ const { Content } = await project.render();
           maintainers.map((m) => (
             <article>
               <Image
-                alt={`${m.id}'s avatar`}
+                alt={`${m.maintainerId}'s avatar`}
                 src={`https://github.com/${m.github}.png`}
                 width="48"
                 height="48"

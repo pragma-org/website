@@ -1,0 +1,131 @@
+---
+import { getCollection, getEntryBySlug } from 'astro:content';
+import Layout from '../../layouts/base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await post.render();
+const publishDate = new Date(post.data.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Layout title={post.data.title} description={post.data.excerpt}>
+  <main class="flex-col">
+    <Hero
+      tag={`By ${post.data.author} on ${publishDate} ∙ ${remarkPluginFrontmatter.minutesRead}`}
+      title={post.data.title}
+      image={post.data.image}
+      id="hero"
+    />
+
+    <Section tag="" id="post-info">
+      <div class="post-content justified">
+        <Content />
+      </div>
+    </Section>
+
+    <Section tag="" id="post-nav">
+      <a href="/blog" class="back-to-blog">← Back to Blog</a>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  .meta {
+    font-size: 0.9em;
+    color: var(--color-secondary);
+    margin-bottom: var(--gap-md);
+  }
+
+  .post-content {
+    white-space: pre-wrap;
+  }
+
+  .back-to-blog {
+    color: var(--color-secondary);
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: var(--gap-lg);
+    display: inline-block;
+  }
+
+  .back-to-blog:hover {
+    text-decoration: underline;
+  }
+
+  :global(.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6) {
+    margin-top: var(--gap-md);
+    margin-bottom: 0;
+  }
+
+  :global(.post-content ul, .post-content ol) {
+    margin: 0;
+  }
+
+  :global(.post-content .astro-code) {
+    margin-top: var(--gap-xs);
+    margin-bottom: var(--gap-xs);
+    padding: var(--gap-xs);
+    border: 1px solid var(--color-secondary);
+  }
+
+  :global(.copy-code) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
+    font-size: 0.6rem;
+    line-height: 1rem;
+  }
+
+  :global(.copy-code:hover) {
+    background-color: transparent;
+    color: var(--color-background);
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  let copyButtonLabel = "Copy Code";
+  let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+  for (let codeBlock of codeBlocks) {
+    let wrapper = document.createElement("div");
+    wrapper.style.position = "relative";
+
+    let copyButton = document.createElement("button");
+    copyButton.className = "copy-code";
+    copyButton.innerHTML = copyButtonLabel;
+
+    codeBlock.setAttribute("tabindex", "0");
+    codeBlock.appendChild(copyButton);
+    codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+    wrapper.appendChild(codeBlock);
+
+    copyButton.addEventListener("click", async () => {
+      await copyCode(codeBlock, copyButton);
+    });
+  }
+
+  async function copyCode(block, button) {
+    let code = block.querySelector("code");
+    let text = code.innerText;
+
+    await navigator.clipboard.writeText(text);
+
+    button.innerText = "Code Copied";
+
+    setTimeout(() => {
+      button.innerText = copyButtonLabel;
+    }, 700);
+  }
+</script>
