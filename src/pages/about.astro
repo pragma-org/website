@@ -1,5 +1,5 @@
 ---
-import { Markdown } from '@astropub/md'
+import { Markdown } from '@astropub/md';
 
 import Layout from '../layouts/base.astro';
 
@@ -14,46 +14,52 @@ const about = await getEntry('about', 'about');
 
 <Layout title="About" description="">
   <main class="flex-col">
-    <Hero
-      tag="About us"
-      title={about.data.heroText}
-      id="hero"
-    />
+    <Hero tag="About us" title={about.data.heroText} id="hero" />
 
-    <Section
-      tag="Who we are"
-      title={about.data.whoWeAreTitle}
-      id="who-we-are">
+    <Section tag="Who we are" title={about.data.whoWeAreTitle} id="who-we-are">
       <p class="justified">
         <Markdown.Inline of={about.data.whoWeAreText} />
       </p>
-      {about.data.whoWeAreParagraph.map((paragraph, index) => {
-        return (
-          <div class={`flex-row flex-center decorated ${index % 2 === 0 ? 'right' : 'left'}`}>
-            {index % 2 !== 0 && <Pattern
-              actives={new Set(paragraph.pattern.map(active => Number(active)))}
-            />}
-            <p class="justified">
-              <span class="highlight">{paragraph.title}</span>
-              <Markdown.Inline of={paragraph.text} />
-            </p>
-            {index % 2 === 0 && <Pattern
-              actives={new Set(paragraph.pattern.map(active => Number(active)))}
-            />}
-          </div>
-        );
-      })}
+      {
+        about.data.whoWeAreParagraph.map((paragraph, index) => {
+          return (
+            <div
+              class={`flex-row flex-center decorated ${index % 2 === 0 ? 'right' : 'left'}`}>
+              {index % 2 !== 0 && (
+                <Pattern
+                  actives={
+                    new Set(paragraph.pattern.map((active) => Number(active)))
+                  }
+                />
+              )}
+              <p class="justified">
+                <span class="highlight">{paragraph.title}</span>
+                <Markdown.Inline of={paragraph.text} />
+              </p>
+              {index % 2 === 0 && (
+                <Pattern
+                  actives={
+                    new Set(paragraph.pattern.map((active) => Number(active)))
+                  }
+                />
+              )}
+            </div>
+          );
+        })
+      }
     </Section>
 
     <Section tag="Our goals" id="our-goals">
       <ul>
-        {about.data.goals.map(goal => {
-          return (
-            <li data-title={goal.title} class="justified">
-              <Markdown.Inline of={goal.text} />
-            </li>
-          );
-        })}
+        {
+          about.data.goals.map((goal) => {
+            return (
+              <li data-title={goal.title} class="justified">
+                <Markdown.Inline of={goal.text} />
+              </li>
+            );
+          })
+        }
       </ul>
     </Section>
 
@@ -76,47 +82,51 @@ const about = await getEntry('about', 'about');
 
     <Section tag="We will..." title="" id="we-will">
       <ul class="list-icon" data-icon="check-square">
-        {about.data.weWill.items.map(item => {
-          return (
-            <li>
-              <Markdown.Inline of={item.text} />
-              {item.sub_items && (
-                <ul class="list-icon" data-icon="check-square">
-                  {item.sub_items.map(subItem => {
-                    return (
-                      <li>
-                        <Markdown.Inline of={subItem.text} />
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </li>
-          );
-        })}
+        {
+          about.data.weWill.items.map((item) => {
+            return (
+              <li>
+                <Markdown.Inline of={item.text} />
+                {item.sub_items && (
+                  <ul class="list-icon" data-icon="check-square">
+                    {item.sub_items.map((subItem) => {
+                      return (
+                        <li>
+                          <Markdown.Inline of={subItem.text} />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </li>
+            );
+          })
+        }
       </ul>
     </Section>
 
     <Section tag="We will NOT..." title="" id="we-will-not">
       <ul class="list-icon" data-icon="x-square">
-        {about.data.weWillNot.items.map(item => {
-          return (
-            <li>
-              <Markdown.Inline of={item.text} />
-              {item.sub_items && (
-                <ul class="list-icon" data-icon="check-square">
-                  {item.sub_items.map(subItem => {
-                    return (
-                      <li>
-                        <Markdown.Inline of={subItem.text} />
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </li>
-          );
-        })}
+        {
+          about.data.weWillNot.items.map((item) => {
+            return (
+              <li>
+                <Markdown.Inline of={item.text} />
+                {item.sub_items && (
+                  <ul class="list-icon" data-icon="check-square">
+                    {item.sub_items.map((subItem) => {
+                      return (
+                        <li>
+                          <Markdown.Inline of={subItem.text} />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </li>
+            );
+          })
+        }
       </ul>
       <p class="justified">
         <Markdown.Inline of={about.data.promisesParagraph} />
@@ -125,10 +135,7 @@ const about = await getEntry('about', 'about');
 
     <Grid rows={0.25} actives={new Set([0, 3, 4, 7])} />
 
-    <Section
-      tag="Structure"
-      title={about.data.structureTitle}
-      id="structure">
+    <Section tag="Structure" title={about.data.structureTitle} id="structure">
       <div class="justified">
         <Markdown.Inline of={about.data.structureFirstParagraph} />
       </div>

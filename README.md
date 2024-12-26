@@ -12,14 +12,14 @@
 
 This project is build using [astro](https://astro.build). To get started right-away, see the commands recap below 👇:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `yarn install`            | Installs dependencies                            |
-| `yarn dev`                | Starts local dev server at `localhost:4321`      |
-| `yarn build`              | Build your production site to `./dist/`          |
-| `yarn preview`            | Preview your build locally, before deploying     |
-| `yarn astro ...`          | Run CLI commands like `astro add`, `astro check` |
-| `yarn format`             | Format sources using `prettier`                  |
+| Command          | Action                                           |
+| :--------------- | :----------------------------------------------- |
+| `yarn install`   | Installs dependencies                            |
+| `yarn dev`       | Starts local dev server at `localhost:4321`      |
+| `yarn build`     | Build your production site to `./dist/`          |
+| `yarn preview`   | Preview your build locally, before deploying     |
+| `yarn astro ...` | Run CLI commands like `astro add`, `astro check` |
+| `yarn format`    | Format sources using `prettier`                  |
 
 ---
 

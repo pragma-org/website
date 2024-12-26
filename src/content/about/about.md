@@ -171,4 +171,3 @@ structureSecondParagraph: >
   committed to the PRAGMA's principles, they may freely chose tools and
   processes that better serves the project.
 ---
-

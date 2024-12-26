@@ -10,42 +10,54 @@ const posts = await getCollection('blog');
 
 <Layout title="Blog" description="Explore our latest posts">
   <main class="flex-col">
-    <Hero
-      tag="Blog"
-      title="Latest Articles"
-      id="hero"
-    />
+    <Hero tag="Blog" title="Latest Articles" id="hero" />
 
-    <Section
-      tag=""
-      title=""
-      id="recent-posts">
+    <Section tag="" title="" id="recent-posts">
       <div class="grid">
         <!--no posts-->
-        {posts.length === 0 && (
-          <div class="no-posts">No posts yet. Check back later!</div>
-        )}
-        {posts.map(async post => {
-          const publishDate = new Date(post.data.publishDate);
-          const formattedDate = publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-          const { remarkPluginFrontmatter } = await post.render();
+        {
+          posts.length === 0 && (
+            <div class="no-posts">No posts yet. Check back later!</div>
+          )
+        }
+        {
+          posts.map(async (post) => {
+            const publishDate = new Date(post.data.publishDate);
+            const formattedDate = publishDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            });
+            const { remarkPluginFrontmatter } = await post.render();
 
-          return (
-          <article class="post-card">
-            <div class="post-card-content">
-              <div class="post-image-container">
-                <img src={post.data.image} alt={post.data.title} class="post-image" />
-              </div>
-              <div class="post-text">
-                <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
-                <p class="meta">By {post.data.author} on {formattedDate} ∙ {remarkPluginFrontmatter.minutesRead}</p>
-                <p class="justified">{post.data.excerpt}</p>
-                <a href={`/blog/${post.slug}`} class="read-more">Read More</a>
-              </div>
-            </div>
-          </article>
-          );
-        })}
+            return (
+              <article class="post-card">
+                <div class="post-card-content">
+                  <div class="post-image-container">
+                    <img
+                      src={post.data.image}
+                      alt={post.data.title}
+                      class="post-image"
+                    />
+                  </div>
+                  <div class="post-text">
+                    <h2>
+                      <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                    </h2>
+                    <p class="meta">
+                      By {post.data.author} on {formattedDate} ∙{' '}
+                      {remarkPluginFrontmatter.minutesRead}
+                    </p>
+                    <p class="justified">{post.data.excerpt}</p>
+                    <a href={`/blog/${post.slug}`} class="read-more">
+                      Read More
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        }
       </div>
     </Section>
   </main>
@@ -130,7 +142,7 @@ const posts = await getCollection('blog');
   }
 
   .read-more {
-    font-size:0.8rem;
+    font-size: 0.8rem;
     color: var(--color-secondary);
     font-weight: bold;
     margin-top: var(--gap-md);

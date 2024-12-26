@@ -24,7 +24,7 @@ You are not obliged to disclose your personal information to us. However, we may
 
 ### Information you provide us
 
-You may provide us with personal information by filling in forms on our website or by corresponding with us by email, web form, letter, or other means of communication, including social media platforms. We collect the information exchanged between you and us, including your contact details and the marginal data of the communication. The personal information you provide may include, in particular, your name, email, pseudonym, messages, address, phone number,  relevant IT expertise, IP address, language preference, and information regarding the pages you access.
+You may provide us with personal information by filling in forms on our website or by corresponding with us by email, web form, letter, or other means of communication, including social media platforms. We collect the information exchanged between you and us, including your contact details and the marginal data of the communication. The personal information you provide may include, in particular, your name, email, pseudonym, messages, address, phone number, relevant IT expertise, IP address, language preference, and information regarding the pages you access.
 
 ### Information we collect about you
 
@@ -59,7 +59,7 @@ We will not actively transfer to third parties any personal information as part 
 
 ### Who has access to your information
 
-We do not pass on personal information to third parties without the consent of the person concerned, unless this is necessary for the purposes described in this Policy and except to third parties such as service providers, agents, subcontractors and other associated organisations engaged by us for processing for the purposes of completing tasks and providing services to you on our behalf, or if we are legally obliged to do so or if it is  necessary to protect our interests, e.g. to combat abuses or defend our IP.
+We do not pass on personal information to third parties without the consent of the person concerned, unless this is necessary for the purposes described in this Policy and except to third parties such as service providers, agents, subcontractors and other associated organisations engaged by us for processing for the purposes of completing tasks and providing services to you on our behalf, or if we are legally obliged to do so or if it is necessary to protect our interests, e.g. to combat abuses or defend our IP.
 
 If we use third party service providers, we disclose only the personal information that is necessary to deliver the service and we have a contract in place that requires them to keep your information secure.
 
@@ -78,6 +78,7 @@ We will hold your personal information on our systems for as long as is necessar
 Our website may contain links to other websites run by other organisations. We cannot be made responsible for the privacy policies and practices of other websites even if you access them using links from our sites.
 
 ### Security measures to protect your information
+
 We take appropriate administrative, technical and physical safeguards to protect the confidentiality, integrity and availability of personal information. We use strict procedures and security features, including encryption techniques, and take all steps reasonably necessary to ensure that personal information is processed securely and in accordance with this Policy.
 
 Non-sensitive details such as your email address may be transmitted unencrypted over the Internet, and so may not be guaranteed to be 100% secure. While we strive to protect your personal information, we cannot guarantee the security of any information you transmit to us, and you do so at your own risk.

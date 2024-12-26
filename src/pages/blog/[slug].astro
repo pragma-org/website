@@ -7,7 +7,7 @@ import Section from '../../components/Section.astro';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
 
-  return posts.map(post => ({
+  return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
@@ -15,8 +15,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await post.render();
-const publishDate = new Date(post.data.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+const publishDate = new Date(post.data.publishDate).toLocaleDateString(
+  'en-US',
+  { year: 'numeric', month: 'long', day: 'numeric' },
+);
 ---
+
 <Layout title={post.data.title} description={post.data.excerpt}>
   <main class="flex-col">
     <Hero
@@ -61,7 +65,14 @@ const publishDate = new Date(post.data.publishDate).toLocaleDateString('en-US', 
     text-decoration: underline;
   }
 
-  :global(.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6) {
+  :global(
+      .post-content h1,
+      .post-content h2,
+      .post-content h3,
+      .post-content h4,
+      .post-content h5,
+      .post-content h6
+    ) {
     margin-top: var(--gap-md);
     margin-bottom: 0;
   }
@@ -95,34 +106,34 @@ const publishDate = new Date(post.data.publishDate).toLocaleDateString('en-US', 
 </style>
 
 <script>
-  let copyButtonLabel = "Copy Code";
-  let codeBlocks = Array.from(document.querySelectorAll("pre"));
+  let copyButtonLabel = 'Copy Code';
+  let codeBlocks = Array.from(document.querySelectorAll('pre'));
 
   for (let codeBlock of codeBlocks) {
-    let wrapper = document.createElement("div");
-    wrapper.style.position = "relative";
+    let wrapper = document.createElement('div');
+    wrapper.style.position = 'relative';
 
-    let copyButton = document.createElement("button");
-    copyButton.className = "copy-code";
+    let copyButton = document.createElement('button');
+    copyButton.className = 'copy-code';
     copyButton.innerHTML = copyButtonLabel;
 
-    codeBlock.setAttribute("tabindex", "0");
+    codeBlock.setAttribute('tabindex', '0');
     codeBlock.appendChild(copyButton);
     codeBlock.parentNode.insertBefore(wrapper, codeBlock);
     wrapper.appendChild(codeBlock);
 
-    copyButton.addEventListener("click", async () => {
+    copyButton.addEventListener('click', async () => {
       await copyCode(codeBlock, copyButton);
     });
   }
 
   async function copyCode(block, button) {
-    let code = block.querySelector("code");
+    let code = block.querySelector('code');
     let text = code.innerText;
 
     await navigator.clipboard.writeText(text);
 
-    button.innerText = "Code Copied";
+    button.innerText = 'Code Copied';
 
     setTimeout(() => {
       button.innerText = copyButtonLabel;

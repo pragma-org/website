@@ -9,9 +9,7 @@ import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://pragma.builders',
-  integrations: [
-    markdownIntegration(),
-  ],
+  integrations: [markdownIntegration()],
   markdown: {
     remarkPlugins: [remarkReadingTime],
     shikiConfig: {
@@ -23,7 +21,7 @@ export default defineConfig({
           scopeName: 'source.aiken',
           ...aikenLang,
         },
-      ]
+      ],
     },
   },
 });

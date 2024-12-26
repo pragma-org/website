@@ -13,11 +13,13 @@ const { title, tag, image, ...props } = Astro.props;
 ---
 
 <header {...props}>
-  {image && (
-    <div class="header-image-container">
-      <img src={image} alt={title} class="header-image" />
-    </div>
-  )}
+  {
+    image && (
+      <div class="header-image-container">
+        <img src={image} alt={title} class="header-image" />
+      </div>
+    )
+  }
   <span class="tag">{tag}</span>
   <h1>{title}</h1>
   <slot />
