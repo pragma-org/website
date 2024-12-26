@@ -1,5 +1,9 @@
 ---
 import { getEntry } from 'astro:content';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
 
 import Layout from '../layouts/base.astro';
 
@@ -19,7 +23,18 @@ const maintainers = await Promise.all(
   }),
 );
 
+const demos = project.data.roadmap?.phases?.flatMap(phase => {
+  return phase.milestones?.filter(milestone => milestone.media !== undefined)
+}) || [];
+
 const { Content } = await project.render();
+
+const render = (md) =>
+  unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .processSync(md);
 ---
 
 <Layout title={project.data.name} description={project.data.shortDescription}>
@@ -104,6 +119,35 @@ const { Content } = await project.render();
       ) : null
     }
 
+    {
+    demos.length > 0 ? (
+      <Section
+        tag="Demos"
+        title="Glimpses of developement"
+        id="demos">
+        {
+          demos.map((demo) => {
+          return (<article id=`${demo.date}`>
+            <h3>{demo.title}</h3>
+            <div class="content">
+              <figure>
+                <span class="date">{demo.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <iframe
+                    src={demo.media}
+                    loading="lazy"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                    allowfullscreen="true"
+                    />
+              </figure>
+              <div class="description">{render(demo.description)}</div>
+            </div>
+          </article>)
+          })
+        }
+      </Section>
+      ) : null
+    }
+
     <Section
       tag="Getting started"
       title="Explore and contribute."
@@ -127,6 +171,56 @@ const { Content } = await project.render();
 
   main > :global(section):not(:first-child) {
     margin-top: var(--gap-lg);
+  }
+
+  #demos > article {
+    width: 100%;
+    padding: 0 var(--gap-lg);
+
+    & .content {
+      display: flex;
+      flex-direction: row;
+      & .description {
+        padding: var(--gap-sm) var(--gap-md);
+        & :global(p) + :global(p) {
+          margin-top: var(--gap-sm);
+        }
+      }
+    }
+
+    & figure {
+      display: flex;
+      flex-direction: column;
+      min-width: 320px;
+      max-width: 480px;
+    }
+
+    & span.date {
+      font-size: 0.8em;
+      display: inline-block;
+      font-family: var(--font-mono);
+      color: var(--color-secondary);
+    }
+
+    & + article {
+      margin-top: var(--gap-lg);
+    }
+  }
+
+  @media(max-width: 800px) {
+    #demos > article {
+      & .content {
+        flex-direction: column;
+        & .description {
+          padding: var(--gap-sm) 0;
+        }
+      }
+
+      & figure {
+        min-width: 100%;
+        max-width: 100%;
+      }
+    }
   }
 
   #project {

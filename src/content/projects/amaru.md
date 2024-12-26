@@ -180,6 +180,7 @@ roadmap:
       start: Q3 2024
       milestones:
         - when: October
+          date: 2024-10-20
           title: First Steps
           pattern:
             [
@@ -212,20 +213,14 @@ roadmap:
           media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/389ac82ef40edc967760457f1f6868b5/watch
 
         - when: December
-          title: Hybrid Testnet
-          description: >
-            While a relay node isn't capable of producing blocks on its own, it
+          date: 2024-12-20
+          title: On-disk Ledger State & Observability
+          description: |
+            Showcasing Amaru's on-disk ledger storage, solving a long-standing challenge of the Cardano node. The ledger state in this demo is comprised of the entire UTxO, stake pools parameters and registrations, rewards accounts and delegations. It is tracked throughout block application and persisted on-disk efficiently with regular snapshots at each epoch boundary.
 
-            should perfectly blend in a hybrid testnet comprises of classic
-
-            Haskell nodes acting as block producers and Amaru relay nodes.
-
-
-            If you are a **stake pool operator** on Cardano, we welcome you to
-            **reach out**
-
-            and help us launch this into orbit.
-          link: 'https://github.com/pragma-org/amaru/milestone/4'
+            While it doesn't _yet_ calculate rewards at the epoch boundary, the on-disk state now contains all elements necessary to the calculation of rewards. It thus becomes the immediate next step.
+          media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/c64b660a4cc01134c8190e18d8625b91/watch
+          link: 'https://github.com/pragma-org/amaru/milestone/3'
           pattern:
             - '0'
             - '1'
