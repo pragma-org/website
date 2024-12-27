@@ -23,13 +23,6 @@ const maintainers = await Promise.all(
   }),
 );
 
-const demos =
-  project.data.roadmap?.phases?.flatMap((phase) => {
-    return phase.milestones?.filter(
-      (milestone) => milestone.media !== undefined,
-    );
-  }) || [];
-
 const { Content } = await project.render();
 
 const render = (md) =>
@@ -123,9 +116,9 @@ const render = (md) =>
     }
 
     {
-      demos.length > 0 ? (
+      project.data.demos ? (
         <Section tag="Demos" title="Glimpses of development" id="demos">
-          {demos.map((demo) => {
+          {project.data.demos.map((demo) => {
             return (
               <article id={demo.title}>
                 <h3>{demo.title}</h3>

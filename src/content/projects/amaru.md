@@ -23,14 +23,11 @@ links:
 roadmap:
   type: journey
   phases:
-    - name: First implementable build and private testnet
+    - name: First autonomous node and private testnet
       color: '#99c2ff'
       description: >
         A node capable of **synchronizing** the chain from a (remote) trusted
         peer,
-
-        and serve the data to client applications through an API query layer.
-
 
         Such a node is most useful for decentralised applications building on
 
@@ -39,31 +36,37 @@ roadmap:
         to propagate blocks on the network.
 
 
-        A full relay node as an entrypoint to the network is still required at
+        A relay node as an entrypoint to the network is still required at
 
         this point.
       start: Q1 2025
       packages:
         - title: 'Testnet : Private testnet setup'
           description: >
-            Creating a sandbox environment for testing out the behaviours of
-            Amaru
+            Create a sandbox environment for testing out the behaviour of
+            Amaru.
           link: 'https://github.com/pragma-org/amaru/milestone/7'
         - title: 'Mempool: Simple mempool implementation'
           description: >
             Build a basic mempool that adds, remove, gather, drain transactions
-            and exposes a new ledger state
+            and exposes a new ledger state.
           link: 'https://github.com/pragma-org/amaru/milestone/7'
         - title: 'UTxO RPC: Specification sanity check'
           description: >
             Review and update the [UTxO spec](https://github.com/utxorpc/spec)
-            based on the targetted features
+            based on the targetted features.
           link: 'https://github.com/pragma-org/amaru/milestone/7'
         - title: 'Networking: Peer discovery'
           description: >
-            Provide a mechanism to establish which peers are participating in
-            the network without relying on a static topology.
+            Provide a mechanism to select and manage network peers without
+            relying on a static topology.
           link: 'https://github.com/pragma-org/amaru/milestone/7'
+        - title: 'Ledger: Full validation (everything but governance)'
+          description: >
+            Ledger rules implementation, full validation of everything but
+            governance (blocs are taken as 'valid' from a trusted peer) -private
+            testnet; preview
+          link: 'https://github.com/pragma-org/amaru/milestone/6'
     - name: Full validation and UTxO RPC implementation
       color: '#f7b262'
       description: |
@@ -73,21 +76,14 @@ roadmap:
         performing adequate chain selection.
 
         Such node doesn't yet take part in the consensus and cannot produce
-        blocks. It can however fully replace any relay and is, from the
-        perspective of any external observer, a Cardano relay node.
+        blocks. It can however fully replace any relay. From the
+        perspective of any external observer, it is a Cardano relay node.
       start: Q2 2025
       packages:
-        - title: 'Ledger: Full validation (everything but governance)'
-          description: >
-            Ledger rules implementation, full validation of everything but
-            governance (blocs are taken as 'valid' from a trusted peer) -private
-            testnet; preview
-          link: 'https://github.com/pragma-org/amaru/milestone/6'
         - title: 'Consensus: conformance testing'
           description: >
             Build a conformance testing tool and related suite of tests based on
             consensus specification and existing implementation
-
 
             Be able to run conformance testing suite against any implementation
             of Ouroboros, including existing ouroboros-consensus and future
