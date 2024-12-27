@@ -23,7 +23,7 @@ const render = (md) =>
     <>
       {
         roadmap.phases.flatMap((phase, ix) => {
-          const milestones = phase.milestones.flatMap((milestone, jx) => {
+          const milestones = (phase.milestones ?? []).flatMap((milestone, jx) => {
             return (
               <>
                 <input
@@ -82,7 +82,7 @@ const render = (md) =>
               <>{render(phase.description)}</>
               <hr />
               <>
-                {phase.milestones.map((milestone, jx) => (
+                {(phase.milestones ?? []).map((milestone, jx) => (
                   <div data-milestone={jx + 1} class="milestone">
                     <div class="content">
                       <Pattern
