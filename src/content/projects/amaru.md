@@ -39,7 +39,6 @@ demos:
       While it doesn't _yet_ calculate rewards at the epoch boundary, the on-disk state now contains all elements necessary to the calculation of rewards. It thus becomes the immediate next step.
     media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/c64b660a4cc01134c8190e18d8625b91/watch
 
-
 roadmap:
   type: journey
   phases:

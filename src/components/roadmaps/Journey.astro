@@ -23,28 +23,30 @@ const render = (md) =>
     <>
       {
         roadmap.phases.flatMap((phase, ix) => {
-          const milestones = (phase.milestones ?? []).flatMap((milestone, jx) => {
-            return (
-              <>
-                <input
-                  type="radio"
-                  name="roadmap"
-                  id={`milestone-${ix + 1}-${jx + 1}`}
-                  class={`milestone phase-${ix + 1} milestone-${jx + 1}`}
-                  value={milestone.title}
-                />
-                <label
-                  style={`--color: ${phase.color}`}
-                  for={`milestone-${ix + 1}-${jx + 1}`}
-                  class="milestone">
-                  <>
-                    <span />
-                    <span>{milestone.when}</span>
-                  </>
-                </label>
-              </>
-            );
-          });
+          const milestones = (phase.milestones ?? []).flatMap(
+            (milestone, jx) => {
+              return (
+                <>
+                  <input
+                    type="radio"
+                    name="roadmap"
+                    id={`milestone-${ix + 1}-${jx + 1}`}
+                    class={`milestone phase-${ix + 1} milestone-${jx + 1}`}
+                    value={milestone.title}
+                  />
+                  <label
+                    style={`--color: ${phase.color}`}
+                    for={`milestone-${ix + 1}-${jx + 1}`}
+                    class="milestone">
+                    <>
+                      <span />
+                      <span>{milestone.when}</span>
+                    </>
+                  </label>
+                </>
+              );
+            },
+          );
           const checked = phase.highlight === true;
           return (
             <>
@@ -126,7 +128,7 @@ const render = (md) =>
                         <aside class={`pkg-${ix + 1}-${jx + 1}`}>
                           <h4 data-pkg={`${ix + 1}.${jx + 1}`}>{pkg.title}</h4>
                           <div class="description">
-                          <>{render(pkg.description)}</>
+                            <>{render(pkg.description)}</>
                           </div>
                           {pkg.link ? <hr /> : null}
                           {pkg.link ? (
