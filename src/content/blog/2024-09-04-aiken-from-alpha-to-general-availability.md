@@ -290,9 +290,13 @@ Last June, we celebrated an important milestone of one million transactions inte
 
 In fact, over July, August and September 2024, Aiken powered 52%, 55% and 63% of the smart contract traffic, respectively, a testament to Aiken's adoption across key players in the ecosystem.
 
-<video controls>
-  <source src="/img/blog/2024-09-04-aiken-from-alpha-to-general-availability/bar-race.mp4" type="video/mp4"/>
-</video>
+<iframe
+  src="https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/fea39a5f2a2ad8ef64eb822f54258d60/iframe?poster=https%3A%2F%2Fcustomer-3cdz2wvvptqpqk7u.cloudflarestream.com%2Ffea39a5f2a2ad8ef64eb822f54258d60%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+  loading="lazy"
+  style="border: none; height: 22.5rem;"
+  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+  allowfullscreen="true"
+></iframe>
 
 ##### Who's using Aiken?
 
