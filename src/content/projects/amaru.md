@@ -121,6 +121,7 @@ roadmap:
     - name: Client node
       start: Q3 2024
       color: '#99c2ff'
+      highlight: true
       description: >
         A node capable of synchronizing the chain from a remote trusted peer
         while maintaining its own state and performing some ledger validations.
