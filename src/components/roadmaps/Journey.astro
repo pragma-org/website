@@ -95,23 +95,6 @@ const render = (md) =>
                           {milestone.title}
                         </h4>
                         <>{render(milestone.description)}</>
-                        {milestone.media ? (
-                          <>
-                            <h5
-                              style={`font-size: 0.85em; position: relative; font-variant: small-caps; bottom: -0.5em; color: ${phase.color}`}>
-                              demo
-                            </h5>
-                            <div style="position: relative; padding-top: 30%;">
-                              <iframe
-                                src={milestone.media}
-                                loading="lazy"
-                                style={`border: 1px solid ${phase.color}; position: absolute; top: 0; left: 0; height: 100%; width: 100%;`}
-                                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                                allowfullscreen="true"
-                              />
-                            </div>
-                          </>
-                        ) : null}
                         {milestone.link ? <hr /> : null}
                         {milestone.link ? (
                           <ExternalLink href={milestone.link} class="more">
@@ -142,7 +125,9 @@ const render = (md) =>
                         </label>
                         <aside class={`pkg-${ix + 1}-${jx + 1}`}>
                           <h4 data-pkg={`${ix + 1}.${jx + 1}`}>{pkg.title}</h4>
+                          <div class="description">
                           <>{render(pkg.description)}</>
+                          </div>
                           {pkg.link ? <hr /> : null}
                           {pkg.link ? (
                             <ExternalLink href={pkg.link} class="more">
@@ -203,7 +188,7 @@ const render = (md) =>
       margin-left: 1rem;
     }
 
-    &:not([data-number='4'])::before {
+    &::before {
       content: '';
       height: 100%;
       width: 1px;
@@ -211,6 +196,10 @@ const render = (md) =>
       position: absolute;
       left: calc(50%);
       top: 0.1em;
+    }
+
+    &:nth-last-child(2)::before {
+      display: none;
     }
 
     &::after {
@@ -243,6 +232,8 @@ const render = (md) =>
   }
 
   #journey {
+    min-height: 900px;
+
     & .wrapper {
       position: relative;
       width: 100%;
@@ -252,7 +243,17 @@ const render = (md) =>
     & input.phase-1:checked ~ main article[data-phase='1'],
     & input.phase-2:checked ~ main article[data-phase='2'],
     & input.phase-3:checked ~ main article[data-phase='3'],
-    & input.phase-4:checked ~ main article[data-phase='4'] {
+    & input.phase-4:checked ~ main article[data-phase='4'],
+    & input.phase-5:checked ~ main article[data-phase='5'],
+    & input.phase-6:checked ~ main article[data-phase='6'],
+    & input.phase-7:checked ~ main article[data-phase='7'],
+    & input.phase-8:checked ~ main article[data-phase='8'],
+    & input.phase-9:checked ~ main article[data-phase='9'],
+    & input.phase-10:checked ~ main article[data-phase='10'],
+    & input.phase-11:checked ~ main article[data-phase='11'],
+    & input.phase-12:checked ~ main article[data-phase='12'],
+    & input.phase-13:checked ~ main article[data-phase='13'],
+    & input.phase-14:checked ~ main article[data-phase='14'] {
       display: flex;
       flex-direction: column;
     }
@@ -260,7 +261,17 @@ const render = (md) =>
     & input.milestone-1:checked ~ main div[data-milestone='1'],
     & input.milestone-2:checked ~ main div[data-milestone='2'],
     & input.milestone-3:checked ~ main div[data-milestone='3'],
-    & input.milestone-4:checked ~ main div[data-milestone='4'] {
+    & input.milestone-4:checked ~ main div[data-milestone='4'],
+    & input.milestone-5:checked ~ main div[data-milestone='5'],
+    & input.milestone-6:checked ~ main div[data-milestone='6'],
+    & input.milestone-7:checked ~ main div[data-milestone='7'],
+    & input.milestone-8:checked ~ main div[data-milestone='8'],
+    & input.milestone-9:checked ~ main div[data-milestone='9'],
+    & input.milestone-10:checked ~ main div[data-milestone='10'],
+    & input.milestone-11:checked ~ main div[data-milestone='11'],
+    & input.milestone-12:checked ~ main div[data-milestone='12'],
+    & input.milestone-13:checked ~ main div[data-milestone='13'],
+    & input.milestone-14:checked ~ main div[data-milestone='14'] {
       display: flex;
       flex-direction: column;
     }
@@ -268,7 +279,17 @@ const render = (md) =>
     & input.milestone-1:checked ~ main div.wrapper,
     & input.milestone-2:checked ~ main div.wrapper,
     & input.milestone-3:checked ~ main div.wrapper,
-    & input.milestone-4:checked ~ main div.wrapper {
+    & input.milestone-4:checked ~ main div.wrapper,
+    & input.milestone-5:checked ~ main div.wrapper,
+    & input.milestone-6:checked ~ main div.wrapper,
+    & input.milestone-7:checked ~ main div.wrapper,
+    & input.milestone-8:checked ~ main div.wrapper,
+    & input.milestone-9:checked ~ main div.wrapper,
+    & input.milestone-10:checked ~ main div.wrapper,
+    & input.milestone-11:checked ~ main div.wrapper,
+    & input.milestone-12:checked ~ main div.wrapper,
+    & input.milestone-13:checked ~ main div.wrapper,
+    & input.milestone-14:checked ~ main div.wrapper {
       display: none;
     }
 
@@ -357,10 +378,17 @@ const render = (md) =>
         & > aside {
           position: absolute;
           top: 0;
-          height: 100%;
           width: auto;
           display: none;
           padding: 0 var(--gap-md);
+          height: fit-content;
+          max-height: 20rem;
+
+          & > .description {
+            max-height: 250px;
+            overflow-y: auto;
+            scrollbar-color: var(--color) transparent;
+          }
 
           & h4::before {
             content: 'Work package ' attr(data-pkg);
@@ -396,10 +424,12 @@ const render = (md) =>
         display: grid;
         justify-content: center;
         align-items: center;
+        padding-top: var(--gap-sm);
         gap: var(--gap-sm);
         grid-template-columns: auto;
         grid-template-rows: auto;
         grid-template-areas:
+          '. .'
           '. .'
           '. .'
           'm m';
