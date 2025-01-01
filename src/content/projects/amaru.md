@@ -11,6 +11,8 @@ summary: |
 maintainers:
   - KtorZ
   - Scarmuega
+  - Abailly
+  - Wolf31o2
 links:
   - to: Source code
     href: 'https://github.com/pragma-org/amaru/'
@@ -20,10 +22,27 @@ links:
     href: null
   - to: Contributing
     href: 'https://github.com/pragma-org/amaru/blob/main/CONTRIBUTING.md'
+demos:
+  - title: First Steps
+    date: 2024-10-20
+    description: |
+      A simple pipeline showcasing an Amaru node fetching blocks from the
+      network, validating their header (VRF & KES) and forwarding them to
+      an in-memory ledger performing UTxO management and phase-2
+      validations.
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/389ac82ef40edc967760457f1f6868b5/watch
+  - title: On-disk Ledger State & Observability
+    date: 2024-12-20
+    description: |
+      Showcasing Amaru's on-disk ledger storage, solving a long-standing challenge of the Cardano node. The ledger state in this demo is comprised of the entire UTxO, stake pools parameters and registrations, rewards accounts and delegations. It is tracked throughout block application and persisted on-disk efficiently with regular snapshots at each epoch boundary.
+
+      While it doesn't _yet_ calculate rewards at the epoch boundary, the on-disk state now contains all elements necessary to the calculation of rewards. It thus becomes the immediate next step.
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/c64b660a4cc01134c8190e18d8625b91/watch
+
 roadmap:
   type: journey
   phases:
-    - name: Client node
+    - name: Data node
       color: '#99c2ff'
       description: >
         A node capable of **synchronizing** the chain from a (remote) trusted
@@ -33,85 +52,18 @@ roadmap:
 
 
         Such a node is most useful for decentralised applications building on
-
         the blockchain. It doesn't however take part in the consensus nor help
-
         to propagate blocks on the network.
 
 
         A full relay node as an entrypoint to the network is still required at
-
-        this point.
-      start: Q1 2024
-      milestones:
-        - when: April
-          title: Workshop at Buidler Fest
-          description: |
-            Organize workshop(s) during the [Buidler
-            Fest](https://buidl.2024.cardano.org/) second day to gather
-            builders feedback and insights about what they would expect from an
-            alternative node.
-          link: 'https://github.com/pragma-org/amaru/milestone/2'
-          pattern:
-            - '0'
-            - '1'
-            - '10'
-            - '11'
-            - '20'
-            - '21'
-            - '30'
-            - '31'
-        - when: May
-          title: Chain-Synchronization PoC
-          description: |
-            Perform basic chain-synchronization of the latest Cardano era
-            through [Dolos](https://github.com/txpipe/dolos) to demonstrate the
-            capabilities of the base Rust primitives.
-          link: 'https://github.com/pragma-org/amaru/milestone/1'
-          pattern:
-            - '0'
-            - '1'
-            - '10'
-            - '11'
-            - '12'
-            - '13'
-            - '18'
-            - '19'
-            - '20'
-            - '21'
-            - '30'
-            - '31'
-        - when: June/July
-          title: (Partial) validator
-          description: |
-            Apply a subset of the ledger rules to partially validate
-            transactions sent through the node in an attempt to provide better
-            user feedback, and in the longer run, prepare the ground for a
-            relay node.
-          link: 'https://github.com/pragma-org/amaru/milestone/3'
-          pattern:
-            - '0'
-            - '1'
-            - '6'
-            - '7'
-            - '10'
-            - '11'
-            - '12'
-            - '13'
-            - '18'
-            - '19'
-            - '20'
-            - '21'
-            - '24'
-            - '25'
-            - '26'
-            - '27'
-            - '28'
-            - '29'
-            - '30'
-            - '31'
+        this point. This first phase is fully demonstrated by
+        [Dolos](https://github.com/txpipe/dolos#readme): a data-node written
+        in Rust and whose core modules will be re-used for the development of
+        Amaru.
+      start: Q2 2024
       packages:
-        - title: Chain synchronization (single relay)
+        - title: Chain synchronization (single peer)
           description: |
             We must ensure that data can be synchronized from another source
             and made accessible to client applications.
@@ -165,134 +117,104 @@ roadmap:
             Such example applications also serve a double-purpose of being
             useful documentation pieces.
           link: 'https://github.com/pragma-org/amaru/issues/11'
+
+    - name: Client node
+      start: Q3 2024
+      color: '#99c2ff'
+      description: >
+        A node capable of synchronizing the chain from a remote trusted peer
+        while maintaining its own state and performing some ledger validations.
+        So while it can only follow a single chain (provided by its single
+        peer), it is fully autonomous in validating that this chain is conform
+        to the protocol.
+
+
+        It can, in particular, validate a slot-leader schedule and check for
+        consensus rewards in full autonomy. Such a node is most useful as a
+        step towards a relay. It doesn't however take part in the consensus nor
+        help to propagate blocks on the network yet.
+      packages:
+        - title: 'Adhoc testnet/devnet'
+          description: >
+            Create a sandbox environment for testing out Amaru's behavior in a controlled setting.
+          link: 'https://github.com/pragma-org/amaru/milestone/7'
+        - title: 'Simple mempool implementation'
+          description: >
+            Build a basic mempool that adds, remove, gather, drain transactions
+            and exposes a transient ledger view to consumers (e.g. consensus / tx-submission protocol).
+          link: 'https://github.com/pragma-org/amaru/milestone/7'
+        - title: 'UTxO RPC: Specification sanity check'
+          description: >
+            Review and update the [UTxO RPC spec](https://github.com/utxorpc/spec)
+            based on the targetted features.
+          link: 'https://github.com/pragma-org/amaru/milestone/7'
+        - title: 'Networking: Peer management'
+          description: >
+            Provide a mechanism to discover, select and manage network peers without
+            relying on a static topology or a trusted intermediary.
+          link: 'https://github.com/pragma-org/amaru/milestone/7'
+        - title: 'Ledger: on-disk state tracking'
+          description: >
+            Re-construction of the ledger state from an initial snapshot, with
+            tracking block-by-block through an hybrid on-disk / in-memory
+            storage solution.
+          link: 'https://github.com/pragma-org/amaru/milestone/3'
+        - title: 'Ledger: (almost) full validation'
+          description: >
+            Ledger rules implementation, full validation (phase-1 & phase-2) of
+            transactions except governance rule.
+          link: 'https://github.com/pragma-org/amaru/milestone/6'
     - name: Relay node
       color: '#f7b262'
-      highlight: true
       description: |
-        A node capable of validating (at least partially) blocks seen on the
+        A node capable of validating blocks seen on the
         network and propagate them by taking part in the p2p gossiping between
         nodes. It can also seemingly follow the chain from multiple peers by
         performing adequate chain selection.
 
         Such node doesn't yet take part in the consensus and cannot produce
-        blocks. It can however fully replace any relay and is, from the
-        perspective of any external observer, a Cardano relay node.
-      start: Q3 2024
-      milestones:
-        - when: October
-          date: 2024-10-20
-          title: First Steps
-          pattern:
-            [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              15,
-              16,
-              23,
-              24,
-              25,
-              26,
-              27,
-              28,
-              29,
-              30,
-              31,
-            ]
-          description: |
-            A simple pipeline showcasing an Amaru node fetching blocks from the
-            network, validating their header (VRF & KES) and forwarding them to
-            an in-memory ledger performing UTxO management and phase-2
-            validations.
-          media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/389ac82ef40edc967760457f1f6868b5/watch
-
-        - when: December
-          date: 2024-12-20
-          title: On-disk Ledger State & Observability
-          description: |
-            Showcasing Amaru's on-disk ledger storage, solving a long-standing challenge of the Cardano node. The ledger state in this demo is comprised of the entire UTxO, stake pools parameters and registrations, rewards accounts and delegations. It is tracked throughout block application and persisted on-disk efficiently with regular snapshots at each epoch boundary.
-
-            While it doesn't _yet_ calculate rewards at the epoch boundary, the on-disk state now contains all elements necessary to the calculation of rewards. It thus becomes the immediate next step.
-          media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/c64b660a4cc01134c8190e18d8625b91/watch
-          link: 'https://github.com/pragma-org/amaru/milestone/3'
-          pattern:
-            - '0'
-            - '1'
-            - '2'
-            - '5'
-            - '6'
-            - '7'
-            - '8'
-            - '15'
-            - '16'
-            - '23'
-            - '27'
-            - '28'
+        blocks. It can however fully replace any relay. From the
+        perspective of any external observer, it is a Cardano relay node.
+      start: Q2 2025
       packages:
-        - title: Dynamic peer management
-          description: |
-            A peer-to-peer and Byzantine fault tolerant decentralised network
-            requires some specific peer management. Cardano currently uses a
-            hot/warm/cold peer management system where each node maintain
-            active connection with peers based on their stake and how they
-            perform in their networking activities.
-        - title: Consensus chain selection
-          description: |
-            In a decentralised network where anyone can propose not only
-            addition, but past history of the chain, an algorithm for choosing
-            which chain to follow is crucial.
+        - title: 'Ledger: Governance rules implementation'
+          description: >
+            Finalize ledger rules completeness by including remaining parts
+            related to governance (votes counting, governance action
+            ratification, etc..)
+          link: 'https://github.com/pragma-org/amaru/milestone/8'
+        - title: 'Consensus: conformance testing'
+          description: >
+            Build a conformance testing tool and related suite of tests based on
+            consensus specification and existing implementation
 
-            While relatively simple in the PoW world, it has proven a
-            significant challenge in PoS systems like Cardano.
-        - title: (partial) Transaction stage-1 validations
-          description: |
-            In order to validate blocks, one must first validate transactions
-            (since blocks are mostly made of transactions). There is a variety
-            of ledger rules covering all aspects of transactions from fees to
-            authorized governance actions.
+            Be able to run conformance testing suite against any implementation
+            of Ouroboros, including existing ouroboros-consensus and future
+            implementation for Amaru
+          link: 'https://github.com/pragma-org/amaru/milestone/6'
+        - title: UTxO RPC implementation
+          description: >
+            Demonstrates UTxO RPC features served through Dolos+Amaru to client
+            applications by building (or porting) a standalone component successfully
+            leveraging this new stack.
+          link: 'https://github.com/pragma-org/amaru/milestone/6'
+        - title: 'SPOs involvment'
+          description: >
+            Seek SPOs willing to pioneer Amaru for their running operations
+            (observability and monitoring). Refine with them tooling,
+            interfaces and methods of deployments/delivery.
+          link: 'https://github.com/pragma-org/amaru/milestone/6'
+        - title: 'Networking: Inbound & outbound discovery'
+          description: >
+            - Outbound routing: A component that manages the outbound traffic to
+            peers using different heuristics with the goal of optimizing overall
+            network efficiency.
 
-            At first, since we will initially operate on short-lived testnets,
-            we are mostly interested in validating in actions other than
-            governance and protocol changes.
-        - title: Transaction stage-2 validations
-          description: |
-            Transaction validation in Cardano is done in two stages. The first
-            stage ensures that transactions are structurally valid and can be
-            fully executed (e.g. they spend valid inputs and provide the right
-            amount of fees).
-
-            If the 1st stage passes, we move on to the second validation stage
-            which evaluates any scripts present in the transaction. This
-            happens by running Plutus Core programs in the Plutus Virtual
-            Machine.
-        - title: Reward calculations
-          description: |
-            The ledger in the node builds and maintains a state of the
-            blockchain which is commonly referred to as *the ledger state*. In
-            an eUTxO blockchain like Cardano, this includes the current UTxO
-            set and protocol parameters.
-
-            It also includes the state of each reward account that are
-            passively gathering rewards on every epoch. The tracking of rewards
-            is a challenging task, hence why it deserves its own work package.
-        - title: TestNet(s)
-          description: |
-            Let's test things, together. The idea behind the development of
-            Amaru is to onboard as many developers and enthusiasts on the
-            journey. This is only possible if we allow people to run their own
-            node and interact with Amaru directly.
-
-            While still in development, many parts may be considered unstable
-            and we wouldn't want to disrupt the activities of the Cardano
-            mainnet, or even the PreProd testnet. We will thus favor having
-            isolated short-lived testnets at first.
-    - name: Full node
+            - Inbound routing: A component that is in charge of monitoring inbound
+            connections with the goal of optimizing efficiency and to mitigate
+            abuses / attacks.
+          link: 'https://github.com/pragma-org/amaru/milestone/6'
+    - name: 'Block producing node'
       color: '#d8829d'
       description: |
         A node that can produce blocks and take part to the consensus. It can
@@ -302,78 +224,70 @@ roadmap:
         A full node is not however capable of validating the historical chain.
         Instead, it always bootstrap from a snapshot constructed from an
         archive node.
-      start: Q2 2025
+      start: Q3 2025
       milestones: []
       packages:
-        - title: (full) Transaction stage-1 validations
-          description: |
-            Any ledger rules and validations that we left aside for the Relay
-            phase should be implemented, if any.
+        - title: 'Consensus: Chain validation and block production'
+          description: >
+            Build a version of consensus that can follow the chain and validate
+            blocks (include headers and transactions validation).
 
-            This should mostly include protocol updates and hard-fork-related
-            elements that were deemed unnecessary for relays and preliminary
-            testnets.
-        - title: Hard-fork combinator
-          description: |
-            Cardano's upgrade system is built around the well-known *Hard-Fork
-            Combinator*. Behind this fancy term lies a piece of software which
-            ensures that multiple protocols (a.k.a eras) can be combined into
-            one sequence.
 
-            This is done in such way that prevents elements from previous eras
-            do not conflict with new eras. It also allows the switch to happen
-            smoothly at runtime and works across the uncertainty that comes
-            with a Byzantine fault-tolerant system.
-        - title: Block forging
+            Demonstrate its conformance against an existing node and network.
+
+
+            Forge blocks with transactions from the mempool according to the
+            predefined VRF-based schedule.
+
+
+            _**Dependencies**: ledger state access and transactions validations,
+            networking n2n protocols, mempool_
+          link: 'https://github.com/pragma-org/amaru/milestone/8'
+        - title: 'UTxO RPC: Use case implementation'
           description: |
-            The main purpose of a block-producing node is to produce blocks!
-            This is also referred to as *block forging* and includes various
-            tasks such as mempool management and validation, as well as
-            authentication through signing and VRF proving.
-        - title: Full block validation & propagation
+            Integrate _Sundae Sync_ with the UTxO RPC stack.
+          link: 'https://github.com/pragma-org/amaru/milestone/8'
+        - title: 'Public testnet validation'
           description: |
-            At this point in the development, we should be able to fully
-            validate block headers and ensure their validity against the leader
-            schedule computed at the beginning of each epoch.
-    - name: Archive node
+            Validate Amaru's full implementation through participating and monitoring activity on the existing global testnets (Preview & PreProd).
+          link: 'https://github.com/pragma-org/amaru/milestone/8'
+        - title: 'Mempool: Complex mempool implementation'
+          description: >
+            "Complex" mempool implementation: Build a more refined version of
+            the mempool that handles features differently and optimises the
+            overall resources consumption
+
+
+            Mempool tooling and API: Create a tool able to manage the mempool
+            and the modularity
+
+
+            Node management Remote Procedure Call (RPC): Build a software that
+            handles the "operator perspective" on operating the Amaru node
+          link: 'https://github.com/pragma-org/amaru/milestone/8'
+
+    - name: Soft-forks & performance improvements
       color: '#b2bec3'
       description: >
-        A node that can validate any historical part of the chain, including
-
-        the Byron era of Cardano. Its purpose is to produce ledger and
-
-        blockchain snapshot usable by full nodes.
-
-
-        At this point, it is unclear whether we want to build this, for the
-        current
-
-        Haskell nodes already fullfil that role and there's at this point no
-        clear
-
-        benefits in building an alternative.
+        At this point our node should be able to do everything the Haskell node
+        does but with less resources usage and with better performance on most
+        aspects of execution.
+      start: Q4 2025
       milestones: []
       packages:
-        - title: Historical validations
+        - title: 'Soft forks'
           description: |
-            A working block-producing node only needs to be able to validate
-            blocks of the current network era (up to a few blocks in the past).
-            Yet, Cardano is live since September 2017 and has already gone
-            through many eras.
-
-            While not necessary (because software such as the Haskell node can
-            already do so), being able to re-validate the entire chain is an
-            interesting task that would bring a nice sense of completion to the
-            project.
-        - title: Snapshots aggregation & creation
+            Explore ways of shipping new features without breaking consensus, a.k.a soft forks.
+          link: 'https://github.com/pragma-org/amaru/milestone/9'
+        - title: 'Block production/validation performances'
           description: |
-            A direct application of historical validation is the ability to
-            produce configuration snapshot to bootstrap block producing and
-            relay node.
-
-            Snapshots can in the long-run be fully authenticated by
-            [Mithril](https://mithril.network/doc/) which provides a robust
-            stake-based threshold multi-signature mechanism.
+            Optimize block production & validations, and perform new analysis
+            of protocol parameters from the perspective of Amaru.
+          link: 'https://github.com/pragma-org/amaru/milestone/9'
+        - title: 'Better operator interface'
+          description: |
+            Further adapt spans, metrics & other observability signals to SPO's needs and demands.
+          link: 'https://github.com/pragma-org/amaru/milestone/9'
 ---
 
 ## Build a new fully interoperable block-producing Cardano node.
