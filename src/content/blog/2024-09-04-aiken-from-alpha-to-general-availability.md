@@ -36,9 +36,9 @@ CIP-0069 allowed us to considerably simplify the developer experience around mul
 
 ##### Conditional modules
 
-Validators often need to be parameterized. One way to do this is through the use of a datum as prescribed in the eUTxO model. Yet, datums present two major drawbacks. First, they are the responsibility of whoever creates and submits the transaction interacting with a validator. In many cases, it may not be safe to assume that they will provide the right parameters expected of the underlying protocol. Second, datums are only available to *spend* validators, which is only one of the 6 purposes available on Cardano.
+Validators often need to be parameterized. One way to do this is through the use of a datum as prescribed in the eUTxO model. Yet, datums present two major drawbacks. First, they are the responsibility of whoever creates and submits the transaction interacting with a validator. In many cases, it may not be safe to assume that they will provide the right parameters expected of the underlying protocol. Second, datums are only available to _spend_ validators, which is only one of the 6 purposes available on Cardano.
 
-Hence, in many situations, developers prefer embedding those parameters directly within their validator. Aiken has long provided a way to do this by allowing validators to receive parameters. Values for those parameters can then be applied to a compiled validator to instantiate it. This approach has been sufficient to enable developers to build complex parameterized applications. Yet, it was deemed inconvenient in some situations, in particular because parameter application happens *after* the compilation, in the Untyped Plutus Core realm where Aiken's nice syntax and type system are no longer available.
+Hence, in many situations, developers prefer embedding those parameters directly within their validator. Aiken has long provided a way to do this by allowing validators to receive parameters. Values for those parameters can then be applied to a compiled validator to instantiate it. This approach has been sufficient to enable developers to build complex parameterized applications. Yet, it was deemed inconvenient in some situations, in particular because parameter application happens _after_ the compilation, in the Untyped Plutus Core realm where Aiken's nice syntax and type system are no longer available.
 
 What we observed was in fact that developers would often know precisely which parameters to apply upfront, but they would simply vary based on the environment they deploy the contract to. Thus, what was needed in most situations wasn’t the ability to apply arbitrary parameters to a validator but only the ability to conditionally include a well-known value based on some configuration. Although the former is strictly more powerful, it requires developers to carefully handle parameter applications which would get rapidly cumbersome as the number of parameters increases.
 
@@ -54,8 +54,8 @@ Long chains of logical operators are quite common when building validators. We n
 
 In this example, one could derive the final boolean after thinking for a little but it also requires that you carefully consider how precedence affects the expression grouping. Although this specific example may be simple, in practice those True and False literals would actually be expressions of type Bool. Considering that these kinds of boolean checks are a huge cornerstone of validator logic, we've introduced keywords that increase the readability of these so-called logical operator chains to further increase smart contract auditability.
 
- | ![][image2] | ![][image3] |
- | :---:       | :----       |
+| ![][image2] | ![][image3] |
+| :---------: | :---------- |
 
 With these keywords, the grouping becomes immediately obvious at a glance resulting in more readable and maintainable logical operator chains. This shines especially when composing large numbers of logical operators (i.e. four or more) but is less impactful when there are one or two logical operators.
 
@@ -63,7 +63,7 @@ Note that, like their analogous boolean operators, logical operator chains are a
 
 ##### Backpassing
 
-The lack of proper statements in a functional programming style tends to promote a continuation-passing style as a mechanism to articulate source code. For complex expressions, code inherently ends up heavily nested with many levels of callbacks. Developers have commonly been referring to this problem as the “*callback hell*”  or the “*pyramid of Doom*” in the past. In Aiken, this problem was exacerbated with the development of the property-based testing framework and the writing of complex fuzzers – we will come back to these in another article. Inasmuch as code started to become uncomfortable to read, we felt the impulse to provide an elegant solution.
+The lack of proper statements in a functional programming style tends to promote a continuation-passing style as a mechanism to articulate source code. For complex expressions, code inherently ends up heavily nested with many levels of callbacks. Developers have commonly been referring to this problem as the “_callback hell_” or the “_pyramid of Doom_” in the past. In Aiken, this problem was exacerbated with the development of the property-based testing framework and the writing of complex fuzzers – we will come back to these in another article. Inasmuch as code started to become uncomfortable to read, we felt the impulse to provide an elegant solution.
 
 Using novel syntax, we’ve come up with a way to flatten the look of the code to increase readability without introducing too many new concepts. In Haskell, for example, this problem has been addressed with the introduction of the do-notation and monadic binds. While convenient, it is well known that the concept of Monad has driven developers away from functional programming lands and has proven to be a great barrier to entry for newcomers. Instead, Aiken embraces a syntax known as backpassing. The core idea is to provide a syntactic sugar that treats callbacks as assignments, thus removing unnecessary nesting. Let’s look at an example:
 
@@ -77,7 +77,7 @@ Notice the reversed arrow `<-` and how the callback argument is being assigned f
 
 ##### Soft-casting
 
-On-chain, every execution step matters. Unlike traditional applications, handling errors isn’t usually on the menu. Instead, smart contract developers tend to adopt a *“fail fast”* strategy where any unexpected behaviour immediately terminates the contract execution with a failure, indicating to the ledger an invalid execution. This is partly why there’s no concept of exception in Plutus, nor is it possible to manipulate errors as values. An error, when encountered, halts the execution.
+On-chain, every execution step matters. Unlike traditional applications, handling errors isn’t usually on the menu. Instead, smart contract developers tend to adopt a _“fail fast”_ strategy where any unexpected behaviour immediately terminates the contract execution with a failure, indicating to the ledger an invalid execution. This is partly why there’s no concept of exception in Plutus, nor is it possible to manipulate errors as values. An error, when encountered, halts the execution.
 
 Aiken provides various primitives that encourage this behaviour, and its most notable one is the expect keyword, which has primarily two functions:
 
@@ -119,7 +119,7 @@ Aiken’s type system is strong and static but also flexible when needed. In par
 
 ![][image10]
 
-Since a type alias is *in fine*, identical to the aliased type, the first versions of the Aiken compiler would not preserve any information about aliases beyond parsing. This resulted in error messages and warnings that could sometimes be confusing and diminished the added value of type aliases. This was particularly observable when aliasing complex types such as generic functions found around fuzzers and property testing.
+Since a type alias is _in fine_, identical to the aliased type, the first versions of the Aiken compiler would not preserve any information about aliases beyond parsing. This resulted in error messages and warnings that could sometimes be confusing and diminished the added value of type aliases. This was particularly observable when aliasing complex types such as generic functions found around fuzzers and property testing.
 
 Similarly, type aliases would not live long enough to appear anywhere in the final Plutus blueprint artefact. Even if the blueprint is, in principle, not meant to be human-readable, it is routinely used by developers to inspect the application binary interface of their validators and to construct values from their favourite off-chain framework. And losing information associated with type-alias was a bummer.
 
@@ -130,7 +130,7 @@ Since `v1.0.25-alpha`, this is no longer an issue. Information about type aliase
 It should be no secret by now that Aiken is particularly attentive to user feedback and errors returned to the users. Errors are the primary mechanism for communicating problems between programs and users. Similarly, Aiken’s integrated testing framework comes with a handful of automatic assertions, resulting in a helpful message on failure. In fact, any binary operator and a combination thereof is automatically turned into a pleasantly readable assertion by the testing framework:
 
 | ![][image11] | ![][image12] |
-| :----        | :----        |
+| :----------- | :----------- |
 | ![][image13] | ![][image14] |
 
 This behaviour is already good and provides useful outputs to developers. Yet, it wasn’t enough and came particularly short after the introduction of the property-based testing framework and the need to show large counterexamples.
@@ -173,7 +173,7 @@ Alongside changes to the language we just went through, we have also been workin
 
 ##### Property-based testing framework
 
-One of the critical innovations that Aiken brings in tooling is its embedded property-based testing framework with integrated shrinking and case labelling. It is quite a mouthful and significant enough piece to which we will eventually dedicate an entire blog post. Its design is heavily inspired by research work and, in particular, the work of *MacIver & Donaldson* on [MiniThesis](https://drmaciver.github.io/papers/reduction-via-generation-preview.pdf). So stay tuned as we come back for a deep dive into this framework, its design, its benefits and how to use it to bring smart contract testing to another level.
+One of the critical innovations that Aiken brings in tooling is its embedded property-based testing framework with integrated shrinking and case labelling. It is quite a mouthful and significant enough piece to which we will eventually dedicate an entire blog post. Its design is heavily inspired by research work and, in particular, the work of _MacIver & Donaldson_ on [MiniThesis](https://drmaciver.github.io/papers/reduction-via-generation-preview.pdf). So stay tuned as we come back for a deep dive into this framework, its design, its benefits and how to use it to bring smart contract testing to another level.
 
 ##### New command: export
 
@@ -274,7 +274,7 @@ There are still noteworthy next steps to tackle for the Aiken project. One is th
 
 In fact, you can think of a compiler as a pipeline of language transformation, going from a high-level language that is most expressive down to the bytecode (or, in the case of Cardano, UPLC) that the machine understands. Writing this machine language by hand is cumbersome and error-prone, but so is going from a very high-level language to machine language directly. So compilers typically do this in steps, and Aiken is no different in that regard.
 
-For each of those steps, there's room for mistakes. So careful testing is paramount. And the closest we get to the machine language, the easiest it becomes to formalize languages and go beyond testing. We can prove properties and theorems.  This is where tools like Agda, Coq or Lean come into play.
+For each of those steps, there's room for mistakes. So careful testing is paramount. And the closest we get to the machine language, the easiest it becomes to formalize languages and go beyond testing. We can prove properties and theorems. This is where tools like Agda, Coq or Lean come into play.
 
 There is already some work happening on reducing the Aiken IR and formally verifying the production of UPLC from Aiken IR using Lean – a proof assistant tool. Lean makes writing theorems easy and keeps track of the possible paths and values that a program can take. This allows us to rule out edge cases for scenarios that might easily escape one's scrutiny.
 

@@ -21,7 +21,10 @@ const publishDate = new Date(post.data.publishDate).toLocaleDateString(
 );
 ---
 
-<Layout title={post.data.title} description={post.data.excerpt}>
+<Layout
+  title={post.data.title}
+  description={post.data.excerpt}
+  image={post.data.image}>
   <main class="flex-col">
     <Hero
       tag={`By ${post.data.author} on ${publishDate} ∙ ${remarkPluginFrontmatter.minutesRead}`}
@@ -49,8 +52,19 @@ const publishDate = new Date(post.data.publishDate).toLocaleDateString(
     margin-bottom: var(--gap-md);
   }
 
-  .post-content {
+  .post-content :global(p) {
     white-space: pre-wrap;
+  }
+
+  .post-content :global(ul) + :global(*),
+  .post-content :global(p) + :global(*) {
+    margin-top: var(--gap-sm);
+  }
+
+  .post-content :global(video),
+  .post-content :global(img),
+  .post-content :global(table) {
+    width: 100%;
   }
 
   .back-to-blog {
