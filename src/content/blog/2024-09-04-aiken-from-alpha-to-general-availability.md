@@ -218,7 +218,7 @@ Yet, depending on a specific package seldom means using every single functionali
 
 Ecosystems like JavaScript have coped with that problem by splitting packages to the extreme, often having packages be a single function. Others, like Rust, let developers conditionally include dependencies via "feature flags", which gives some degree of dependency customization.
 
-With Aiken, we have made that process happen by default: dependencies in Aiken only truly exist at the module level, not packages. While developers still specify packages in their `aiken.toml` project configufration to pull in external dependencies, they mostly behave as namespaces and bundles of modules that become available to the project. From there, we construct a dependency graph between modules, pruning out any module that isn't used by one's project (either explicitly or transitively).
+With Aiken, we have made that process happen by default: dependencies in Aiken only truly exist at the module level, not packages. While developers still specify packages in their `aiken.toml` project configuration to pull in external dependencies, they mostly behave as namespaces and bundles of modules that become available to the project. From there, we construct a dependency graph between modules, pruning out any module that isn't used by one's project (either explicitly or transitively).
 
 The effect of this module-level pruning means that if a project depends on a package `P1`, which itself depends on `P2`, such that the base project uses no modules from `P1` that require `P2`, then the project doesn't need `P2` as a dependency at all. Indeed, no features from `P2` are needed by the base project.
 
