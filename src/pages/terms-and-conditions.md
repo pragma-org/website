@@ -11,7 +11,7 @@ These terms and conditions (“Terms”) tell you the rules for using our websit
 
 ### Who we are and how you can contact us
 
-PRAGMA is a not-for-profit Swiss Association for Open Source blockchain software projects. It aims to foster an alternative open-source ecosystem for Cardano and beyond. Our registered address is PRAGMA, Dammstrasse 16, 6300 Zug. To contact us, please get in touch via contact@pragma.builders.
+PRAGMA is a not-for-profit Swiss Association for Open Source blockchain software projects. It aims to foster an alternative open-source ecosystem for Cardano and beyond. Our registered address is PRAGMA, Dammstrasse 16, 6300 Zug. To contact us, please get in touch via hello@pragma.io.
 
 ### Acceptance of these Terms
 
