@@ -20,7 +20,7 @@ The objectives of PRAGMA are:
 2. fostering collaborative innovation and transparency in blockchain software projects;
 3. promoting community-driven development and shared expertise in the blockchain community;
 4. creation of software codes for the public good which are freely available, emphasising accessibility, inclusivity, and societal impact of the projects;
-5. building enduring and impactful projects in various areas related to blockchain software development, focussing on long-term public sustainability and a lasting positive effect on the open-source software community and beyond.
+5. building enduring and impactful projects in various areas related to blockchain software development, focusing on long-term public sustainability and a lasting positive effect on the open-source software community and beyond.
 
 ### Article 3 – Languages
 
