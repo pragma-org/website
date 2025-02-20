@@ -40,7 +40,7 @@ demos:
   - title: Stake distribution, multi-chain consensus & simulation testing.
     date: 2025-02-07
     description: |
-      Three interventions covering:
+      Three contributions covering:
 
         1. Progresses on the ledger state tracking and the stake distribution reconstruction now complete up to the first governance proposal refund;
         2. A focus on the consensus with a basic chain selection strategy between two chains coming from two distinct peers;
