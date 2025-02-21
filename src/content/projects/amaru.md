@@ -19,7 +19,7 @@ shortDescription: |
 summary: |
   An alternative Rust node client for the Cardano blockchain. Aimed as
   an entrypoint for client applications initially, it aspires to become
-  a full block-producing node running side-by-side the Haskell nodes to
+  a full block-producing node running side-by-side with the Haskell nodes to
   further increase the decentralisation of the platform while fostering
   its rich open source ecosystem.
 maintainers:
