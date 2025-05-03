@@ -37,30 +37,40 @@ links:
   - to: Contributing
     href: 'https://github.com/pragma-org/amaru/blob/main/CONTRIBUTING.md'
 demos:
+  - title: Deterministic simulations, ledger rules&  P2P Networking
+    date: 2025-03-28
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/2c6eb0d4b68fce9d220446325ea3035a/watch
+    description: |
+      First, an overview showcasing the latest progress on deterministically simulating the consensus, using pre-generated blockchain trees.
+
+      Then, a tour of the ledger rules and the separation of concerns between block validation and state management, and how Amaru tackles this nicely.
+
+      Finally, an update on the ongoing work on the Peer-to-Peer (P2P) networking stack being designed not only for Amaru, but for the wider Rust blockchain ecosystem.
+
   - title: Stake distribution, multi-chain consensus & simulation testing.
     date: 2025-02-07
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/5ad2552d092b3faa260ec4974ce354e0/watch
     description: |
       Three contributions covering:
 
         1. Progresses on the ledger state tracking and the stake distribution reconstruction now complete up to the first governance proposal refund;
         2. A focus on the consensus with a basic chain selection strategy between two chains coming from two distinct peers;
         3. An introduction to our simulation testing approach inspired from Jepsen's Maelstrőm.
-    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/5ad2552d092b3faa260ec4974ce354e0/watch
   - title: On-disk Ledger State & Observability
     date: 2024-12-20
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/c64b660a4cc01134c8190e18d8625b91/watch
     description: |
       Showcasing Amaru's on-disk ledger storage, solving a long-standing challenge of the Cardano node. The ledger state in this demo is comprised of the entire UTxO, stake pools parameters and registrations, rewards accounts and delegations. It is tracked throughout block application and persisted on-disk efficiently with regular snapshots at each epoch boundary.
 
       While it doesn't _yet_ calculate rewards at the epoch boundary, the on-disk state now contains all elements necessary to the calculation of rewards. It thus becomes the immediate next step.
-    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/c64b660a4cc01134c8190e18d8625b91/watch
   - title: First Steps
     date: 2024-10-20
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/389ac82ef40edc967760457f1f6868b5/watch
     description: |
       A simple pipeline showcasing an Amaru node fetching blocks from the
       network, validating their header (VRF & KES) and forwarding them to
       an in-memory ledger performing UTxO management and phase-2
       validations.
-    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/389ac82ef40edc967760457f1f6868b5/watch
 
 
 roadmap:
@@ -145,7 +155,7 @@ roadmap:
     - name: Client node
       start: Q3 2024
       color: '#99c2ff'
-      highlight: true
+      highlight: false
       description: >
         A node capable of synchronizing the chain from a remote trusted peer
         while maintaining its own state and performing some ledger validations.
@@ -191,6 +201,7 @@ roadmap:
           link: 'https://github.com/pragma-org/amaru/milestone/6'
     - name: Relay node
       color: '#f7b262'
+      highlight: true
       description: |
         A node capable of validating blocks seen on the
         network and propagate them by taking part in the p2p gossiping between
