@@ -27,6 +27,7 @@ maintainers:
   - KtorZ
   - rvcas
   - MicroProofs
+  - Riley
 links:
   - to: Source code
     href: 'https://github.com/aiken-lang/aiken'
@@ -39,56 +40,40 @@ links:
 roadmap:
   type: past-present-future
   recently:
-    - title: Functions export
+    - title: Workspaces
       description: |
-        Export any Aiken function as a standalone Untyped Plutus Core (UPLC)
-        program to be be evaluated via the virtual machine.
-      href: 'https://github.com/aiken-lang/aiken/milestone/11'
-    - title: Separate pairs from 2-tuples
+        Straightforward support for workspaces via a `members` property in the root `aiken.toml` file. Glob patterns are supported.
+      href: 'https://github.com/aiken-lang/aiken/releases/tag/v1.1.16'
+    - title: Types as Namespaces
       description: |
-        Ensure that UPLC pairs have a different syntax and semantic than
-        2-tuples. The latter are currently treated as pairs, leading to
-        confusion down the line.
-      href: 'https://github.com/aiken-lang/aiken/milestone/12'
+        Introduces support for using types as namespaces to access constructors in patterns and value construction. This simplifies the import management; especially for types with many constructors where it can get quite cumbersome having to import each constructor independently.
+      href: https://github.com/aiken-lang/aiken/pull/1119
+    - title: Benchmarks
+      description: |
+        A new `bench` command and language keyword. The command is very similar to aiken check, and will collect and run benchmarks found across the codebase. A bench is a new type of test that takes in a Sampler. A Sampler is a scaled Fuzzer which receive a monotically increasing size as parameter. This allows fine-grained control over generated values.
+      href: https://aiken-lang.org/language-tour/bench
   currently:
-    - title: Marlowe acceptance
+    - title: New LSP quickfixes
       description: |
-        Marlowe is a great example of a non-trivial validator that comes with a
-        large test suite agnostic to the implementation language. It is,
-        therefore, an ideal test bench to ensure conformance of generated UPLC
-        against an agnostic test suite.
-      href: 'https://github.com/aiken-lang/aiken/milestone/13'
-    - title: Road to β
-      description: >
-        Aiken is technically still in Alpha. There are various changes to be
-
-        brought to the compiler which we've enumerated and gathered under a
-        'Road to Beta'.
-      href: 'https://github.com/aiken-lang/aiken/issues/754'
+        A variety of new automatic LSP quickfixes to cover warnings and errors such as "unexpected type holes", "unused private constant" or "unused private function".
+      href: https://github.com/aiken-lang/aiken/pull/1162
+    - title: Replaying Transaction with Custom Script
+      description: |
+        Allows users to re-run an existing transaction while overridding specific scripts (to introduce traces, for example) without altering the transaction CBOR. This comes as an extra troubleshooting mechanism when something goes wrong in production.
+      href: https://github.com/aiken-lang/aiken/pull/1158
   next:
-    - title: DevX of parameterized validators
-      description: >
-        The development flow around parameterized validators is currently not
-
-        ideal. We are, therefore, exploring two new areas to improve the
-        experience
-
-        by the project configuration file and conditional compilation targets
-        based
-
-        on environments.
-      href: 'https://github.com/aiken-lang/aiken/milestone/14'
+    - title: Zero-Knowledge support
+      description: |
+        Make Aiken capable of producing arithmetic circuits for zero-knowledge proving. Various ideas are being explored, mostly relying on the existing tooling around RISC-V and WebAssembly.
   discussions:
-    - title: Constraining generic type arguments
-      href: 'https://github.com/aiken-lang/aiken/discussions/99'
-    - title: Function specialization
-      href: 'https://github.com/aiken-lang/aiken/discussions/666'
-    - title: Wrapped redeemers in foreign validators
-      href: 'https://github.com/aiken-lang/aiken/discussions/665'
-    - title: Constant reference to script hashes
-      href: 'https://github.com/aiken-lang/aiken/discussions/676'
-    - title: Allow upper case constants
-      href: 'https://github.com/aiken-lang/aiken/discussions/288'
+    - title: Uses of Case and Constr in Aiken
+      href: 'https://github.com/aiken-lang/aiken/discussions/1056'
+    - title: Test assertion for cpu and memory budget
+      href: 'https://github.com/aiken-lang/aiken/discussions/1130'
+    - title: Add support for "deprecation" declarations
+      href: 'https://github.com/aiken-lang/aiken/discussions/1131'
+    - title: Custom encodings for structs/records
+      href: 'https://github.com/aiken-lang/aiken/discussions/1132'
 ---
 
 ## Foster growth in the Cardano ecosystem.
