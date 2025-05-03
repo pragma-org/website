@@ -26,7 +26,7 @@ maintainers:
   - KtorZ
   - Scarmuega
   - Abailly
-  - Wolf31o2
+  - Quantumplation
 links:
   - to: Source code
     href: 'https://github.com/pragma-org/amaru/'
