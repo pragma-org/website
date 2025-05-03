@@ -52,11 +52,12 @@ The objectives of PRAGMA are:
 ### Article 5 – General Structure
 
 1. The bodies of PRAGMA are:
-    1. The **General Assembly**, which is the supreme and strategic body;
-    1. The **Administrative Board**, which is the oversight and coordinating body;
-    1. If instated by the General Assembly, the administration, which would be the operational body;
-    1. The **Maintainer Committees**, each of which organises, manages, and implements a specific blockchain software project; and
-    1. If instated by the General Assembly, a project committee.
+
+   1. The **General Assembly**, which is the supreme and strategic body;
+   1. The **Administrative Board**, which is the oversight and coordinating body;
+   1. If instated by the General Assembly, the administration, which would be the operational body;
+   1. The **Maintainer Committees**, each of which organises, manages, and implements a specific blockchain software project; and
+   1. If instated by the General Assembly, a project committee.
 
 2. The Administrative Board shall propose to the General Assembly the creation of new maintainer committees for the implementation of additional blockchain software or other related projects. The maintainer committees’ organisation, responsibilities and authority shall be set out in regulations to be approved by the Administrative Board.
 
@@ -66,16 +67,16 @@ The objectives of PRAGMA are:
 
 1. Membership is limited to legal entities.
 2. Members have the following rights:
-    1. to call a General Assembly in accordance with these Statutes;
-    1. to propose items to be included in the agenda of a General Assembly;
-    1. to take part in the General Assembly with one vote each;
-    1. to nominate candidates for the positions on the Administrative Board;
-    1. to request access to the services provided by PRAGMA to members at any time; and
-    1. to request access to PRAGMA’s bookkeeping records and other internal documentation of the association in order to exercise their rights in the General Assembly.
+   1. to call a General Assembly in accordance with these Statutes;
+   1. to propose items to be included in the agenda of a General Assembly;
+   1. to take part in the General Assembly with one vote each;
+   1. to nominate candidates for the positions on the Administrative Board;
+   1. to request access to the services provided by PRAGMA to members at any time; and
+   1. to request access to PRAGMA’s bookkeeping records and other internal documentation of the association in order to exercise their rights in the General Assembly.
 3. Members have the following obligations:
-    1. to comply at all times with these Statutes and any regulations, guidelines, circulars etc. issued by any body of PRAGMA;
-    1. to pay their membership fees; and
-    1. to make any other membership contributions required by these Statutes.
+   1. to comply at all times with these Statutes and any regulations, guidelines, circulars etc. issued by any body of PRAGMA;
+   1. to pay their membership fees; and
+   1. to make any other membership contributions required by these Statutes.
 
 ### Article 7 – Members’ contributions
 
@@ -88,23 +89,22 @@ The objectives of PRAGMA are:
 ### Article 8 – Membership
 
 1. The initial members of PRAGMA are the following legal entities:
-    - [Blink Labs](https://blinklabs.io/);
-    - [Cardano Foundation](https://cardanofoundation.org);
-    - [dcSpark](https://dcspark.io/);
-    - [Sundae Labs](https://sundae.fi/); and
-    - [TxPipe](https://txpipe.io).
+   - [Blink Labs](https://blinklabs.io/);
+   - [Cardano Foundation](https://cardanofoundation.org);
+   - [dcSpark](https://dcspark.io/);
+   - [Sundae Labs](https://sundae.fi/); and
+   - [TxPipe](https://txpipe.io).
 2. Other legal entities that are active in blockchain and open source technologies and that can actively contribute to the achievement of PRAGMA’s statutory objectives are eligible to join the membership of PRAGMA.
 3. The General Assembly has sole authority to admit or expel members.
 4. Organisations that wish to become members of PRAGMA shall apply in writing to the Administrative Board. The application must include a written recommendation for membership in PRAGMA from at least two members. The Administrative Board will submit the application for membership to the General Assembly together with its recommendation for approval or rejection.
 5. New members acquire the rights and obligations of their membership upon the closing of the General Assembly at which they have been admitted, unless otherwise decided by the General Assembly.
 
-
 ### Article 9 – Members’ Expulsion
 
 1. The General Assembly may expel any member of PRAGMA at the recommendation of the Administrative Board in the event that:
-    1. the member has seriously violated these Statutes and/or its obligations towards PRAGMA;
-    1. the member by its behaviour has made impossible the cooperation with other members;
-    1. the member has seriously damaged the reputation of PRAGMA.
+   1. the member has seriously violated these Statutes and/or its obligations towards PRAGMA;
+   1. the member by its behaviour has made impossible the cooperation with other members;
+   1. the member has seriously damaged the reputation of PRAGMA.
 2. More than 50% of PRAGMA’s members must be present at a General Assembly at which a member is to be expelled, and the decision must be taken with no less than two thirds of the valid votes cast.
 
 ### Article 10 – Members’ Resignation
@@ -138,10 +138,10 @@ Any member may resign from PRAGMA in writing at any time with immediate effect. 
 1. All decisions of the General Assembly are taken unanimously by the members who are present, unless these Statutes expressly provide otherwise.
 2. If unanimity is not achieved in any vote, the Administrative Board will ask the members to vote on whether the matter should be opened for discussion again, with the aim of holding a second round of voting at the same General Assembly. The General Assembly may also vote to adjourn the issue at hand until the next meeting of the General Assembly.
 3. If unanimity on the following decisions is not achieved in any vote, the decision shall be reopened for discussion and further votes shall be held. After three unsuccessful rounds of voting, the decision shall be subject to a two thirds majority of valid votes cast.
-    1. Approval of the budget for the following year;
-    1. Approval of the financial statements and auditor’s reports, if applicable;
-    1. Election and removal of the members of the Administrative Board and determination of the number of Administrative Board members for each term of office; and
-    1. Changes to these Statutes as required to implement the second phase of development described in [Article 4 para. 2](#article-4--vision) of these Statutes.
+   1. Approval of the budget for the following year;
+   1. Approval of the financial statements and auditor’s reports, if applicable;
+   1. Election and removal of the members of the Administrative Board and determination of the number of Administrative Board members for each term of office; and
+   1. Changes to these Statutes as required to implement the second phase of development described in [Article 4 para. 2](#article-4--vision) of these Statutes.
 4. Decisions passed by a General Assembly shall come into effect upon the closing of the General Assembly at which they have been passed, unless the General Assembly expressly determines otherwise.
 
 ### Article 15 – Member’s representation
@@ -186,8 +186,8 @@ The General Assembly has the following indefeasible competences:
 ### Article 19 – Organization
 
 1. The Administrative Board consists of up to five but no less than three members in total:
-    1. Up to four members elected by the General Assembly (“ordinary members”); and
-    1. At least one independent member.
+   1. Up to four members elected by the General Assembly (“ordinary members”); and
+   1. At least one independent member.
 2. Of the up to four ordinary member seats, one position is that of Lead Administrator. Unless otherwise unanimously agreed by the Administrative Board members, this position shall rotate among the ordinary members on an annual basis, changing after the end of the General Assembly at which the annual financial statements are approved by the members.
 3. The General Assembly may decide how many members shall sit on the Administrative Board in the year before elections are due.
 4. All members of the Administrative Board are elected for four-year terms. They may be elected for no more than three terms, or twelve years in total.
@@ -210,13 +210,13 @@ The General Assembly has the following indefeasible competences:
 ### Article 22 – Powers
 
 1. The Administrative Board has the following main powers:
-    1. Development of strategic direction for PRAGMA, subject to approval by the General Assembly;
-    1. Implementation, management, and oversight of the administration of PRAGMA;
-    1. Organisation and management of the services provided to members, including selection and appointment of appropriate service providers;
-    1. Management of PRAGMA’s financial affairs;
-    1. Organisation of the General Assembly and reporting to the General Assembly on all activities of PRAGMA;
-    1. Upon decision by the General Assembly to create a project committee, set-up of a project committee and appoint its members;
-    1. Upon decision of the General Assembly to create one or several maintainer committee(s), appoint the maintainer committee lead(s) for such maintainer committee(s);
+   1. Development of strategic direction for PRAGMA, subject to approval by the General Assembly;
+   1. Implementation, management, and oversight of the administration of PRAGMA;
+   1. Organisation and management of the services provided to members, including selection and appointment of appropriate service providers;
+   1. Management of PRAGMA’s financial affairs;
+   1. Organisation of the General Assembly and reporting to the General Assembly on all activities of PRAGMA;
+   1. Upon decision by the General Assembly to create a project committee, set-up of a project committee and appoint its members;
+   1. Upon decision of the General Assembly to create one or several maintainer committee(s), appoint the maintainer committee lead(s) for such maintainer committee(s);
 2. The Administrative Board shall deal with any matter relating to PRAGMA that these Statutes do not assign to any other body.
 
 ### Article 23 – Powers of Representation
@@ -227,15 +227,15 @@ Members of the Administrative Board shall represent PRAGMA legally and each have
 
 1. The Secretary of the Administrative Board is appointed by the Administrative Board for a term of one year.
 2. Their duties are:
-    1. Record-keeping of the meetings of the Administrative Board; and
-    1. Management of PRAGMA’s files.
+   1. Record-keeping of the meetings of the Administrative Board; and
+   1. Management of PRAGMA’s files.
 
 ### Article 25 – Administrative Board Lead
 
 1. The Lead of the Administrative Board is appointed by the Administrative Board for a term of one year.
 2. Their duties are:
-    1. Preparation of the decision-making process by the Administrative Board;
-    1. First point of contact for relationships with members, maintainer committees, the project committee (as applicable) and third parties.
+   1. Preparation of the decision-making process by the Administrative Board;
+   1. First point of contact for relationships with members, maintainer committees, the project committee (as applicable) and third parties.
 
 ## VI. Maintainer Committees
 

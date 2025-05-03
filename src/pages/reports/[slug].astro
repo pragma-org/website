@@ -1,0 +1,116 @@
+---
+// Copyright 2024 PRAGMA
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import { unified } from 'unified';
+import remarkGfm from 'remark-gfm';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+
+export async function getStaticPaths() {
+  const reports = await getCollection('reports');
+
+  return reports.map((report) => {
+    return {
+      params: { slug: report.id.replace('/', '~') },
+      props: { report },
+    };
+  });
+}
+
+const render = (md) =>
+  unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(remarkGfm)
+    .use(rehypeStringify)
+    .processSync(md);
+
+const { report } = Astro.props;
+
+const project = await getCollection('projects').then((projects) =>
+  projects.find((project) => project.data.name === report.data.project_name),
+);
+
+const title = `${report.data.project_name} - ${report.data.period}`;
+const description = `${project.data.name}: ${project.data.shortDescription}.\n\nQuarterly report for ${report.data.period}`;
+---
+
+<Layout title={title} description={description}>
+  <Hero tag="Quarterly report" title={title} id="hero" />
+  <main class="flex-col">
+    <Section tag="Status" id="status">
+      {report.data.status}
+    </Section>
+
+    <Section tag="Problems that require board attention" id="problems">
+      {report.data.problems}
+    </Section>
+
+    <Section tag="Changelog" id="changelog">
+      {render(report.data.changelog)}
+    </Section>
+
+    <Section tag="Next planned steps" id="next">
+      {render(report.data.next)}
+    </Section>
+
+    <Section tag="Reflections & performances" id="comments">
+      {render(report.data.comments)}
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    align-items: center;
+  }
+
+  section {
+    max-width: 50rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  :global(pre) {
+    margin: 1rem 0;
+    padding: 1rem;
+    font-size: 0.8em;
+    background: var(--color-primary-dark);
+  }
+
+  :global(table) {
+    margin: 1.5rem 0;
+    width: 100%;
+  }
+
+  :global(table th),
+  :global(table td) {
+    border-bottom: 1px solid var(--color-secondary);
+    padding: 0.25rem 0.5rem;
+  }
+
+  :global(table tr:first-child th) {
+    border-bottom: 2px solid var(--color-secondary);
+  }
+
+  :global(table tr:last-child td) {
+    border-bottom: none;
+  }
+</style>

@@ -72,7 +72,6 @@ demos:
       an in-memory ledger performing UTxO management and phase-2
       validations.
 
-
 roadmap:
   type: journey
   phases:

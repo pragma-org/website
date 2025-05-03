@@ -1,0 +1,68 @@
+period: Q4 2024
+project_name: Amaru
+
+# Project status (active, inactive, initiating, etc.)
+status: Active
+
+# Problems that require board attention
+problems: None yet.
+
+# Community changes (last committer addition)
+changelog: |
+  - Storage of the (partial*) ledger-state on-disk, reconstructed from block application.
+    partial*:
+        Everything but reward updates and governance-related informations (DReps, governance actions, votes, ...). So this still includes:
+        - the entire UTxO state;
+        - stake pool registrations, de-registrations and updates;
+        - stake credential registrations, de-registrations and delegations;
+        - initial treasury, reserves and stake account balances;
+        - block issuers on every epoch;
+  - Test snapshots built from the Haskell node (PreProd network) representing the Mark/Set/Go ledger snapshots expected of _any_ Cardano node.
+  - New temporary `import` command:
+
+    ```
+    Import the ledger state from a CBOR export produced by the Haskell node
+
+    Usage: amaru import --snapshot <SNAPSHOT> --out <OUT>
+
+    Options:
+          --snapshot <SNAPSHOT>
+              Path to the CBOR snapshot. The snapshot can be obtained from the Haskell
+              cardano-node, using the `DebugEpochState` command, serialised as CBOR.
+
+              The snapshot must be named after the point on-chain it is reflecting, as
+
+                `{SLOT}.{BLOCK_HEADER_HASH}.cbor`
+
+              For example:
+
+                68774372.36f5b4a370c22fd4a5c870248f26ac72c0ac0ecc34a42e28ced1a4e15136efa4.cbor
+
+          --out <OUT>
+              Path to the ledger database folder
+    ```
+
+  - Observability premises using Open Telemetry, with various spans & metrics around the ledger worker. Documented under [monitoring](https://github.com/pragma-org/amaru/tree/main/monitoring).
+
+  - Two examples of observability backend orchestrating:
+
+    - [Jaeger + Prometheus + Open Telemetry Collector](https://github.com/pragma-org/amaru/tree/main/monitoring/jaeger#jaeger--prometheus)
+    - [Grafana + Tempo + Prometheus + Open Telemetry Collector](https://github.com/pragma-org/amaru/tree/main/monitoring/grafana-tempo#grafana--tempo--prometheus)
+
+  - Panic-hook providing better user-friendly error feedback on unexpected errors. See also [#45](https://github.com/pragma-org/amaru/pull/45)
+
+  - Preliminary continuous-integration workflow, to ease contributions and automate common tasks.
+
+# Next planned steps (new releases, significant changes, etc.)
+next: |
+  - Incorporate rewards into the epoch boundary calculation, synchronously for now;
+  - Utilize pre-computed snapshots for governance-related stake deltas (deposits on governance actions + DRep registrations);
+  - Fully re-implement the consensus<->ledger interface using our own computed state and ensure leader-schedule validity;
+  - Revise the current interface between consensus and ledger to avoid holding the ledger in a shared Mutex;
+  - Instrument the consensus components of the Haskell node to create a model of consensus we can validate and test against;
+  - Integrate basic phase-1 validations (aims for most expensive validations such as signature checks) and phase-2 validations using the new PRAGMA's UPLC crate.
+
+# Reflection & Performance:
+comments: |
+  - Thanks to the observability instrumentation, we're already observing some interesting behaviour arounds shared locks in the code. It is becoming pretty clear that we should avoid coupling the consensus with the ledger so directly as we do; but rather rely on an intermediate representation of the ledger for the consensus (e.g. a map from pool id to vrf key hash held in memory and updated every epochs).
+  - Building the test (and initial bootstrapping) snapshots turned out to be quite a cumbersome task because the ledger uses data from various points in time. For example, it needs stake distributions from 2 epochs in the past, but will use the reserves and treasury amounts from the _current epoch_ when calculating rewards, while still using the block counts issued from the previous epoch. While this seems wrong at first (because it means the total relative stake of stake pools can never be 1, for the total stake in the current epoch is always higher than two epochs ago due to the periodic Ada issuance), it is something we'll have to cope with unless also fixed in the Haskell node?

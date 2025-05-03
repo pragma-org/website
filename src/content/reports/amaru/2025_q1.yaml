@@ -1,0 +1,43 @@
+period: Q1 2025
+project_name: Amaru
+
+# Project status (active, inactive, initiating, etc.)
+status: Active
+
+# Problems that require board attention
+problems: None yet.
+
+# Community changes (last committer addition)
+changelog: |
+  - Figure out leader and member rewards calculations based on snapshots;
+  - Begin work on ledger validations (a.k.a ledger rules) while maintaining decoupling between ledger state management et validations. Design decision recorded as [EDR-010](https://github.com/pragma-org/amaru/blob/main/engineering-decision-records/010-ledger-validation-context.md);
+  - Run integration tests against PreProd as part of the continuous integration workflow;
+  - Fully separate stores (ledger & consensus) implementations from their interfaces;
+  - Implement naive block selection and chain-follower;
+  - Ensure that rolling stake distributions are computed at every epoch, and preserved in memory just long enough for rewards calculations and leader schedule.
+  - Implemented epoch nonce calculations and finalize full header verification (including leadership schedule based on rolling stake distributions);
+  - Keep track of DReps and proposals
+  - Track DRep and Stake pools voting stake distribution
+  - Improve node's observability on various aspects:
+      - Connect spans across all stages, so that each block is part of a single span;
+      - Clearly distinguish between logs and traces;
+      - Provide options to optionally export Open Telemetry through OTLP, or optionally export JSON traces on stdout;
+  - Make the ledger and consensus crates RISC-V & WASM compatible, and enforce they remain compatible through continuous integration;
+  - Start wiring deterministic simulation with Amaru's stages;
+  - Implement responder side of the node-to-node protocol;
+  - Introduce better error handling internally and gradually reduce the number of internal 'panic' in favor of user-facing errors;
+  - Structure ledger validations tests as reproducible scenarios based on JSON traces (allowing for sharing them as generic conformance tests for any node implementor).
+
+# Next planned steps (new releases, significant changes, etc.)
+next: |
+  - Provide initial protocol and genesis parameters as input instead of hard-wired constants;
+  - Tally votes on governance actions, and properly enact them when relevant;
+  - Expand ledger rules test and implementation coverage;
+  - Develop more complex consensus simulation scenarii;
+  - Integrate P2P networking;
+  - Wrap up chain selection;
+
+# Reflection & Performance:
+comments: |
+  - Since January, we are now also maintaining a _somewhat daily_ [log book](https://github.com/pragma-org/amaru/wiki/log), where core contributors record their thoughts, analysis and whatever they deem relevant for their future self or future readers. Every month, we extract a summary of the log book at the top, along with a few tags to ease the navigation over time.
+  - 3 new developers have been onboarded to the core contributors this quarter.
