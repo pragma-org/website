@@ -37,6 +37,15 @@ links:
   - to: Contributing
     href: 'https://github.com/pragma-org/amaru/blob/main/CONTRIBUTING.md'
 demos:
+  - title: Ledger rules, time travelling & node-to-node conversations.
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/2a7c0c55cf017ca87b5de8cc41275245/watch
+    date: 2025-06-27
+    description: |
+      A demo showcasing the latest progress on the ledger rules and the Rust-agnostic testing approach used for conformance. Then, we dive into some preliminary
+      visualisation of the simulation engine, with auto-generated sequence diagrams and a terminal user interface that allows exploring execution traces.
+
+      Finally, another look at some of the Amaru metrics, obtained from running a cluster of Amaru nodes talking to one another. This demonstrates how our observability stack
+      is particularly well suited for aggregating distributed traces from multiple processes.
   - title: Deterministic simulations, ledger rules&  P2P Networking
     date: 2025-03-28
     media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/2c6eb0d4b68fce9d220446325ea3035a/watch
