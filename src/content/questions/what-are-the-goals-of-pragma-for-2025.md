@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-title: What are the goals of PRAGMA For 2025?
+title: What are the goals of PRAGMA for 2025?
 ---
 
 For the founding members, 2025 is a phase for exploring how PRAGMA adds value to the community and to its member projects. 
-We bootstrapped the association with a key projects, Aiken and Amaru, in 2024. By the end of 2025 we want to have a complete process from applying to onboarding a new project. We want to start taking in applications in Q4 of 2025.
+We bootstrapped the association in 2024 with two key projects: Aiken and Amaru. By the end of 2025 we want to have a complete process from applying to onboarding a new project. We want to start taking in applications in Q4 of 2025.
