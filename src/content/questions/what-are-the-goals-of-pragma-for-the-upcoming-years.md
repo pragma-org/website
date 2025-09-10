@@ -1,5 +1,5 @@
 ---
-# Copyright 2024 PRAGMA
+# Copyright 2025 PRAGMA
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,4 +16,4 @@
 title: What are the goals of PRAGMA for the upcoming years?
 ---
 
-By 2025, we will have experience with how best to work together with a limited set of members from the Cardano community and ecosystem. From 2025 onwards, the ambition is to open PRAGMA up to other blockchain ecosystems to leverage synergies and take advantage of overlaps between them.
+In 2025, we will explore how best to serve the open source community and PRAGMA projects. From 2026 onwards, the ambition is to open PRAGMA up to other blockchain ecosystems to leverage synergies and take advantage of overlaps between them.
