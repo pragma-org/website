@@ -16,4 +16,4 @@
 title: What are the goals of PRAGMA for the upcoming years?
 ---
 
-In 2025, we will explore how best to serve the open source community and PRAGMA member projects. From 2026 onwards, the ambition is to open PRAGMA up to other blockchain ecosystems to leverage synergies and take advantage of overlaps between them.
+In 2025, we will explore how best to serve the open source community and PRAGMA projects. From 2026 onwards, the ambition is to open PRAGMA up to other blockchain ecosystems to leverage synergies and take advantage of overlaps between them.
