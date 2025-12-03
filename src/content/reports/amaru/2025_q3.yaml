@@ -1,0 +1,25 @@
+period: Q3 2025
+project_name: Amaru
+
+# Project status (active, inactive, initiating, etc.)
+status: Active
+
+# Problems that require board attention
+problems: None yet.
+
+# Community changes (last committer addition)
+changelog: |
+  - Governance is now implemented in the Ledger;
+  - Amaru is now able to synchronise to the tip of the chain;
+  - Simulation environment wired up (isomorphic) able to do accurate simulation with respect to the production code;
+  - Organised the [Node diversity workshop](https://forum.cardano.org/t/cardano-node-diversity-workshop-2-toulouse-22-23-september-2025/150304) in Toulouse with all the other Cardano node implementers present;
+  - De-risked (part of) the budgets with stable coins; 
+  - Two companies have been paid using the treasury smart contract: see the [Journal](https://github.com/pragma-org/amaru-treasury/tree/main/journal).
+  
+# Next planned steps (new releases, significant changes, etc.)
+next: |
+  - Implement all the relay node requirements to meet a Q4 delivery target.
+
+# Reflection & Performance:
+comments: |
+  - Setup a discussion with all the information related to our recurring meeting of the Maintainer Committee: https://github.com/pragma-org/amaru/discussions/91;
