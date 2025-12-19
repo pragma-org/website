@@ -24,9 +24,9 @@ summary: |
   its rich open source ecosystem.
 maintainers:
   - KtorZ
-  - Scarmuega
   - Abailly
   - Quantumplation
+  - Dam-CZ
 links:
   - to: Source code
     href: 'https://github.com/pragma-org/amaru/'
