@@ -31,9 +31,9 @@ links:
   - to: Source code
     href: 'https://github.com/pragma-org/amaru/'
   - to: Project tracking
-    href: 'https://github.com/pragma-org/amaru/milestones'
+    href: 'https://amaru.global/roadmap'
   - to: Documentation
-    href: null
+    href: 'https://amaru.global'
   - to: Contributing
     href: 'https://github.com/pragma-org/amaru/blob/main/CONTRIBUTING.md'
 demos:
