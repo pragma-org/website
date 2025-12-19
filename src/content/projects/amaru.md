@@ -37,6 +37,14 @@ links:
   - to: Contributing
     href: 'https://github.com/pragma-org/amaru/blob/main/CONTRIBUTING.md'
 demos:
+  - title: More ledger rules, distributed traces and conformance testing
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/4524e0849eed85b22557fbd5b349cf79/watch
+    date: 2025-09-23
+    description: |
+      The recording from the demo happening live at the end of the 2nd node diversity workshop in Toulouse.
+
+      The demo showcases the latest progress with the chain synchronisation and conformance tests, as well as an update on the consensus simulation and implementation.
+
   - title: Ledger rules, time travelling & node-to-node conversations.
     media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/2a7c0c55cf017ca87b5de8cc41275245/watch
     date: 2025-06-27
