@@ -37,6 +37,14 @@ links:
   - to: Contributing
     href: 'https://github.com/pragma-org/amaru/blob/main/CONTRIBUTING.md'
 demos:
+  - title: Simulating executions and pre-summit preparation
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/556a8761eee58ce4575dbe93b9f7727a/watch
+    date: 2025-11-07
+    description: |
+      In this recording, we go over the simulation and visualisation of the Amaru multi-stage execution pipeline.
+
+      Then, an overview of the latest version of Amaru doctor and the Pi deployment, as well as a sneak peek onto the brand new website at https://amaru.global.
+
   - title: More ledger rules, distributed traces and conformance testing
     media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/4524e0849eed85b22557fbd5b349cf79/watch
     date: 2025-09-23
