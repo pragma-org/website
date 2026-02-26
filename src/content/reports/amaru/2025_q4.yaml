@@ -1,0 +1,28 @@
+period: Q4 2025
+project_name: Amaru
+
+# Project status (active, inactive, initiating, etc.)
+status: Active
+
+# Problems that require board attention
+problems: None yet.
+
+# Community changes (last committer addition)
+changelog: |
+ - Amaru demo at the Cardano Summit successful: Amaru can run on Raspberry Pi Zero; Distributed prototypes to interested SPOs present in Berlin;
+ - Amaru demo on (7th of November](https://pragma.builders/projects/amaru/) showed the simulation and execution pipelines;
+ - Progress made on moving everything to pure-stage architecture and limiting the dependencies as much as possible;
+ - Implemented mini protocols and removed dependencies from Pallas;
+ - Initial target of Q4 relay node release postponed: missing networking protocol and ledger rules implementation, planned now for Q1 2026;
+ - Started the conversation about 2026 budget, use cases, owners and scopes;
+ - Send back to the Cardano treasury [unspent ADA](https://x.com/Amaru_Cardano/status/2022049856584659360?s=20) and closed the 2025 books
+ 
+# Next planned steps (new releases, significant changes, etc.)
+next: |
+  - Secure a relay node release for Q1 26
+  - Prepare, build, and align the extent of the 2026 budget and treasury withdrawal
+
+# Reflection & Performance:
+comments: |
+  - New ways of working to tackle priorities and issues: [Dashboard](https://github.com/orgs/pragma-org/projects/3) (new issues template with tags)
+  - Old bi-monthly meetings restructured into priority alignment and triage of issues;
