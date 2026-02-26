@@ -10,7 +10,7 @@ problems: None yet.
 # Community changes (last committer addition)
 changelog: |
  - Amaru demo at the Cardano Summit successful: Amaru can run on Raspberry Pi Zero; Distributed prototypes to interested SPOs present in Berlin;
- - Amaru demo on (7th of November](https://pragma.builders/projects/amaru/) showed the simulation and execution pipelines;
+ - Amaru demo on [7th of November](https://pragma.builders/projects/amaru/) showed the simulation and execution pipelines;
  - Progress made on moving everything to pure-stage architecture and limiting the dependencies as much as possible;
  - Implemented mini protocols and removed dependencies from Pallas;
  - Initial target of Q4 relay node release postponed: missing networking protocol and ledger rules implementation, planned now for Q1 2026;
