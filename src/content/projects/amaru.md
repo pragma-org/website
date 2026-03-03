@@ -37,6 +37,20 @@ links:
   - to: Contributing
     href: 'https://github.com/pragma-org/amaru/blob/main/CONTRIBUTING.md'
 demos:
+  - title: Multi-peer (new) networking and block propagation
+    media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/8fd60f5a12b16c092a586ec54053c2bb/watch
+    date: 2026-02-27
+    description: |
+      This demo showcases block propagation between a set of Amaru and Haskell nodes, with various topologies:
+
+      - cardano-node -> amaru -> amaru
+      - cardano-node -> amaru -> cardano-node
+      - cardano-node + amaru -> amaru -> cardano-node + amaru
+
+      This demonstrates Amaru acting sometimes as an upstream peer, sometimes
+      as a downstream peer while also performing chain selection. We also show
+      to which extend the pipeline can be visualised in real-time through the
+      tracing system.
   - title: Simulating executions and pre-summit preparation
     media: https://customer-3cdz2wvvptqpqk7u.cloudflarestream.com/556a8761eee58ce4575dbe93b9f7727a/watch
     date: 2025-11-07
