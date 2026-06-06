@@ -1,0 +1,24 @@
+period: Q1 2026
+project_name: Amaru
+
+# Project status (active, inactive, initiating, etc.)
+status: Active
+
+# Problems that require board attention
+problems: None yet.
+
+# Community changes (last committer addition)
+changelog: |
+ - [Treasury withdrawal succesfully voted](https://adastat.net/governances/2f2fc2539dde550d3c83bea67c11b03861407976bbe8d07c5b0e124aa8a12baa00)
+ - Contract environment of all forecasted contributors signed and launched;
+ - Amaru demo on [February 27th 2026](https://adastat.net/governances/2f2fc2539dde550d3c83bea67c11b03861407976bbe8d07c5b0e124aa8a12baa00) showcasing Amaru as a relay;
+ - Refined the weekyl and bi-weekly drumbeat meetings content;
+ 
+# Next planned steps (new releases, significant changes, etc.)
+next: |
+  - Start releasing officially an Amaru relay that can run on mainnet;
+  - Plan the content and organise the next node diversity workshop in Porto
+
+# Reflection & Performance:
+comments: |
+  - Redefined the [Acceptance process](https://github.com/pragma-org/amaru/blob/main/engineering-decision-records/022-treasury-management-acceptance-process.md) by organizing a monthly review and generating a "proof of acceptance" related to work done for Amaru
