@@ -62,11 +62,23 @@ const render = (md) =>
       <p>{project.data.summary}</p>
     </header>
 
+    <aside class="project-support">
+      <p>
+        PRAGMA provides governance, infrastructure and support services to
+        projects.
+      </p>
+      <a href="/about#we-will">Learn how PRAGMA supports projects</a>
+    </aside>
+
     <Section tag="Goal" id="goal">
       <Content id="content" />
     </Section>
 
     <Section tag="Maintainers" id="maintainers">
+      <p class="maintainers-note">
+        Project maintainers can come from PRAGMA member organizations or the
+        broader community.
+      </p>
       <div class="wrapper">
         {
           maintainers.map((m) => (
@@ -208,6 +220,31 @@ const render = (md) =>
     margin-top: var(--gap-lg);
   }
 
+  .project-support {
+    display: flex;
+    justify-content: center;
+    gap: var(--gap-sm);
+    flex-wrap: wrap;
+    max-width: min(60rem, 100%);
+    margin: var(--gap-md) auto 0;
+    padding: 0 var(--gap-md);
+    color: var(--pragma-muted);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.74rem;
+    line-height: 1.5;
+    text-align: center;
+    text-transform: lowercase;
+  }
+
+  .project-support p {
+    margin: 0;
+  }
+
+  .project-support a {
+    color: var(--pragma-ink);
+    border-bottom: 1px solid var(--pragma-accent);
+  }
+
   #demos > article {
     width: 100%;
     padding: 0 var(--gap-lg);
@@ -264,7 +301,7 @@ const render = (md) =>
   #project {
     position: relative;
     padding: var(--gap-md);
-    margin-bottom: calc(2 * var(--gap-lg));
+    margin-bottom: var(--gap-lg);
 
     & span.tag {
       font-size: 0.8em;
@@ -273,13 +310,16 @@ const render = (md) =>
       color: var(--color-secondary);
     }
 
-    & > :global(h2) {
-      font-size: 4em;
+    & > h1 {
+      max-width: min(48rem, 100%);
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      line-height: 1.02;
+      text-align: center;
     }
 
-    & > :global(p) {
+    & > p {
       margin: var(--gap-sm) 0;
-      max-width: 30rem;
+      max-width: min(42rem, 100%);
       text-align: center;
     }
 
@@ -308,9 +348,11 @@ const render = (md) =>
     display: grid;
     gap: var(--gap-md);
     grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: 't t t t' 'h h h h' 'a a b b';
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: 't t' 'h h' 'a b';
     align-items: start;
+    width: 100%;
+    overflow: hidden;
 
     & :global(span) {
       grid-area: t;
@@ -319,10 +361,17 @@ const render = (md) =>
 
     & :global(h2) {
       grid-area: h;
+      max-width: min(62rem, 100%);
+      margin: 0 auto;
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      line-height: 1.04;
+      text-align: center;
     }
 
     & :global(p) {
-      max-width: 30rem;
+      max-width: 34rem;
+      margin: 0;
+      line-height: 1.35;
 
       &:nth-child(2n + 1) {
         grid-area: a;
@@ -337,6 +386,14 @@ const render = (md) =>
   #maintainers {
     background: var(--color-primary-dark);
     display: flex;
+
+    & .maintainers-note {
+      max-width: 42rem;
+      color: var(--pragma-paper);
+      line-height: 1.5;
+      opacity: 0.82;
+      text-align: center;
+    }
 
     & .wrapper {
       width: 100%;
@@ -440,8 +497,8 @@ const render = (md) =>
     }
 
     #goal {
-      margin-top: calc(25vw + var(--gap-lg));
-      grid-template-areas: 't t t t' 'h h h h' 'a a a a' 'b b b b';
+      grid-template-columns: 1fr;
+      grid-template-areas: 't' 'h' 'a' 'b';
     }
   }
 

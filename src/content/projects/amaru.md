@@ -82,7 +82,7 @@ demos:
     description: |
       First, an overview showcasing the latest progress on deterministically simulating the consensus, using pre-generated blockchain trees.
 
-      Then, a tour of the ledger rules and the separation of concerns between block validation and state management, and how Amaru tackles this nicely.
+      Then, a tour of the ledger rules and the separation of concerns between block validation and state management and how Amaru tackles this nicely.
 
       Finally, an update on the ongoing work on the Peer-to-Peer (P2P) networking stack being designed not only for Amaru, but for the wider Rust blockchain ecosystem.
 
@@ -355,7 +355,7 @@ roadmap:
           link: 'https://github.com/pragma-org/amaru/milestone/9'
         - title: 'Block production/validation performances'
           description: |
-            Optimize block production & validations, and perform new analysis
+            Optimize block production & validations and perform new analysis
             of protocol parameters from the perspective of Amaru.
           link: 'https://github.com/pragma-org/amaru/milestone/9'
         - title: 'Better operator interface'

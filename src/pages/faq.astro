@@ -24,22 +24,31 @@ import Hero from '../components/Hero.astro';
 import { socials, email } from '../config.json';
 
 const questions = await Promise.all(
-  (await getCollection('questions')).map(async (q) => {
-    return { title: q.data.title, ...(await q.render()) };
-  }),
+  (await getCollection('questions'))
+    .sort((a, b) => a.slug.localeCompare(b.slug))
+    .map(async (q) => {
+      return { title: q.data.title, ...(await q.render()) };
+    }),
 );
 
 const discordUrl = `https://discord.gg/${socials.discord}`;
 const twitterUrl = `https://twitter.com/${socials.twitter}`;
 ---
 
-<Layout title="FAQ" description="Simplicity, transparency and efficiency.">
+<Layout
+  title="FAQ"
+  description="Current answers about PRAGMA's projects, membership, governance and support model.">
   <main>
     <Hero
       tag="FAQ"
-      title="Simplicity, transparency and efficiency."
+      title="Frequently Asked Questions"
       id="hero"
-    />
+    >
+      <p class="intro">
+        Current answers about PRAGMA's projects, membership, governance and
+        support model.
+      </p>
+    </Hero>
     <aside>
       <Pattern
         actives={new Set([

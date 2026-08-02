@@ -33,7 +33,7 @@ The objectives of PRAGMA are:
 1. creation of an open source ecosystem for blockchain software projects;
 2. fostering collaborative innovation and transparency in blockchain software projects;
 3. promoting community-driven development and shared expertise in the blockchain community;
-4. creation of software codes for the public good which are freely available, emphasising accessibility, inclusivity, and societal impact of the projects;
+4. creation of software codes for the public good which are freely available, emphasising accessibility, inclusivity and societal impact of the projects;
 5. building enduring and impactful projects in various areas related to blockchain software development, focusing on long-term public sustainability and a lasting positive effect on the open-source software community and beyond.
 
 ### Article 3 – Languages
@@ -56,7 +56,7 @@ The objectives of PRAGMA are:
    1. The **General Assembly**, which is the supreme and strategic body;
    1. The **Administrative Board**, which is the oversight and coordinating body;
    1. If instated by the General Assembly, the administration, which would be the operational body;
-   1. The **Maintainer Committees**, each of which organises, manages, and implements a specific blockchain software project; and
+   1. The **Maintainer Committees**, each of which organises, manages and implements a specific blockchain software project; and
    1. If instated by the General Assembly, a project committee.
 
 2. The Administrative Board shall propose to the General Assembly the creation of new maintainer committees for the implementation of additional blockchain software or other related projects. The maintainer committees’ organisation, responsibilities and authority shall be set out in regulations to be approved by the Administrative Board.
@@ -105,7 +105,7 @@ The objectives of PRAGMA are:
    1. the member has seriously violated these Statutes and/or its obligations towards PRAGMA;
    1. the member by its behaviour has made impossible the cooperation with other members;
    1. the member has seriously damaged the reputation of PRAGMA.
-2. More than 50% of PRAGMA’s members must be present at a General Assembly at which a member is to be expelled, and the decision must be taken with no less than two thirds of the valid votes cast.
+2. More than 50% of PRAGMA’s members must be present at a General Assembly at which a member is to be expelled and the decision must be taken with no less than two thirds of the valid votes cast.
 
 ### Article 10 – Members’ Resignation
 
@@ -116,20 +116,20 @@ Any member may resign from PRAGMA in writing at any time with immediate effect. 
 ### Article 11 – Organization
 
 1. The General Assembly shall meet at least once a year. It may be held in person or by any other means of communication.
-2. The Administrative Board determines the place (or means of communication), date, and time of each meeting.
+2. The Administrative Board determines the place (or means of communication), date and time of each meeting.
 3. Any member may at any time make a written request that the Administrative Board convene an additional meeting of the General Assembly.
 4. If the activity of the association requires it, the Administrative Board may also convene an additional meeting of the General Assembly.
 
 ### Article 12 – Meetings
 
-1. The Administrative Board shall notify the members of the place (or means of communication), date, and time of the next regular General Assembly at least seven weeks in advance.
+1. The Administrative Board shall notify the members of the place (or means of communication), date and time of the next regular General Assembly at least seven weeks in advance.
 2. The Administrative Board shall formally invite the members to the next regular General Assembly at least three weeks in advance. The formal invitation shall include all organisational details and the agenda and all supporting documentation for the General Assembly.
 3. Members may submit written proposals to the Administrative Board for items to be included on the agenda of any General Assembly up until two weeks before the formal invitation per para. 2 must be issued.
 4. The agenda of any General Assembly may be altered only by decision of the General Assembly. Votes on matters which have not been notified by the Administrative Board to the members in advance of the General Assembly shall be deferred to the next General Assembly unless the General Assembly decides otherwise.
 
 ### Article 13 – Additional Meetings
 
-1. The Administrative Board must notify the members of the place (or means of communication), date, and time of the additional meeting at least three weeks in advance.
+1. The Administrative Board must notify the members of the place (or means of communication), date and time of the additional meeting at least three weeks in advance.
 2. The agenda for an additional General Assembly must include the items which the Administrative Board or the requesting members consider gave rise to the need for the additional General Assembly.
 3. The agenda and the necessary documentation must be notified to the members in writing at least one week in advance of the meeting.
 
@@ -146,7 +146,7 @@ Any member may resign from PRAGMA in writing at any time with immediate effect. 
 
 ### Article 15 – Member’s representation
 
-1. Members are represented at the General Assembly by one delegate each, who must be employed or mandated by the members they represent. Upon request by the Administrative Board, a delegate must demonstrate that they were properly appointed by the member they represent. If this is not done, the member in question is stated not to be present, and the delegate may not join the General Assembly.
+1. Members are represented at the General Assembly by one delegate each, who must be employed or mandated by the members they represent. Upon request by the Administrative Board, a delegate must demonstrate that they were properly appointed by the member they represent. If this is not done, the member in question is stated not to be present and the delegate may not join the General Assembly.
 2. Only members who are present at a General Assembly may vote. Proxy voting or voting by any form of correspondence is not permitted.
 
 ### Article 16 – Voting
@@ -177,7 +177,7 @@ The General Assembly has the following indefeasible competences:
 1. Creation of maintainer committees upon proposal submitted by the Administrative Board;
 1. Choice of the services provided by PRAGMA to the maintainer committees;
 1. Creation of a project committee;
-1. Approval of the activity report for the previous calendar year, and approval of planned activities for the next calendar year;
+1. Approval of the activity report for the previous calendar year and approval of planned activities for the next calendar year;
 1. Approval of proposals submitted by the members;
 1. Dissolution of PRAGMA and disposal of its assets in accordance with [Article 33](#article-33--dissolution-of-the-association).
 
@@ -190,18 +190,18 @@ The General Assembly has the following indefeasible competences:
    1. At least one independent member.
 2. Of the up to four ordinary member seats, one position is that of Lead Administrator. Unless otherwise unanimously agreed by the Administrative Board members, this position shall rotate among the ordinary members on an annual basis, changing after the end of the General Assembly at which the annual financial statements are approved by the members.
 3. The General Assembly may decide how many members shall sit on the Administrative Board in the year before elections are due.
-4. All members of the Administrative Board are elected for four-year terms. They may be elected for no more than three terms, or twelve years in total.
+4. All members of the Administrative Board are elected for four-year terms. They may be elected for no more than three terms or twelve years in total.
 
 ### Article 20 – Board Members’ Eligibility
 
 1. Ordinary members of the Administrative Board must be recommended by one of the members of PRAGMA. Candidates for the ordinary member seats of the Administrative Board are chosen so as to ensure their skills reflect the knowledge and experience needed to run the association.
 2. Independent members of the Administrative Board must be experienced in managing open source projects or managing legal entities active in the field of open source software.
 3. No member of the Administrative Board may simultaneously be a delegate of a member of PRAGMA to the General Assembly.
-4. No member of the Administrative Board can be the spouse or close family member of, or otherwise entertain close relations with a contractor of PRAGMA.
+4. No member of the Administrative Board can be the spouse or close family member of or otherwise entertain close relations with a contractor of PRAGMA.
 
 ### Article 21 - Meetings
 
-1. The Administrative Board shall meet at least three times a year. Meetings can be held in person or by any other means of communication. Meetings are organised, notified to the members, and chaired by the Lead Administrator.
+1. The Administrative Board shall meet at least three times a year. Meetings can be held in person or by any other means of communication. Meetings are organised, notified to the members and chaired by the Lead Administrator.
 2. Decisions are taken by simple majority vote, each member of the Administrative Board having one vote. The Lead Administrator has a casting vote.
 3. Voting is by show of hands or by equivalent electronic means.
 4. The Secretary of the Administrative Board shall keep the minutes of each meeting.
@@ -211,7 +211,7 @@ The General Assembly has the following indefeasible competences:
 
 1. The Administrative Board has the following main powers:
    1. Development of strategic direction for PRAGMA, subject to approval by the General Assembly;
-   1. Implementation, management, and oversight of the administration of PRAGMA;
+   1. Implementation, management and oversight of the administration of PRAGMA;
    1. Organisation and management of the services provided to members, including selection and appointment of appropriate service providers;
    1. Management of PRAGMA’s financial affairs;
    1. Organisation of the General Assembly and reporting to the General Assembly on all activities of PRAGMA;
@@ -254,7 +254,7 @@ Maintainer committees are the bodies of PRAGMA which are charged with the organi
 
 1. The members of the maintainer committees will procure funding as required for their activities independently of and from outside PRAGMA.
 2. PRAGMA will provide certain services to maintainer committee members as decided by the General Assembly (e.g. corporate housekeeping support, intellectual property support etc.).
-3. If maintainer committees procure outside funding for their projects, they shall be fully transparent with third parties about the intended use of the funds, the maintainer committee structure and open source nature of the project, and the rules and limitations imposed by PRAGMA.
+3. If maintainer committees procure outside funding for their projects, they shall be fully transparent with third parties about the intended use of the funds, the maintainer committee structure and open source nature of the project and the rules and limitations imposed by PRAGMA.
 
 ### Article 29 – Reports
 
@@ -276,9 +276,9 @@ Maintainer committees will submit quarterly reports on the progress of the proje
 
 ### Article 32 – Arbitration
 
-All disputes arising from or in any connection with these Statutes, in particular any disputes between members of PRAGMA that relate to the work of the association, between members of PRAGMA and PRAGMA, and any disputes arising from the work of the project committee or any maintainer committees, and any appeals against any decision of PRAGMA, shall be settled exclusively by an arbitration tribunal of one member under the auspices of the Swiss Rules of International Arbitration of the Swiss Arbitration Centre in force on the date on which the notice of arbitration is submitted in accordance with those rules.
+All disputes arising from or in any connection with these Statutes, in particular any disputes between members of PRAGMA that relate to the work of the association, between members of PRAGMA and PRAGMA and any disputes arising from the work of the project committee or any maintainer committees and any appeals against any decision of PRAGMA, shall be settled exclusively by an arbitration tribunal of one member under the auspices of the Swiss Rules of International Arbitration of the Swiss Arbitration Centre in force on the date on which the notice of arbitration is submitted in accordance with those rules.
 
-The tribunal shall have its seat in Zurich, and the language of the proceedings shall be English.
+The tribunal shall have its seat in Zurich and the language of the proceedings shall be English.
 
 ### Article 33 – Dissolution of the association
 

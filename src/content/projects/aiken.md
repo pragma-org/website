@@ -50,7 +50,7 @@ roadmap:
       href: https://github.com/aiken-lang/aiken/pull/1119
     - title: Benchmarks
       description: |
-        A new `bench` command and language keyword. The command is very similar to aiken check, and will collect and run benchmarks found across the codebase. A bench is a new type of test that takes in a Sampler. A Sampler is a scaled Fuzzer which receive a monotically increasing size as parameter. This allows fine-grained control over generated values.
+        A new `bench` command and language keyword. The command is very similar to aiken check and will collect and run benchmarks found across the codebase. A bench is a new type of test that takes in a Sampler. A Sampler is a scaled Fuzzer which receive a monotically increasing size as parameter. This allows fine-grained control over generated values.
       href: https://aiken-lang.org/language-tour/bench
   currently:
     - title: New LSP quickfixes

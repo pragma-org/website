@@ -17,7 +17,6 @@ import NavLink from '../components/NavLink.astro';
 import Nav from '../components/Nav.astro';
 
 const isHome = Astro.url.pathname === '/';
-const aspectRatio = isHome ? 1 : 550 / 120;
 ---
 
 <input id="hamburger" type="checkbox" />
@@ -25,52 +24,91 @@ const aspectRatio = isHome ? 1 : 550 / 120;
   <svg class="close-menu"><use xlink:href="#close"></use></svg>
   <svg class="open-menu"><use xlink:href="#menu"></use></svg>
 </label>
-<header class="flex-row">
+<header class:list={['flex-row', { home: isHome }]}>
   <a id="logo" class="no-effect" href="/" aria-label="homepage">
-    <svg><use xlink:href={isHome ? '#logo-mark' : '#logo'}></use></svg>
+    <svg><use xlink:href="#logo-mark"></use></svg>
   </a>
   <Nav>
-    <NavLink href={isHome ? '#projects' : '/#projects'} title="Projects" />
-    <NavLink href="/members" title="Members" />
-    <NavLink href="/blog" title="Blog" />
-    <NavLink href="/faq" title="FAQ" />
+    <NavLink href="/projects" title="Projects" />
     <NavLink href="/about" title="About" />
+    <NavLink href="/faq" title="FAQ" />
+    <NavLink href="/members" title="Members" />
   </Nav>
 </header>
 
-<style define:vars={{ aspectRatio }}>
+<style>
   #hamburger,
   #hamburger + label {
     display: none;
   }
 
   header {
-    background: var(--color-primary);
-    height: var(--height-header);
-    padding: var(--gap-md);
+    background: var(--pragma-paper);
+    border-bottom: 1px solid var(--pragma-border);
+    color: var(--pragma-ink);
+    height: 4.4rem;
+    padding: 1.25rem 1.65rem;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-end;
 
     top: 0;
     position: sticky;
     z-index: 99;
 
+    & a,
+    & a:visited,
+    & a.active,
+    & a:hover {
+      color: rgba(11, 30, 54, 0.72);
+      font-family: var(--font-mono), monospace;
+      font-size: 0.76rem;
+      text-transform: lowercase;
+    }
+
+    & a.active,
+    & a:hover {
+      color: var(--pragma-ink);
+    }
+
     & > a#logo {
-      --height-logo: calc(var(--height-header) - 2 * var(--gap-md));
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
       position: absolute;
-      top: var(--gap-md);
-      left: var(--gap-md);
-      color: var(--color-secondary);
+      top: 1.25rem;
+      left: 1.65rem;
+      color: var(--pragma-ink);
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      line-height: 1;
+      text-transform: none;
 
       &:hover > svg {
         right: unset;
       }
 
       & > svg {
-        height: var(--height-logo);
-        width: calc(var(--aspectRatio) * var(--height-logo));
+        display: none;
       }
+    }
+
+    & > a#logo::before {
+      content: '';
+      display: inline-block;
+      width: 1.9rem;
+      height: 1.9rem;
+      background:
+        linear-gradient(var(--pragma-accent), var(--pragma-accent)) top right /
+          1.2rem 1.2rem no-repeat,
+        linear-gradient(var(--pragma-accent), var(--pragma-accent)) bottom left /
+          0.74rem 0.74rem no-repeat;
+    }
+
+    & > a#logo::after {
+      content: 'PRAGMA';
+      color: var(--pragma-ink);
+      font-size: 1.08rem;
+      text-transform: uppercase;
     }
   }
 
@@ -98,22 +136,22 @@ const aspectRatio = isHome ? 1 : 550 / 120;
 
       & svg {
         position: fixed;
-        width: calc(0.9 * var(--height-header) - 2 * var(--gap-md));
-        height: calc(0.9 * var(--height-header) - 2 * var(--gap-md));
-        top: 2.5rem;
-        right: var(--gap-md);
+        width: 1.35rem;
+        height: 1.35rem;
+        top: 1.55rem;
+        right: 1.65rem;
         transform-origin: center;
         transition: all 0.25s ease-out;
       }
 
       & svg.close-menu {
         opacity: 0;
-        color: var(--color-primary);
+        color: var(--pragma-ink);
       }
 
       & svg.open-menu {
         opacity: 1;
-        color: var(--color-secondary);
+        color: var(--pragma-ink);
       }
     }
 
@@ -130,20 +168,20 @@ const aspectRatio = isHome ? 1 : 550 / 120;
 
       & ~ header {
         height: 100vh;
-        background: var(--color-secondary);
-        color: var(--color-primary);
+        background: var(--pragma-paper);
+        color: var(--pragma-ink);
 
         & a,
         & a:visited {
-          color: var(--color-primary);
+          color: var(--pragma-ink);
         }
 
         & a.active {
-          color: var(--color-secondary-light);
+          color: rgba(11, 30, 54, 0.72);
         }
 
         & > a#logo {
-          color: var(--color-primary);
+          color: var(--pragma-ink);
         }
 
         & :global(ul) {

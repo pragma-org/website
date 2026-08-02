@@ -16,7 +16,7 @@
 heroText: A cooperative effort amongst like-minded organizations.
 whoWeAreTitle: A team of passionate software engineers
 whoWeAreText: >
-  **PR*A*GMA** is a member-based, not-for-profit Open Source Association for
+  **PRAGMA** is a member-based, not-for-profit Open Source Association for
   blockchain software projects. It aims to foster an alternative open-source
   ecosystem for Cardano and beyond. We are a team of passionate software
   engineers from various backgrounds who build open-source tools for developers
@@ -79,7 +79,7 @@ goals:
   - title: Create
     text: >
       PRAGMA develops high-quality software that serve the public good and are
-      freely available, emphasizing accessibility, inclusivity, and societal
+      freely available, emphasizing accessibility, inclusivity and societal
       impact.
 
 
@@ -127,8 +127,8 @@ principlesSecondParagraph: >
 weWill:
   items:
     - text: >-
-        Provide a safe home and governance framework for open source projects in
-        the blockchain space.
+        Provide a neutral home and governance framework for open source projects
+        in the blockchain space.
     - text: >-
         Be run collaboratively by members from multiple horizons, in a
         decentralized fashion.
@@ -136,13 +136,14 @@ weWill:
         Support operationally independent maintainer committees through
         services, in particular:
       sub_items:
-        - text: 'Intellectual property advice, registrations, and enforcement;'
+        - text: 'Intellectual property advice, registrations and enforcement;'
+        - text: 'Limited legal assistance for maintainer committees under a board-approved framework;'
         - text: 'Backend infrastructure (e.g., email, GitHub, etc.);'
-        - text: 'Training, education, and workshops;'
-        - text: 'Visibility, branding, and networking.'
+        - text: 'Training, education and workshops;'
+        - text: 'Visibility, branding and networking.'
     - text: Be funded by membership fees and contributions.
     - text: >-
-        Provide corporate housekeeping, intellectual property, and finance
+        Provide corporate housekeeping, intellectual property and finance
         support for its own activities.
 weWillNot:
   items:
@@ -153,35 +154,33 @@ weWillNot:
         provide direct funding to maintainer committees, maintainer committee
         members or contributors.
 promisesParagraph: >
-  While the above means that projects will need to look for other sources of
-  resourcing , we believe it is paramount for the long-term success of the
-  association as it will significantly de-risk, simplify and lower the costs of
-  operation and make membership and contributions by members to the association
-  more attractive. Most importantly, this separation will keep the association
-  focused on long-term development related activities and goals.
-structureTitle: 'A multi-headed association, with members operating in full-consensus.'
+  Projects need to find their own funding elsewhere — a deliberate
+  choice. Staying out of funding keeps PRAGMA lean, lowers risk and keeps the
+  association focused on what it does best: long-term development and
+  governance, not managing money on projects' behalf.
+structureTitle: 'A multi-headed association with clear roles across governance, projects and maintainers.'
 structureFirstParagraph: >
-  In its initial phase, PRAGMA is setup as a multi-headed association where each
-  member has a voice. The founding members constitutes the **General Assembly**
-  and have ultimate authority on the strategy and functioning of the
-  association.
+  In its initial phase, PRAGMA is set up as a multi-headed association where
+  each member has a voice. The founding members constitute the **General
+  Assembly**, which sets the formal direction of the association.
 
 
-  The **General Assembly** operates through the means of an **Administrative
-  Board** who is *effectively* running the operations. A crucial mission of the
-  board is to decide on projects and appoints **Maintainer Committees** to them.
-  The committees are small group of skilled software engineers in charge of
-  developing and managing projects in collaboration with their respective
-  open-source communities.
+  The **General Assembly** operates through an **Administrative Board**, who
+  effectively run the operations. The board appoints a **Project Committee**,
+  whose job is to review new project candidates, recommend them to the
+  Administrative Board and oversee the **Maintainer Committees** running each
+  one.
 structureSecondParagraph: >
-  Each project is supervised by a **Maintainer Committee**, who is both
-  responsible for the core development but also for managing contributions. It
-  is in touch with the project's community, and can onboard motivated
-  contributors when necessary.
+  The **Project Committee** is responsible for reviewing new project candidates
+  and recommending to the **Administrative Board** which ones should become
+  PRAGMA projects. It provides the project intake and oversight function
+  between the Administrative Board and the Maintainer Committees, with final
+  decisions made by the board.
 
 
-  The **Maintainer Committees** are self-organising in ways that may differ from
-  a project to another, for every project is different. While all strongly
-  committed to the PRAGMA's principles, they may freely chose tools and
-  processes that better serves the project.
+  Each project is supervised by a **Maintainer Committee**, responsible for core
+  development and for managing contributions. Maintainer Committees are
+  self-organizing and may differ from project to project — while all are
+  strongly committed to PRAGMA's principles, they're free to choose whatever
+  tools and processes best serve their project.
 ---
