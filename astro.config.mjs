@@ -8,7 +8,7 @@ import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://pragma.builders',
+  site: 'https://pragma.io',
   integrations: [markdownIntegration()],
   markdown: {
     remarkPlugins: [remarkReadingTime],
