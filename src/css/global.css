@@ -1,15 +1,25 @@
 /* Variables & Palette */
 
 :root {
-  --color-primary: #001938;
-  --color-primary-dark: #00142d;
-  --color-secondary: #81d1a6;
-  --color-secondary-light: #d8f2e2;
-  --color-accent: #ffcc00;
+  --pragma-paper: #f6f5f1;
+  --pragma-ink: #0b1e36;
+  --pragma-accent: #7fc9a3;
+  --pragma-border: #dcdad2;
+  --pragma-muted: #65717d;
 
-  --font-primary: HankenGrotesk;
-  --font-secondary: SpaceGrotesk;
-  --font-mono: SpaceMono;
+  --color-primary: var(--pragma-ink);
+  --color-primary-dark: var(--pragma-ink);
+  --color-secondary: var(--pragma-accent);
+  --color-secondary-light: color-mix(
+    in srgb,
+    var(--pragma-accent) 24%,
+    var(--pragma-paper)
+  );
+  --color-accent: var(--pragma-accent);
+
+  --font-primary: Inter;
+  --font-secondary: 'Space Grotesk';
+  --font-mono: 'IBM Plex Mono';
 
   --gap-xs: 0.5rem;
   --gap-sm: 1rem;
@@ -282,8 +292,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--color-primary);
-  color: var(--color-secondary-light);
+  background-color: var(--pragma-paper);
+  color: var(--pragma-ink);
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 h1,
@@ -451,7 +464,8 @@ svg.icon {
 
 .justified {
   text-align: left;
-  word-wrap: break-word;
-  hyphens: auto;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
   max-width: 40rem;
 }

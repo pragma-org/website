@@ -20,9 +20,9 @@ publishDate: 2024-09-03T22:00:00.000Z
 excerpt: >-
   Aiken has transformed from a promising alpha into a powerful tool for smart
   contract development on Cardano. This leap brings Plutus V3 support,
-  conditional modules, logical operator chaining, and innovative features like
+  conditional modules, logical operator chaining and innovative features like
   backpassing and soft-casting for improved readability and flexibility. With
-  performance optimizations, enhanced tracing, and new tooling, Aiken simplifies
+  performance optimizations, enhanced tracing and new tooling, Aiken simplifies
   development while boosting efficiency. Now powering over 63% of Cardano's
   smart contract traffic, Aiken is embraced by leading projects like Minswap and
   Jpg.store. Explore how Aiken is revolutionizing smart contract development and
@@ -30,7 +30,7 @@ excerpt: >-
   learn more!
 ---
 
-We're excited to announce a significant evolution in Aiken's development journey—from a promising alpha to a robust, generally available tool. This leap marks Aiken's readiness for broader adoption. It underscores our commitment to delivering a powerful platform for smart contract development on the Cardano blockchain. In this article, we’ll look at the journey since we first announced the Aiken alpha release. While the language essence hasn't changed much, we fine-tuned the compiler and surrounding tooling thanks to the feedback we received from developers. Aiken started as an idea and desire to better the smart contract landscape on Cardano, and the past year has turned it into a great and useful platform.
+We're excited to announce a significant evolution in Aiken's development journey—from a promising alpha to a robust, generally available tool. This leap marks Aiken's readiness for broader adoption. It underscores our commitment to delivering a powerful platform for smart contract development on the Cardano blockchain. In this article, we’ll look at the journey since we first announced the Aiken alpha release. While the language essence hasn't changed much, we fine-tuned the compiler and surrounding tooling thanks to the feedback we received from developers. Aiken started as an idea and desire to better the smart contract landscape on Cardano and the past year has turned it into a great and useful platform.
 
 ### What's New in Aiken?
 
@@ -42,7 +42,7 @@ Without further ado, let’s start our exploration with the most significant lan
 
 This time, the focus was on governance and introducing new smart contract capabilities around on-chain voting. New useful built-in functions such as support for fast integer to bytes transformation, as well many new primitives to work with BLS-381 elliptic curve paving the way for zero-knowledge logic on Cardano.
 
-Along with those new capabilities, Plutus V3 also changed the way the ledger and smart contract interface with one another. The nature of this change is described in further detail in [CIP-0069](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0069). From Aiken’s perspective, this change has allowed us to simplify and unify the way developers define multi-purpose validators. One of Aiken’s unique selling points has long been its ability to define hybrid validators under a single script. This simplifies a lot the composition of validators by ensuring that minting and spending policies would share the same code, and thus the same hash. Yet, to make this work, we had to work around some of the limitations present in previous versions of Plutus and it required developers a few extra steps when interacting with their contracts.
+Along with those new capabilities, Plutus V3 also changed the way the ledger and smart contract interface with one another. The nature of this change is described in further detail in [CIP-0069](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0069). From Aiken’s perspective, this change has allowed us to simplify and unify the way developers define multi-purpose validators. One of Aiken’s unique selling points has long been its ability to define hybrid validators under a single script. This simplifies a lot the composition of validators by ensuring that minting and spending policies would share the same code and thus the same hash. Yet, to make this work, we had to work around some of the limitations present in previous versions of Plutus and it required developers a few extra steps when interacting with their contracts.
 
 ![][image1]
 
@@ -93,13 +93,13 @@ Notice the reversed arrow `<-` and how the callback argument is being assigned f
 
 On-chain, every execution step matters. Unlike traditional applications, handling errors isn’t usually on the menu. Instead, smart contract developers tend to adopt a _“fail fast”_ strategy where any unexpected behaviour immediately terminates the contract execution with a failure, indicating to the ledger an invalid execution. This is partly why there’s no concept of exception in Plutus, nor is it possible to manipulate errors as values. An error, when encountered, halts the execution.
 
-Aiken provides various primitives that encourage this behaviour, and its most notable one is the expect keyword, which has primarily two functions:
+Aiken provides various primitives that encourage this behaviour and its most notable one is the expect keyword, which has primarily two functions:
 
 - It can be used to enforce that an object has a specific shape. Or, in functional programming jargon, it allows for non-exhaustive pattern matching – halting the execution in case of an invalid match.
 
 - It can also perform a structural cast from one type to another. Remember that Aiken is a statically typed language.
 
-A type defines the realm of possible values that a specific object can take, as well as the methods that are accessible to it. Under the hood, values have a runtime representation, and the compiler keeps that illusion alive for the developer. While something is believed to be of a given type, the compiler will enforce that it is treated as such by the developer and raise errors when misused. For example, you could imagine boolean values represented at runtime by an integer `0` or `1`. Yet, in a typed language, the compiler would not allow arithmetic operations mixing boolean values and integers – even if their runtime representation is fundamentally compatible. What should be the result of `True + 42`? Some languages might say `43`, and some might say `”True42”`. Like most other strongly statically typed languages, Aiken would reject this code and requires developers to clarify their intent. Note that there’s not necessarily a good answer to this question, only different choices and flavour.
+A type defines the realm of possible values that a specific object can take, as well as the methods that are accessible to it. Under the hood, values have a runtime representation and the compiler keeps that illusion alive for the developer. While something is believed to be of a given type, the compiler will enforce that it is treated as such by the developer and raise errors when misused. For example, you could imagine boolean values represented at runtime by an integer `0` or `1`. Yet, in a typed language, the compiler would not allow arithmetic operations mixing boolean values and integers – even if their runtime representation is fundamentally compatible. What should be the result of `True + 42`? Some languages might say `43` and some might say `”True42”`. Like most other strongly statically typed languages, Aiken would reject this code and requires developers to clarify their intent. Note that there’s not necessarily a good answer to this question, only different choices and flavour.
 
 ![][image6]
 
@@ -113,7 +113,7 @@ Soft-casting, also dubbed `if/is`, is a new syntax which allows to perform struc
 
 ##### Supercharged constants
 
-Aiken’s constant system has always been quite limited from the start. Constants were limited to integers, byte strings, and text string literals, making them only suitable for hard-coded values, so much so that we saw little use for them in the wild.
+Aiken’s constant system has always been quite limited from the start. Constants were limited to integers, byte strings and text string literals, making them only suitable for hard-coded values, so much so that we saw little use for them in the wild.
 
 ![][image8]
 
@@ -159,11 +159,11 @@ We can reify it back into its Aiken representation as:
 
 ![][image16]
 
-A lot more readable, isn't it? This is possible when running tests because the compiler still holds information about how the test program was generated and can thus recover from it. Extracting those very details from an arbitrary script generated in the wild wouldn't be possible because the types information has long been lost at this point. Techniques known as source mapping may help alleviate these limitations, and they are being worked on right now by the Aiken community!
+A lot more readable, isn't it? This is possible when running tests because the compiler still holds information about how the test program was generated and can thus recover from it. Extracting those very details from an arbitrary script generated in the wild wouldn't be possible because the types information has long been lost at this point. Techniques known as source mapping may help alleviate these limitations and they are being worked on right now by the Aiken community!
 
 ##### Flawless tracing
 
-An on-chain validator, once compiled, is like a black box, and it can be hard to comprehend what’s going wrong when things don’t go as planned. This is why good tracing and, more generally, tools for troubleshooting issues are paramount to developing smart contracts.
+An on-chain validator, once compiled, is like a black box and it can be hard to comprehend what’s going wrong when things don’t go as planned. This is why good tracing and, more generally, tools for troubleshooting issues are paramount to developing smart contracts.
 
 With Aiken, we knew that from the start and made tracing a first-class citizen very early in the project. The introduction of the trace-if-false operator `?` has been greatly enjoyed by developers and has proven useful. It makes adding traces easy and lets the compiler strip them out of the final optimised code.
 
@@ -177,9 +177,9 @@ In fact, we went as far as making the `trace` keyword behave like a variadic fun
 
 ![][image18]
 
-Notice the use of `:` in the example, which may appear odd at first glance but will soon make sense. Traces in Aiken are, in fact, structured. The first element of the trace is called the trace label, and the rest are the trace arguments. The distinction works hand in hand with the compiler options that allow the user to select between three trace levels: `verbose`, `compact` and `silent`. In silent mode, traces are entirely removed from the final program. This is typically used after rounds and rounds of testing when one has strong confidence about the correctness of the validator. The `verbose` is mainly used for development and will fully preserve the traces. The `compact` is a subtle middle choice that preserves only the label.
+Notice the use of `:` in the example, which may appear odd at first glance but will soon make sense. Traces in Aiken are, in fact, structured. The first element of the trace is called the trace label and the rest are the trace arguments. The distinction works hand in hand with the compiler options that allow the user to select between three trace levels: `verbose`, `compact` and `silent`. In silent mode, traces are entirely removed from the final program. This is typically used after rounds and rounds of testing when one has strong confidence about the correctness of the validator. The `verbose` is mainly used for development and will fully preserve the traces. The `compact` is a subtle middle choice that preserves only the label.
 
-The motivation for this stems from the trade-offs between traces' usefulness and their actual runtime cost. Indeed, everything comes at a price, and while inspecting values at runtime is helpful, it is also costly in terms of execution units. For large validators, the cost of tracing, added to the cost of the validator logic itself, may be too high for running in pre-production environments like testnets. So, while `verbose` is useful during development and in contexts where execution costs don't matter. The `compact` proves useful for real execution environments or even production environments should one want to keep some degree of observability on live contracts.
+The motivation for this stems from the trade-offs between traces' usefulness and their actual runtime cost. Indeed, everything comes at a price and while inspecting values at runtime is helpful, it is also costly in terms of execution units. For large validators, the cost of tracing, added to the cost of the validator logic itself, may be too high for running in pre-production environments like testnets. So, while `verbose` is useful during development and in contexts where execution costs don't matter. The `compact` proves useful for real execution environments or even production environments should one want to keep some degree of observability on live contracts.
 
 #### Tooling improvements
 
@@ -209,20 +209,20 @@ So, we’ve introduced a `--watch` flag to the `build`, `check` and `docs` comma
 
 Like any modern programming language, Aiken embraces the Language Server Protocol (LSP), a compiler-to-text-editor protocol designed by Microsoft to turn any text editor into a full-blown Integrated Development Environment (IDE). LSP is large and featureful. It defines many features that may or may not be supported by the client (the editor) or the server (the compiler). When both communicate, they initially agree on the features they both know and can resolve.
 
-Aiken started small and with the essentials: on-the-fly compilation, go-to definitions and automatic formatting on save. Over time, we added more and more features such as automatic import management, automatic quick fixes for various compiler warnings, and type information on hover.
+Aiken started small and with the essentials: on-the-fly compilation, go-to definitions and automatic formatting on save. Over time, we added more and more features such as automatic import management, automatic quick fixes for various compiler warnings and type information on hover.
 
 ![][image20]
 ![][image21]
 
-We are committed to continuing to enhance the development experience by providing more intuitive interactions with the code, and LSP is the perfect tool for it. Hence, we and the Aiken community will keep leveraging LSP to keep the experience of developing with Aiken a bliss.
+We are committed to continuing to enhance the development experience by providing more intuitive interactions with the code and LSP is the perfect tool for it. Hence, we and the Aiken community will keep leveraging LSP to keep the experience of developing with Aiken a bliss.
 
 ##### Dependencies pruning
 
 Aiken package management is quite singular for a programming language. First of all, there's no transitive fetching of dependencies in Aiken. Suppose your project depends on a package `"foo"`, itself depending on a package `"bar"`. In that case, you are responsible for explicitly depending on `"foo"` and `"bar"`. It is not solely due to our laziness to implement a proper package manager, but also a calculated choice.
 
-The truth is that we evolve in a singular context: blockchains. The keyword in the blockchain industry is trust. Package management in an open-source landscape heavily relies on trust. Trust in maintainers for maintaining decent packages and trust in them for not trying to install backdoors and other malware on our system. So-called supply chain attacks are relatively common, and widely used packages are common targets for hackers who seek entry points in larger projects with dependencies.
+The truth is that we evolve in a singular context: blockchains. The keyword in the blockchain industry is trust. Package management in an open-source landscape heavily relies on trust. Trust in maintainers for maintaining decent packages and trust in them for not trying to install backdoors and other malware on our system. So-called supply chain attacks are relatively common and widely used packages are common targets for hackers who seek entry points in larger projects with dependencies.
 
-In this context, we find it too risky to implicitly pull dependencies from every other part of the world into people's projects. If you must include a dependency, it should be your explicit desire, and it is your responsibility as a smart contract developer to verify the provenance of these dependencies.
+In this context, we find it too risky to implicitly pull dependencies from every other part of the world into people's projects. If you must include a dependency, it should be your explicit desire and it is your responsibility as a smart contract developer to verify the provenance of these dependencies.
 
 Language ecosystems such as Unison experiment with content-addressing for all language imports. While we find this idea extremely appealing, we have yet to find a way to materialize it for Aiken in a manner that suits the platform. Nor has it been an extremely high priority due to the relatively small size of Aiken projects – primarily constrained by the maximum size of transactions on the Cardano blockchain.
 
@@ -244,7 +244,7 @@ This alone is a compelling yet often unspoken feature of Aiken. As we like to pu
 
 To further streamline the development process, Aiken has introduced a tiny companion command line called `aikup`, which simplifies the installation and management of Aiken projects. With `aikup`, developers can easily install Aiken on their devices and switch between different versions of Aiken should they work on different projects. Like Aiken, it works cross-platforms and is straightforward to use.
 
-On top of that, we extended the installation methods across multiple package managers such as [npm](https://www.npmjs.com/)) and [Homebrew](https://brew.sh/), making it even more accessible to developers. Whether you're using Homebrew, Cargo, npm, Nix, or compile from sources, Aiken's installation has become more straightforward, removing barriers for new users and facilitating streamlined updates for existing ones.
+On top of that, we extended the installation methods across multiple package managers such as [npm](https://www.npmjs.com/)) and [Homebrew](https://brew.sh/), making it even more accessible to developers. Whether you're using Homebrew, Cargo, npm, Nix or compile from sources, Aiken's installation has become more straightforward, removing barriers for new users and facilitating streamlined updates for existing ones.
 
 ##### Documentation and Usability
 
@@ -256,7 +256,7 @@ Most notably, the documentation now comes with a source linker, which allows us 
 
 ![][image22]
 
-The sidebar has also been reworked, and we've given developers some level of freedom in how they organize it. Initially, the sidebar would be automatically generated and contain every exported identifier from a module, alphabetically sorted. When modules get larger than a few functions – that is, most of the time – this can become hard to navigate, even with the presence of a search bar.
+The sidebar has also been reworked and we've given developers some level of freedom in how they organize it. Initially, the sidebar would be automatically generated and contain every exported identifier from a module, alphabetically sorted. When modules get larger than a few functions – that is, most of the time – this can become hard to navigate, even with the presence of a search bar.
 
 Developers can now break down functions into sections that make sense from the module's context. On top of that, the modules' navigation has been considerably reworked to be more hierarchical and ensure maximum readability even with many levels of nesting.
 
@@ -286,7 +286,7 @@ Since the release of alpha, we've introduced up to 20% performance improvements 
 
 There are still noteworthy next steps to tackle for the Aiken project. One is the finalization and formalization of the Aiken Intermediary Representation (AIR), an internal language the Aiken compiler uses before producing the final UPLC. If you've followed along the development of Plutus, this is very similar to the PIR (Plutus Intermediary Representation) language.
 
-In fact, you can think of a compiler as a pipeline of language transformation, going from a high-level language that is most expressive down to the bytecode (or, in the case of Cardano, UPLC) that the machine understands. Writing this machine language by hand is cumbersome and error-prone, but so is going from a very high-level language to machine language directly. So compilers typically do this in steps, and Aiken is no different in that regard.
+In fact, you can think of a compiler as a pipeline of language transformation, going from a high-level language that is most expressive down to the bytecode (or, in the case of Cardano, UPLC) that the machine understands. Writing this machine language by hand is cumbersome and error-prone, but so is going from a very high-level language to machine language directly. So compilers typically do this in steps and Aiken is no different in that regard.
 
 For each of those steps, there's room for mistakes. So careful testing is paramount. And the closest we get to the machine language, the easiest it becomes to formalize languages and go beyond testing. We can prove properties and theorems. This is where tools like Agda, Coq or Lean come into play.
 
@@ -294,7 +294,7 @@ There is already some work happening on reducing the Aiken IR and formally verif
 
 #### Community and Ecosystem Growth
 
-The general availability of Aiken also reflects its growing adoption within the Cardano ecosystem. With these new features and tools, developers are better equipped to build robust, secure, and scalable smart contracts. The continued enhancements to Aiken underscore the Cardano Foundation's commitment to fostering a vibrant and innovative development community.
+The general availability of Aiken also reflects its growing adoption within the Cardano ecosystem. With these new features and tools, developers are better equipped to build robust, secure and scalable smart contracts. The continued enhancements to Aiken underscore the Cardano Foundation's commitment to fostering a vibrant and innovative development community.
 
 ##### KPIs
 
@@ -316,7 +316,7 @@ In fact, over July, August and September 2024, Aiken powered 52%, 55% and 63% of
 
 These metrics clearly show Aiken's adoption over time. But this is also something that we've experienced firsthand, connecting with builders and supporting projects in their integration, watching them drive innovation and performance of the smart contract landscape to new heights.
 
-Feedback has been overwhelmingly positive, and projects have implemented features they never thought possible due to performance or maintainability constraints. The most prominent decentralized applications adopted Aiken as a core part of their growth strategies. Notable mentions include [Jpg Store](https://jpg.store), [Sundae Labs](https://sundae.fi/), [Minswap](https://minswap.org/), [DexHunter](https://www.dexhunter.io/), [Lenfi](https://lenfi.io/) and many more. That's quite the accomplishment within the past year, and we aren't seeing any signs of slowing down.
+Feedback has been overwhelmingly positive and projects have implemented features they never thought possible due to performance or maintainability constraints. The most prominent decentralized applications adopted Aiken as a core part of their growth strategies. Notable mentions include [Jpg Store](https://jpg.store), [Sundae Labs](https://sundae.fi/), [Minswap](https://minswap.org/), [DexHunter](https://www.dexhunter.io/), [Lenfi](https://lenfi.io/) and many more. That's quite the accomplishment within the past year and we aren't seeing any signs of slowing down.
 
 ##### Open source
 

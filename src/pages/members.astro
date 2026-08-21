@@ -33,7 +33,14 @@ const members = await Promise.all(
     <Hero
       tag="Members"
       title="Unwavering industry experts, dedicated to improving the blockchain ecosystem."
-    />
+      showPattern={false}
+    >
+      <p class="intro">
+        These are PRAGMA's founding member organizations; each has a delegate in
+        the General Assembly, the member body that sets PRAGMA's formal
+        direction.
+      </p>
+    </Hero>
 
     <section id="members">
       {
@@ -88,10 +95,13 @@ const members = await Promise.all(
 
       & img {
         display: inline-block;
-        max-height: 3.5rem;
+        height: 4.8rem;
         object-fit: contain;
         width: 100%;
+        padding: 1rem;
         margin-bottom: var(--gap-sm);
+        background: var(--pragma-ink);
+        border-radius: 8px;
 
         & + :global(p) {
           margin-bottom: var(--gap-sm);
@@ -102,8 +112,9 @@ const members = await Promise.all(
 
       & :global(p) {
         text-align: justify;
-        word-wrap: break-word;
-        hyphens: auto;
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: none;
         line-height: 1.25em;
       }
 
@@ -128,6 +139,12 @@ const members = await Promise.all(
         }
       }
     }
+  }
+
+  .intro {
+    max-width: 42rem;
+    color: var(--pragma-muted);
+    line-height: 1.55;
   }
 
   @media screen and (max-width: 1000px) {

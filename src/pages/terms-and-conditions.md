@@ -35,7 +35,7 @@ By using our website, you confirm that you accept these Terms and that you agree
 
 We are the owner or licensee of all intellectual property rights in our website and in the materials published on it. The content of this website is under an open-source licence known as [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0). You may freely use the content and material of this website according to the terms and conditions provided by this licence.
 
-This licence shall automatically terminate if you violate any of these restrictions and may be terminated by PRAGMA at any time. Upon termination of this licence, you must destroy any materials in your possession whether in electronic or printed format, and confirm your compliance with this provision in writing.
+This licence shall automatically terminate if you violate any of these restrictions and may be terminated by PRAGMA at any time. Upon termination of this licence, you must destroy any materials in your possession whether in electronic or printed format and confirm your compliance with this provision in writing.
 
 ### Trademark
 
@@ -51,7 +51,7 @@ PRAGMA is a registered trademark. You can use it only with our written approval.
 
 ### Limitations of liability for losses or damages
 
-In no event shall PRAGMA or its subcontractors be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on this website, even if PRAGMA or a PRAGMA authorised representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
+In no event shall PRAGMA or its subcontractors be liable for any damages (including, without limitation, damages for loss of data or profit or due to business interruption) arising out of the use or inability to use the materials on this website, even if PRAGMA or a PRAGMA authorised representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
 
 ### We are not responsible for websites we link to
 
@@ -59,9 +59,9 @@ PRAGMA has not reviewed all of the sites linked to its website and is not respon
 
 ### Changes, suspension or withdrawal of the website
 
-- We may update and change our website from time to time to reflect changes to our products, our users’ needs, and our business priorities. We will try to give you reasonable notice of any major changes if we deem this necessary or useful.
+- We may update and change our website from time to time to reflect changes to our products, our users’ needs and our business priorities. We will try to give you reasonable notice of any major changes if we deem this necessary or useful.
 - Our website is made available free of charge, except where explicitly stated otherwise.
-- We do not guarantee that our website, or any content on it, will always be available or be uninterrupted. We may suspend or withdraw or restrict the availability of all or any part of our website for business and operational reasons. We will try to give you reasonable notice of any suspension or withdrawal if we deem this necessary or useful.
+- We do not guarantee that our website or any content on it, will always be available or be uninterrupted. We may suspend or withdraw or restrict the availability of all or any part of our website for business and operational reasons. We will try to give you reasonable notice of any suspension or withdrawal if we deem this necessary or useful.
 
 ### Modifications of these Terms
 

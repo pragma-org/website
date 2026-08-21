@@ -1,0 +1,388 @@
+---
+// Copyright 2024 PRAGMA
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+import { getCollection } from 'astro:content';
+
+import Layout from '../../layouts/base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+
+const projects = await getCollection('projects');
+const projectApplicationUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSf1nlUEAbmc1Hb4r_H8knRGQ7p-e6Ihim5zisQRzYnzbwld9w/viewform';
+
+const projectMetadata = {
+  Aiken: {
+    description: 'smart contract language for cardano',
+    details: 'rust · apache-2.0',
+  },
+  Amaru: {
+    description: 'alternative rust node client',
+    details: 'rust · apache-2.0',
+  },
+};
+
+const projectsByName = new Map(
+  projects.map((project) => [project.data.name, project]),
+);
+
+const featuredProjects = ['Aiken', 'Amaru']
+  .map((name) => projectsByName.get(name))
+  .filter((project): project is (typeof projects)[number] => Boolean(project));
+---
+
+<Layout
+  title="Projects"
+  description="Current PRAGMA projects and the path for new projects to apply.">
+  <main>
+    <Hero tag="projects" title="Projects">
+      <p class="intro">
+        PRAGMA supports open-source infrastructure projects and is currently
+        evaluating new projects for membership.
+      </p>
+    </Hero>
+
+    <Section tag="current projects" id="current-projects">
+      <div id="cards">
+        {
+          featuredProjects.map((project) => (
+            <a
+              class="project-card no-effect"
+              href={`/projects/${project.slug}`}
+              aria-label={`View ${project.data.name}`}>
+              <div class="project-card-head">
+                <h3>{project.data.name}</h3>
+                <span class="status">active</span>
+              </div>
+              <p>
+                {
+                  projectMetadata[
+                    project.data.name as keyof typeof projectMetadata
+                  ].description
+                }
+              </p>
+              <div class="project-card-foot">
+                <span>
+                  {
+                    projectMetadata[
+                      project.data.name as keyof typeof projectMetadata
+                    ].details
+                  }
+                </span>
+              </div>
+            </a>
+          ))
+        }
+        <article class="project-card placeholder">
+          <p class="eyebrow">new project</p>
+          <h3>under member review</h3>
+        </article>
+      </div>
+    </Section>
+
+    <Section tag="project path" id="project-path">
+      <div class="path-intro">
+        <p>
+          New projects move through a public governance path before becoming
+          active PRAGMA projects. Twice a year, the Project Committee (the
+          group that reviews incoming project applications) announces an
+          application period, reviews candidates, recommends projects to the
+          Administrative Board (the board that handles day-to-day operations)
+          and helps oversee the process through incubation.
+        </p>
+        <div class="path-actions">
+          <a class="button primary no-effect" href={projectApplicationUrl}
+            >apply now</a
+          >
+          <a
+            class="path-link no-effect"
+            href="https://github.com/pragma-org/PDRs/tree/main/PDR-0003-Prospective-Projects"
+            >read pdr-0003</a
+          >
+        </div>
+      </div>
+      <ol class="path-steps">
+        <li>
+          <span>01</span>
+          <strong>apply</strong>
+          <p>
+            Applications are open now. Project owners submit through the intake
+            form during the application period.
+          </p>
+        </li>
+        <li>
+          <span>02</span>
+          <strong>review</strong>
+          <p>
+            The Project Committee checks fit, openness, legal readiness and
+            roadmap clarity.
+          </p>
+        </li>
+        <li>
+          <span>03</span>
+          <strong>incubate</strong>
+          <p>
+            The Administrative Board may approve incubation and assign a PRAGMA
+            Guide.
+          </p>
+        </li>
+        <li>
+          <span>04</span>
+          <strong>graduate</strong>
+          <p>
+            After successful quarterly reviews, the board may propose the
+            project for full acceptance.
+          </p>
+        </li>
+        <li>
+          <span>05</span>
+          <strong>join</strong>
+          <p>
+            The General Assembly accepts the project and creates its Maintainer
+            Committee, the group that runs the project.
+          </p>
+        </li>
+      </ol>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding-bottom: var(--gap-lg);
+  }
+
+  main :global(section) {
+    margin: auto auto;
+    max-width: 60rem;
+    width: 100%;
+  }
+
+  .intro {
+    max-width: 42rem;
+    color: var(--pragma-muted);
+    line-height: 1.55;
+  }
+
+  #current-projects,
+  #project-path {
+    align-items: stretch;
+  }
+
+  #current-projects :global(.tag),
+  #project-path :global(.tag) {
+    align-self: flex-start;
+    color: var(--pragma-accent);
+  }
+
+  #cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: var(--gap-md);
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 6.4rem;
+    padding: 1rem;
+    border: 1px solid var(--pragma-border);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.72);
+    transition:
+      border-color 0.18s ease,
+      transform 0.18s ease,
+      background 0.18s ease;
+  }
+
+  a.project-card:hover,
+  a.project-card:focus-visible {
+    border-color: rgba(11, 30, 54, 0.45);
+    background: rgba(255, 255, 255, 0.92);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .project-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .project-card h3 {
+    margin: 0;
+    color: var(--pragma-ink);
+    font-family: var(--font-secondary);
+    font-size: 0.92rem;
+    text-transform: lowercase;
+  }
+
+  .project-card p {
+    margin: 0.75rem 0 0;
+    color: var(--pragma-muted);
+    font-size: 0.82rem;
+    line-height: 1.35;
+    text-transform: lowercase;
+  }
+
+  .status {
+    flex: 0 0 auto;
+    padding: 0.3rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(127, 201, 163, 0.18);
+    color: var(--pragma-ink);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.68rem;
+    text-transform: lowercase;
+  }
+
+  .project-card-foot {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 0.9rem;
+    color: var(--pragma-muted);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.72rem;
+    text-transform: lowercase;
+  }
+
+  .project-card.placeholder {
+    border-style: dashed;
+    background: transparent;
+    justify-content: center;
+    min-height: 6.4rem;
+    padding-left: 1rem;
+  }
+
+  .project-card.placeholder h3 {
+    margin-top: 0.6rem;
+    color: var(--pragma-muted);
+  }
+
+  .eyebrow {
+    color: var(--pragma-ink);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0;
+    text-transform: lowercase;
+  }
+
+  .path-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.25rem;
+    align-items: end;
+    margin-top: 0.9rem;
+  }
+
+  .path-intro p {
+    max-width: 46rem;
+    margin: 0;
+    color: rgba(11, 30, 54, 0.75);
+    line-height: 1.55;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0.72rem 1.1rem;
+    border: 1px solid var(--pragma-ink);
+    border-radius: 6px;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: lowercase;
+  }
+
+  .button.primary {
+    background: var(--pragma-ink);
+    color: var(--pragma-paper);
+  }
+
+  .path-link {
+    color: var(--pragma-ink);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.72rem;
+    text-transform: lowercase;
+    border-bottom: 1px solid var(--pragma-accent);
+  }
+
+  .path-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    justify-content: flex-end;
+  }
+
+  .path-steps {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.4rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .path-steps li {
+    min-height: 9rem;
+    padding: 1rem;
+    border: 1px solid var(--pragma-border);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.62);
+  }
+
+  .path-steps span,
+  .path-steps strong {
+    display: block;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.72rem;
+    text-transform: lowercase;
+  }
+
+  .path-steps span {
+    color: var(--pragma-accent);
+  }
+
+  .path-steps strong {
+    margin-top: 0.7rem;
+    color: var(--pragma-ink);
+  }
+
+  .path-steps p {
+    margin: 0.7rem 0 0;
+    color: var(--pragma-muted);
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 1000px) {
+    #cards,
+    .path-intro,
+    .path-steps {
+      grid-template-columns: 1fr;
+    }
+
+    .path-actions {
+      justify-content: flex-start;
+    }
+  }
+</style>

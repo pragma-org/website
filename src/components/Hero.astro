@@ -20,10 +20,11 @@ import Grid from '../components/Grid.astro';
 interface Props extends HTMLAttributes<'section'> {
   title: string;
   image?: string | null;
+  showPattern?: boolean;
   tag: string;
 }
 
-const { title, tag, image, ...props } = Astro.props;
+const { title, tag, image, showPattern = true, ...props } = Astro.props;
 ---
 
 <header {...props}>
@@ -39,12 +40,22 @@ const { title, tag, image, ...props } = Astro.props;
   <slot />
 </header>
 
-<Grid rows={1} actives={new Set([2, 3, 6, 7, 8, 9, 12, 13, 18, 19])} />
+{
+  showPattern && (
+    <Grid rows={1} actives={new Set([2, 3, 6, 7, 8, 9, 12, 13, 18, 19])} />
+  )
+}
 
 <style>
   header {
     padding: var(--gap-md);
     overflow-x: hidden;
+  }
+
+  h1 {
+    max-width: 42rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05;
   }
 
   span.tag {
