@@ -75,7 +75,7 @@ const render = (md) =>
 
   <section class="cards next">
     <h3>Next</h3>
-    <p>Upcoming steps already planned for development.</p>
+    <p>Upcoming priorities.</p>
     {
       roadmap.next.map(({ title, description, href }) => (
         <article class="item">
@@ -93,25 +93,27 @@ const render = (md) =>
     }
   </section>
 
-  <section class="cards discussions">
-    <h3>Under discussion</h3>
-    <p>Discussions and design under consideration.</p>
-    {
-      roadmap.discussions.map(({ title, description, href }) => (
-        <article class="item">
-          <h5>{title}</h5>
-          {render(description)}
-          <a class="no-effect" target="_blank" href={href} aria-label={title} />
-          <span class="more">
-            Read more{' '}
-            <svg class="icon slide">
-              <use xlink:href="#external-link" />
-            </svg>
-          </span>
-        </article>
-      ))
-    }
-  </section>
+  {
+    roadmap.discussions?.length ? (
+      <section class="cards discussions">
+        <h3>Under discussion</h3>
+        <p>Discussions and design under consideration.</p>
+        {roadmap.discussions.map(({ title, description, href }) => (
+          <article class="item">
+            <h5>{title}</h5>
+            {render(description)}
+            <a class="no-effect" target="_blank" href={href} aria-label={title} />
+            <span class="more">
+              Read more{' '}
+              <svg class="icon slide">
+                <use xlink:href="#external-link" />
+              </svg>
+            </span>
+          </article>
+        ))}
+      </section>
+    ) : null
+  }
 </Section>
 
 <style>
@@ -136,11 +138,17 @@ const render = (md) =>
       background: var(--color);
       display: grid;
       grid-template-columns: auto;
-      grid-template-rows: 4em auto min-content;
+      grid-template-rows: auto auto min-content;
       gap: var(--gap-sm);
       padding: var(--gap-sm) var(--gap-md);
 
       position: relative;
+
+      & h5 {
+        margin: 0;
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+      }
 
       & span.more {
         display: inline-block;

@@ -78,7 +78,7 @@ const render = (md) =>
                 for={`phase-${ix + 1}`}
                 class="phase">
                 <>
-                  <span>Phase {ix + 1}</span>
+                  <span>{phase.name}</span>
                   <span>{phase.start}</span>
                 </>
               </label>
@@ -186,9 +186,10 @@ const render = (md) =>
     justify-content: center;
     position: relative;
     color: var(--color);
-    height: 5rem;
+    height: 3.75rem;
     width: 20%;
     min-width: 12rem;
+    line-height: 1.2;
 
     & > span {
       width: 50%;
@@ -355,7 +356,7 @@ const render = (md) =>
         }
 
         & h4::after {
-          content: 'Milestone ' attr(data-milesone) ' — ' attr(data-when);
+          content: attr(data-when);
           font-size: 0.3em;
           opacity: 0.5;
           position: absolute;
