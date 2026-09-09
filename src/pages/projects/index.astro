@@ -25,11 +25,24 @@ const projectApplicationUrl =
 
 const projectMetadata = {
   Aiken: {
+    status: 'active',
     description: 'smart contract language for cardano',
+    sustainability: 'active maintainer and ecosystem support discussions',
+    reporting: 'quarterly reports and public repositories',
     details: 'rust · apache-2.0',
   },
   Amaru: {
+    status: 'active',
     description: 'alternative rust node client',
+    sustainability: 'cardano treasury-funded development workstream',
+    reporting: 'quarterly reports, roadmap and public milestones',
+    details: 'rust · apache-2.0',
+  },
+  'cardano-init': {
+    status: 'onboarding',
+    description: 'setup cli for cardano project scaffolding',
+    sustainability: 'devx initiative workstream with pragma onboarding support',
+    reporting: 'devx tracker, public repository and onboarding records',
     details: 'rust · apache-2.0',
   },
 };
@@ -38,7 +51,7 @@ const projectsByName = new Map(
   projects.map((project) => [project.data.name, project]),
 );
 
-const featuredProjects = ['Aiken', 'Amaru']
+const featuredProjects = ['Aiken', 'Amaru', 'cardano-init']
   .map((name) => projectsByName.get(name))
   .filter((project): project is (typeof projects)[number] => Boolean(project));
 ---
@@ -49,12 +62,12 @@ const featuredProjects = ['Aiken', 'Amaru']
   <main>
     <Hero tag="projects" title="Projects">
       <p class="intro">
-        PRAGMA supports open-source infrastructure projects and is currently
-        evaluating new projects for membership.
+        PRAGMA supports active open-source infrastructure projects and helps
+        new projects move through a clear onboarding path.
       </p>
     </Hero>
 
-    <Section tag="current projects" id="current-projects">
+    <Section tag="projects" id="current-projects">
       <div id="cards">
         {
           featuredProjects.map((project) => (
@@ -64,7 +77,13 @@ const featuredProjects = ['Aiken', 'Amaru']
               aria-label={`View ${project.data.name}`}>
               <div class="project-card-head">
                 <h3>{project.data.name}</h3>
-                <span class="status">active</span>
+                <span class="status">
+                  {
+                    projectMetadata[
+                      project.data.name as keyof typeof projectMetadata
+                    ].status
+                  }
+                </span>
               </div>
               <p>
                 {
@@ -73,6 +92,28 @@ const featuredProjects = ['Aiken', 'Amaru']
                   ].description
                 }
               </p>
+              <dl class="project-meta">
+                <div>
+                  <dt>sustainability</dt>
+                  <dd>
+                    {
+                      projectMetadata[
+                        project.data.name as keyof typeof projectMetadata
+                      ].sustainability
+                    }
+                  </dd>
+                </div>
+                <div>
+                  <dt>reporting</dt>
+                  <dd>
+                    {
+                      projectMetadata[
+                        project.data.name as keyof typeof projectMetadata
+                      ].reporting
+                    }
+                  </dd>
+                </div>
+              </dl>
               <div class="project-card-foot">
                 <span>
                   {
@@ -85,10 +126,6 @@ const featuredProjects = ['Aiken', 'Amaru']
             </a>
           ))
         }
-        <article class="project-card placeholder">
-          <p class="eyebrow">new project</p>
-          <h3>under member review</h3>
-        </article>
       </div>
     </Section>
 
@@ -237,6 +274,32 @@ const featuredProjects = ['Aiken', 'Amaru']
     font-size: 0.82rem;
     line-height: 1.35;
     text-transform: lowercase;
+  }
+
+  .project-meta {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0.9rem 0 0;
+    color: var(--pragma-muted);
+    font-size: 0.76rem;
+    line-height: 1.35;
+    text-transform: lowercase;
+  }
+
+  .project-meta div {
+    display: grid;
+    gap: 0.18rem;
+  }
+
+  .project-meta dt,
+  .project-meta dd {
+    margin: 0;
+  }
+
+  .project-meta dt {
+    color: var(--pragma-ink);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.68rem;
   }
 
   .status {

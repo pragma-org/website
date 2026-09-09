@@ -28,6 +28,7 @@ maintainers:
   - rvcas
   - MicroProofs
   - Riley
+hideReports: true
 links:
   - to: Source code
     href: 'https://github.com/aiken-lang/aiken'
@@ -40,40 +41,39 @@ links:
 roadmap:
   type: past-present-future
   recently:
-    - title: Workspaces
+    - title: Aiken v1.1.23
       description: |
-        Straightforward support for workspaces via a `members` property in the root `aiken.toml` file. Glob patterns are supported.
-      href: 'https://github.com/aiken-lang/aiken/releases/tag/v1.1.16'
-    - title: Types as Namespaces
+        The latest release refreshed UPLC execution support with protocol-aware builtin semantics, Plutus V3 PV11 cost-model parsing, updated cost models and several compiler correctness fixes.
+      href: 'https://github.com/aiken-lang/aiken/releases/tag/v1.1.23'
+    - title: Aiken v1.1.22
       description: |
-        Introduces support for using types as namespaces to access constructors in patterns and value construction. This simplifies the import management; especially for types with many constructors where it can get quite cumbersome having to import each constructor independently.
-      href: https://github.com/aiken-lang/aiken/pull/1119
-    - title: Benchmarks
+        Aiken added blueprint export controls, a `test` alias for `check`, clearer benchmark output and projected maximum-size reporting for benches.
+      href: 'https://github.com/aiken-lang/aiken/releases/tag/v1.1.22'
+    - title: Compiler and tooling fixes
       description: |
-        A new `bench` command and language keyword. The command is very similar to aiken check and will collect and run benchmarks found across the codebase. A bench is a new type of test that takes in a Sampler. A Sampler is a scaled Fuzzer which receive a monotically increasing size as parameter. This allows fine-grained control over generated values.
-      href: https://aiken-lang.org/language-tour/bench
+        Recent releases continued improving generated documentation, custom error traces, blueprint encoding, LSP diagnostics and edge-case compiler behavior.
+      href: 'https://github.com/aiken-lang/aiken/releases'
   currently:
-    - title: New LSP quickfixes
+    - title: Compiler and runtime robustness
       description: |
-        A variety of new automatic LSP quickfixes to cover warnings and errors such as "unexpected type holes", "unused private constant" or "unused private function".
-      href: https://github.com/aiken-lang/aiken/pull/1162
-    - title: Replaying Transaction with Custom Script
+        Current work is focused on hardening parser, compiler and UPLC behavior, including fixes for constant folding, deeply nested expressions, EOF diagnostics and other edge cases surfaced by real users.
+      href: 'https://github.com/aiken-lang/aiken/pulls'
+    - title: Blueprint and export improvements
       description: |
-        Allows users to re-run an existing transaction while overridding specific scripts (to introduce traces, for example) without altering the transaction CBOR. This comes as an extra troubleshooting mechanism when something goes wrong in production.
-      href: https://github.com/aiken-lang/aiken/pull/1158
+        Open work continues around CIP-57 blueprint generation, dependency export behavior and source-map support so compiled contracts are easier to inspect, debug and integrate.
+      href: 'https://github.com/aiken-lang/aiken/issues?q=is%3Aissue%20state%3Aopen%20blueprint%20OR%20export%20OR%20source-map'
+    - title: Toolchain maintenance
+      description: |
+        Maintainers and contributors are keeping the Rust, cryptography, Nix and example-project dependency stack current so Aiken remains reliable across supported development environments.
+      href: 'https://github.com/aiken-lang/aiken/pulls?q=is%3Apr%20state%3Aopen%20chore%2Fdeps%20OR%20nix'
   next:
-    - title: Zero-Knowledge support
+    - title: Hard-fork and Plutus readiness
       description: |
-        Make Aiken capable of producing arithmetic circuits for zero-knowledge proving. Various ideas are being explored, mostly relying on the existing tooling around RISC-V and WebAssembly.
+        Keep Aiken reliable through upcoming Cardano protocol changes, including new Plutus builtins, script-context changes, compatibility tests, migration notes and release support for developers.
+      href: 'https://github.com/aiken-lang/aiken/issues'
   discussions:
-    - title: Uses of Case and Constr in Aiken
-      href: 'https://github.com/aiken-lang/aiken/discussions/1056'
-    - title: Test assertion for cpu and memory budget
-      href: 'https://github.com/aiken-lang/aiken/discussions/1130'
-    - title: Add support for "deprecation" declarations
-      href: 'https://github.com/aiken-lang/aiken/discussions/1131'
-    - title: Custom encodings for structs/records
-      href: 'https://github.com/aiken-lang/aiken/discussions/1132'
+    - title: Aiken maintenance and protocol-readiness treasury proposal
+      href: 'https://github.com/aiken-lang/aiken/discussions/1429'
 ---
 
 ## Foster growth in the Cardano ecosystem.
