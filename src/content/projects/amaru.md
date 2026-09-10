@@ -30,25 +30,27 @@ maintainers:
 links:
   - to: Source code
     href: 'https://github.com/pragma-org/amaru/'
-  - to: Project tracking
-    href: 'https://amaru.global/roadmap'
-  - to: Treasury
-    href: 'https://amaru.global/treasury/'
-  - to: Documentation
-    href: 'https://amaru.global'
   - to: Contributing
     href: 'https://github.com/pragma-org/amaru/blob/main/CONTRIBUTING.md'
+  - to: Project tracking
+    href: 'https://github.com/pragma-org/amaru/milestones'
+  - to: Treasury
+    href: 'https://github.com/pragma-org/amaru-treasury/tree/main/journal'
+  - to: Documentation
+    href: 'https://amaru.global'
 fundingMilestones:
   title: Funding and milestone transparency
   summary: |
-    Amaru development has been supported through Cardano treasury funding for alternative node implementation work. PRAGMA supports Amaru through project governance, maintainer committee structure, reporting expectations, legal and operational support, and ecosystem coordination.
+    Amaru development has been supported through Cardano treasury funding for alternative node implementation work.
+
+    PRAGMA supports Amaru through project governance, maintainer committee structure, reporting expectations, legal and operational support, and ecosystem coordination.
   status: |
-    Current technical work is tracked on the Amaru roadmap and in GitHub milestones. PRAGMA uses quarterly reports and public milestones to follow progress, surface support needs, and keep project governance visible. PRAGMA is not the treasury fund custodian and does not receive earmarked project donations for Amaru.
+    Current technical work is tracked through public GitHub milestones and treasury reporting.
+
+    PRAGMA is not the treasury fund custodian and does not receive earmarked project donations for Amaru.
   links:
-    - to: Current roadmap
-      href: 'https://amaru.global/roadmap/'
     - to: Treasury overview
-      href: 'https://amaru.global/treasury/'
+      href: 'https://github.com/pragma-org/amaru-treasury/tree/main/journal'
     - to: GitHub milestones
       href: 'https://github.com/pragma-org/amaru/milestones'
 demos:
@@ -131,13 +133,15 @@ roadmap:
   phases:
     - name: 2025 funded foundation
       color: '#99c2ff'
+      highlight: true
       description: |
-        Amaru was successfully funded for ₳1,500,000 in 2025 to establish the
-        foundation for a Rust Cardano node. That work moved the project through
-        chain synchronization, ledger state tracking, conformance testing,
+        Amaru received ₳1,500,000 in Cardano Treasury funding through community
+        approval in 2025 to establish the foundation for a block-producing
+        Rust Cardano node.
+        That work moved the project through chain synchronization, ledger state tracking, conformance testing,
         simulations, observability, peer-to-peer networking and relay-oriented
         behavior.
-      start: 2025 first proposal
+      start: 2025 proposal
       milestones:
         - when: Q1 2025
           title: Stake distribution, consensus and simulation testing
@@ -199,13 +203,13 @@ roadmap:
 
     - name: 2026 core development
       color: '#f7b262'
-      highlight: true
       description: |
-        Amaru was funded for ₳10,142,000 in 2026 to close the gap between a
-        relay-capable node and a production-ready alternative implementation.
+        Amaru received ₳10,142,000 in Cardano Treasury funding through community
+        approval in 2026 to advance the 2025 foundation toward relay capability,
+        block production and mainnet readiness.
         The core development track covers relay wrap-up, hard-fork readiness,
         block-production work, security review and mainnet-readiness fixes.
-      start: Q1-Q3 2026
+      start: 2026 proposal
       milestones:
         - when: Q1 2026
           title: Relay wrap-up and intra-era hard-fork readiness
@@ -335,6 +339,6 @@ roadmap:
 
 ## Build a new fully interoperable block-producing Cardano node.
 
-One of the core objectives is to achieve a full block-producing Cardano node which can run side-by-side the existing Haskell nodes in a fully interoperable manner. The project is ambitious and spans over many areas such as networking, cryptography or language theory. It is developed from several parts each covering a different aspect of the node and its surrounding ecosystem.
+One of the core objectives is to achieve a full block-producing Rust Cardano node which can run side-by-side the existing Haskell nodes in a fully interoperable manner. The project is ambitious and spans over many areas such as networking, cryptography or language theory. It is developed from several parts each covering a different aspect of the node and its surrounding ecosystem.
 
 Besides, Amaru is also **geared towards developer experience** and aims at providing easy to grasp interfaces using widely spread technologies such as gRPC while maintaining compatibility with the strong ecosystem of middlewares, such as Ogmios or Oura, that constitutes the backbone of Cardano services.

@@ -30,6 +30,23 @@ import Journey from '../components/roadmaps/Journey.astro';
 import PastPresentFuture from '../components/roadmaps/PastPresentFuture.astro';
 
 const { project } = Astro.props;
+const fundingSummary =
+  project.data.fundingMilestones?.summary
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean) ?? [];
+const fundingStatus =
+  project.data.fundingMilestones?.status
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean) ?? [];
+const fundingRows = Array.from(
+  { length: Math.max(fundingSummary.length, fundingStatus.length) },
+  (_, index) => ({
+    summary: fundingSummary[index],
+    status: fundingStatus[index],
+  }),
+);
 
 const maintainers = await Promise.all(
   project.data.maintainers.map(async (maintainerId: string) => {
@@ -156,8 +173,12 @@ const render = (md) =>
           title={project.data.fundingMilestones.title}
           id="funding-and-milestones">
           <div class="funding-overview">
-            <p>{project.data.fundingMilestones.summary}</p>
-            <p>{project.data.fundingMilestones.status}</p>
+            {fundingRows.map((row) => (
+              <div class="funding-row">
+                {row.summary ? <p>{row.summary}</p> : <span aria-hidden="true"></span>}
+                {row.status ? <p>{row.status}</p> : <span aria-hidden="true"></span>}
+              </div>
+            ))}
           </div>
           <nav class="funding-links">
             {project.data.fundingMilestones.links.map((link) => (
@@ -312,12 +333,17 @@ const render = (md) =>
 
   .funding-overview {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--gap-md);
+    gap: 0.65rem;
     max-width: min(64rem, 100%);
     margin: 0 auto;
     color: var(--pragma-muted);
     line-height: 1.5;
+  }
+
+  .funding-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--gap-md);
   }
 
   .funding-overview p {
@@ -326,10 +352,29 @@ const render = (md) =>
 
   .funding-links {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(10rem, 16rem));
+    justify-content: center;
     gap: var(--gap-md);
     margin-top: var(--gap-md);
     padding: 0 var(--gap-lg);
+  }
+
+  .funding-links :global(article) {
+    min-height: 8rem;
+    height: auto;
+    box-sizing: border-box;
+    padding: var(--gap-sm) var(--gap-md);
+  }
+
+  .funding-links :global(article h4) {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .funding-links :global(article .pixel) {
+    display: none;
   }
 
   @media (max-width: 800px) {
@@ -347,13 +392,22 @@ const render = (md) =>
       }
     }
 
-    .funding-overview,
-    .funding-links {
+    .funding-row {
       grid-template-columns: 1fr;
+      row-gap: 0.65rem;
     }
 
     .funding-links {
       padding: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .funding-links {
+      grid-template-columns: 1fr;
+      max-width: 20rem;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 
