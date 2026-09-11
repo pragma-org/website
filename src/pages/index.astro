@@ -31,11 +31,18 @@ const projectApplicationUrl =
 
 const projectMetadata = {
   Aiken: {
+    status: 'active',
     description: 'smart contract language for cardano',
     details: 'rust · apache-2.0',
   },
   Amaru: {
+    status: 'active',
     description: 'alternative rust node client',
+    details: 'rust · apache-2.0',
+  },
+  'cardano-init': {
+    status: 'onboarding',
+    description: 'setup cli for cardano project scaffolding',
     details: 'rust · apache-2.0',
   },
 };
@@ -44,13 +51,14 @@ const projectsByName = new Map(
   projects.map((project) => [project.data.name, project]),
 );
 
-const featuredProjects = ['Aiken', 'Amaru']
+const featuredProjects = ['Aiken', 'Amaru', 'cardano-init']
   .map((name) => projectsByName.get(name))
   .filter((project): project is (typeof projects)[number] => Boolean(project));
 
 const activityRepos = [
   { label: 'amaru', fullName: 'pragma-org/amaru' },
   { label: 'aiken', fullName: 'aiken-lang/aiken' },
+  { label: 'cardano-init', fullName: 'input-output-hk/cardano-init' },
   { label: 'PDRs', fullName: 'pragma-org/PDRs' },
   { label: 'board', fullName: 'pragma-org/board' },
 ];
@@ -214,6 +222,7 @@ function describeGithubCommit(
 async function fetchRecentActivity(): Promise<Activity[]> {
   const headers = {
     Accept: 'application/vnd.github+json',
+    'Cache-Control': 'no-cache',
     'User-Agent': 'pragma-website',
   };
 
@@ -327,13 +336,14 @@ const recentActivity = await fetchRecentActivity();
 
     <section class="stats-strip" aria-label="PRAGMA ecosystem stats">
       <p>
-        2 open-source projects · 5 member organizations
+        3 open-source projects · 5 member organizations
       </p>
     </section>
 
     <Section tag="projects" id="projects">
       <p class="section-note">
-        PRAGMA is currently evaluating new projects for membership.
+        PRAGMA supports active open-source infrastructure projects and is
+        onboarding newly approved projects through the Project Committee.
       </p>
       <div id="cards">
         {
@@ -344,7 +354,13 @@ const recentActivity = await fetchRecentActivity();
               aria-label={`View ${project.data.name}`}>
               <div class="project-card-head">
                 <h3>{project.data.name}</h3>
-                <span class="status">active</span>
+                <span class="status">
+                  {
+                    projectMetadata[
+                      project.data.name as keyof typeof projectMetadata
+                    ].status
+                  }
+                </span>
               </div>
               <p>
                 {
@@ -365,10 +381,6 @@ const recentActivity = await fetchRecentActivity();
             </a>
           ))
         }
-        <article class="project-card placeholder">
-          <p class="eyebrow">new project</p>
-          <h3>under member review</h3>
-        </article>
       </div>
     </Section>
 
