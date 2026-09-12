@@ -1,0 +1,267 @@
+---
+// Copyright 2024 PRAGMA
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+import Layout from '../layouts/base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+
+const resources = [
+  {
+    title: 'Treasury proposal template',
+    description:
+      'A structured template for Cardano treasury budget proposals, including scope, milestones, cost breakdowns, administration, reporting and constitutionality checks. Designed for PRAGMA projects and easy to adapt for any project.',
+    href: 'https://github.com/pragma-org/mnemos/blob/main/TreasuryProposalTemplate.md',
+    meta: 'treasury proposals',
+  },
+  {
+    title: 'Incident resolution template',
+    description:
+      'A reusable process template for reporting, investigating and resolving community or project incidents with confidentiality, conflict-of-interest and accountability guidance.',
+    href: 'https://github.com/pragma-org/mnemos/blob/main/conflict_resolution.md',
+    meta: 'community standards',
+  },
+  {
+    title: 'Project intake and maturity checklist',
+    description:
+      'A self-assessment checklist for PRAGMA applicants and open-source projects to review what they have in place and identify what to strengthen as they mature.',
+    href: 'https://github.com/pragma-org/mnemos/blob/main/ProjectIntakeChecklist.md',
+    meta: 'project onboarding',
+  },
+  {
+    title: 'Quarterly project report template',
+    description:
+      'A reusable reporting template any PRAGMA or open-source project can adapt to summarize progress, risks, support needs and next steps on a regular cadence.',
+    href: 'https://github.com/pragma-org/mnemos/blob/main/QuarterlyProjectReportTemplate.md',
+    meta: 'project reporting',
+  },
+];
+---
+
+<Layout
+  title="Templates"
+  description="PRAGMA reusable templates and lightweight governance resources for open-source projects.">
+  <main>
+    <Hero tag="templates" title="Templates and reusable documents">
+      <p class="intro">
+        PRAGMA publishes reusable templates and lightweight standards to help
+        projects report progress, clarify expectations and improve how they work
+        in the open.
+      </p>
+    </Hero>
+
+    <Section tag="mnemos" title="Reusable project documents" id="mnemos">
+      <div class="standards-intro">
+        <p>
+          Named after Mnemosyne, the Greek Titan goddess of memory, Mnemos is
+          PRAGMA's public repository for reusable templates, reference documents
+          and lightweight standards. The goal is practical: make governance,
+          treasury work, incident response and project operations easier to
+          review, reuse and improve.
+        </p>
+        <a class="repo-link no-effect" href="https://github.com/pragma-org/mnemos"
+          >open mnemos on github</a
+        >
+      </div>
+
+      <div class="resource-grid">
+        {
+          resources.map((resource) => (
+            <a class="resource-card no-effect" href={resource.href}>
+              <p class="eyebrow">{resource.meta}</p>
+              <h3>{resource.title}</h3>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section tag="how to use" title="Start from the template, keep the record public" id="use">
+      <ol class="usage-list">
+        <li>
+          <span>01</span>
+          <div>
+            <strong>Copy the relevant template</strong>
+            <p>
+              Use Mnemos as a starting point for proposal structure, project
+              processes or operational standards.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>02</span>
+          <div>
+            <strong>Adapt it to the project</strong>
+            <p>
+              Replace placeholders with project-specific roles, evidence,
+              repositories, reporting locations and decision processes.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>03</span>
+          <div>
+            <strong>Keep it public</strong>
+            <p>
+              Publish adapted templates, updates and related discussion in the
+              open so others can follow, reuse and improve the work.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  main :global(section) {
+    align-items: stretch;
+  }
+
+  .intro {
+    max-width: 48rem;
+    margin: 0 auto;
+    color: var(--pragma-muted);
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .standards-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: var(--gap-md);
+    max-width: min(68rem, 100%);
+    margin: 0 auto var(--gap-md);
+    color: var(--pragma-muted);
+    line-height: 1.55;
+  }
+
+  .standards-intro p {
+    margin: 0;
+  }
+
+  .repo-link {
+    border: 1px solid var(--pragma-border);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    color: var(--pragma-ink);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.78rem;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-md);
+    max-width: min(68rem, 100%);
+    margin: 0 auto;
+  }
+
+  .resource-card {
+    display: flex;
+    min-height: 15rem;
+    flex-direction: column;
+    gap: 0.8rem;
+    border: 1px solid var(--pragma-border);
+    border-radius: 8px;
+    padding: var(--gap-md);
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--pragma-ink);
+    transition:
+      border-color 0.18s ease,
+      transform 0.18s ease,
+      background 0.18s ease;
+  }
+
+  .resource-card:hover,
+  .resource-card:focus-visible {
+    border-color: rgba(11, 30, 54, 0.45);
+    background: rgba(255, 255, 255, 0.92);
+    transform: translateY(-1px);
+  }
+
+  .resource-card .eyebrow {
+    margin: 0;
+    color: var(--color-secondary);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.72rem;
+    text-transform: lowercase;
+  }
+
+  .resource-card h3 {
+    margin: 0;
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
+    line-height: 1.08;
+  }
+
+  .resource-card p:last-child {
+    margin: 0;
+    color: var(--pragma-muted);
+    line-height: 1.5;
+  }
+
+  .usage-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-md);
+    max-width: min(68rem, 100%);
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+  }
+
+  .usage-list li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--gap-sm);
+    border-top: 1px solid var(--pragma-border);
+    padding-top: var(--gap-sm);
+  }
+
+  .usage-list span {
+    color: var(--color-secondary);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.78rem;
+  }
+
+  .usage-list strong {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--pragma-ink);
+  }
+
+  .usage-list p {
+    margin: 0;
+    color: var(--pragma-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .standards-intro,
+    .resource-grid,
+    .usage-list {
+      grid-template-columns: 1fr;
+    }
+
+    .repo-link {
+      justify-self: start;
+      white-space: normal;
+    }
+  }
+</style>
