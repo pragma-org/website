@@ -1,0 +1,249 @@
+---
+// Copyright 2024 PRAGMA
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+import Layout from '../../layouts/base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+
+const actions = [
+  {
+    title: 'Share before it feels finished',
+    text: 'Post an early draft with specific questions. It is easier for reviewers to help before scope, budget and milestones feel locked.',
+  },
+  {
+    title: 'Name the people affected',
+    text: 'Identify users, maintainers, DReps, SPOs, working groups and projects that should understand the proposal before it reaches a vote.',
+  },
+  {
+    title: 'Make feedback easy',
+    text: 'Give reviewers a short summary, the full proposal, the budget, milestone evidence and a clear place to leave comments.',
+  },
+  {
+    title: 'Respond in public',
+    text: 'When feedback changes the proposal, leave a visible trail of what changed and why. When it does not, explain the tradeoff.',
+  },
+  {
+    title: 'Ask for opposition early',
+    text: 'A useful review process should surface objections while there is still time to improve the proposal or narrow its scope.',
+  },
+  {
+    title: 'Keep evidence close',
+    text: 'Link repositories, reports, adoption signals, demos, audits and prior funding history from the proposal and from discussion threads.',
+  },
+];
+
+const resources = [
+  {
+    title: 'Cardano governance forum',
+    description:
+      'Post an early draft or discussion thread where governance participants can ask questions and review the rationale in public.',
+    href: 'https://forum.cardano.org/c/governance/140',
+  },
+  {
+    title: 'GovTool proposals',
+    description:
+      'Review live and past governance actions, understand what voters will see, and prepare for the formal proposal path.',
+    href: 'https://gov.tools/proposal_discussion',
+  },
+  {
+    title: 'DRepTalk',
+    description:
+      'Engage DReps where governance actions and treasury topics are discussed in a DRep-focused public venue.',
+    href: 'https://dreptalk.com/',
+  },
+  {
+    title: 'DRep Council',
+    description:
+      'Bring the proposal to the DRep Council when you need direct questions, objections or voting-context feedback from representatives.',
+    href: 'https://drepcouncil.org/',
+  },
+  {
+    title: 'Cardano Over Coffee',
+    description:
+      'Use community shows and open conversations to explain the proposal plainly, answer questions and hear what is confusing before submission.',
+    href: 'https://calendly.com/cardanoovercoffee/cardano-over-coffee',
+  },
+  {
+    title: 'Intersect Ekklesia',
+    description:
+      'Intersect uses Ekklesia during budget rounds for polling and budget-reconciliation feedback. It may not be open for active polls outside those windows.',
+    href: 'https://intersect.ekklesia.vote/',
+  },
+  {
+    title: 'PRAGMA treasury proposal template',
+    description:
+      'Use the template to make the proposal itself easier to read, audit and compare before socializing it.',
+    href: 'https://github.com/pragma-org/mnemos/blob/main/TreasuryProposalTemplate.md',
+  },
+];
+---
+
+<Layout
+  title="Proposal Socialization"
+  description="Guidance for sharing, refining and socializing Cardano treasury proposals before submission.">
+  <main>
+    <Hero tag="proposal outreach" title="Socialize the proposal before the vote">
+      <p class="intro">
+        A clear proposal is necessary, but it is not enough. Proposers also need
+        to help the community understand the work, test the assumptions and see
+        how feedback changed the final submission.
+      </p>
+    </Hero>
+
+    <Section tag="why it matters" title="Good proposals need a review path" id="why">
+      <div class="prose">
+        <p>
+          Treasury proposals ask the community to make a public funding decision.
+          That decision is easier when the proposal has already been discussed
+          with the people most likely to use, maintain, evaluate or oppose the
+          work. Socializing a proposal is not just promotion; it is part of due
+          diligence.
+        </p>
+        <p>
+          The goal is to make review constructive before the final version is
+          locked. A strong socialization process gives reviewers enough context
+          to ask useful questions, gives proposers time to respond, and gives
+          DReps and voters a public trail of how concerns were handled.
+        </p>
+      </div>
+    </Section>
+
+    <Section tag="practical steps" title="What to do before submission" id="steps">
+      <div class="action-grid">
+        {
+          actions.map((action, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{action.title}</h3>
+              <p>{action.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section tag="resources" title="Places to start" id="resources">
+      <div class="resource-list">
+        {
+          resources.map((resource) => (
+            <a class="resource-link no-effect" href={resource.href}>
+              <h3>{resource.title}</h3>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  main :global(section) {
+    align-items: stretch;
+  }
+
+  .intro,
+  .prose {
+    max-width: 52rem;
+    margin: 0 auto;
+    color: var(--pragma-muted);
+    line-height: 1.6;
+  }
+
+  .intro {
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    text-align: center;
+  }
+
+  .prose {
+    display: grid;
+    gap: var(--gap-sm);
+  }
+
+  .prose p {
+    margin: 0;
+  }
+
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-md);
+    max-width: min(72rem, 100%);
+    margin: 0 auto;
+  }
+
+  .action-grid article {
+    border-top: 1px solid var(--pragma-border);
+    padding-top: var(--gap-sm);
+  }
+
+  .action-grid span {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--color-secondary);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.78rem;
+  }
+
+  .action-grid h3,
+  .resource-link h3 {
+    margin: 0;
+    color: var(--pragma-ink);
+    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+    line-height: 1.12;
+  }
+
+  .action-grid p,
+  .resource-link p {
+    margin: 0.75rem 0 0;
+    color: var(--pragma-muted);
+    line-height: 1.5;
+  }
+
+  .resource-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-md);
+    max-width: min(72rem, 100%);
+    margin: 0 auto;
+  }
+
+  .resource-link {
+    display: block;
+    min-height: 10rem;
+    border: 1px solid var(--pragma-border);
+    border-radius: 8px;
+    padding: var(--gap-md);
+    background: rgba(255, 255, 255, 0.72);
+    transition:
+      border-color 0.18s ease,
+      transform 0.18s ease,
+      background 0.18s ease;
+  }
+
+  .resource-link:hover,
+  .resource-link:focus-visible {
+    border-color: rgba(11, 30, 54, 0.45);
+    background: rgba(255, 255, 255, 0.92);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 900px) {
+    .action-grid,
+    .resource-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
