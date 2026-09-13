@@ -1,0 +1,256 @@
+---
+// Copyright 2024 PRAGMA
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+import Layout from '../../layouts/base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+
+const checklist = [
+  {
+    title: 'First impression',
+    items: [
+      'The README explains what the project does and who it is for.',
+      'The current status is clear: experimental, testnet, production, maintenance mode or archived.',
+      'The license is visible and appropriate for open-source reuse.',
+      'The main repository, docs and release locations are easy to find.',
+    ],
+  },
+  {
+    title: 'Contributor path',
+    items: [
+      'CONTRIBUTING.md explains how to build, test and submit changes.',
+      'Issues or discussions show where newcomers can ask questions.',
+      'Useful first issues, labels or project boards make current work discoverable.',
+      'Expected review behavior and response times are stated or easy to infer.',
+    ],
+  },
+  {
+    title: 'Maintenance signals',
+    items: [
+      'Maintainers and areas of responsibility are named.',
+      'Recent commits, releases, issues or reports show whether the project is active.',
+      'Roadmap or milestone information is public enough for users to understand direction.',
+      'Known limitations and risks are documented honestly.',
+    ],
+  },
+  {
+    title: 'Security and operations',
+    items: [
+      'SECURITY.md or equivalent explains how to report vulnerabilities.',
+      'CI, tests or reproducible checks are visible to reviewers.',
+      'Release artifacts, packages or deployment instructions can be verified.',
+      'Critical credentials, package ownership and domain ownership have more than one responsible person.',
+    ],
+  },
+  {
+    title: 'Community evidence',
+    items: [
+      'Usage, integrations, examples or demos are linked where available.',
+      'Funding, grants or treasury work are disclosed when relevant.',
+      'Major decisions, incidents or scope changes have public notes.',
+      'Quarterly reports or progress updates exist when the project has public commitments.',
+    ],
+  },
+];
+
+const resources = [
+  {
+    title: 'CNCF project templates',
+    description:
+      'Reference examples for README, governance, maintainers, reviewing, security and contributor documents.',
+    href: 'https://contribute.cncf.io/projects/best-practices/templates/',
+  },
+  {
+    title: 'OpenSSF Scorecard',
+    description:
+      'Automated checks that help identify common security and supply-chain health signals in open-source repositories.',
+    href: 'https://scorecard.dev/',
+  },
+  {
+    title: 'CHAOSS metrics',
+    description:
+      'Community health metrics and models for thinking about project activity, responsiveness and sustainability.',
+    href: 'https://chaoss.community/kbtopic/all-metrics/',
+  },
+  {
+    title: 'PRAGMA project intake and maturity checklist',
+    description:
+      'A broader self-assessment for projects preparing for PRAGMA review or continuing to mature in public.',
+    href: 'https://github.com/pragma-org/mnemos/blob/main/ProjectIntakeChecklist.md',
+  },
+];
+---
+
+<Layout
+  title="Repository Health Checklist"
+  description="A practical checklist for open-source projects to make repositories easier to understand, evaluate, contribute to and maintain.">
+  <main>
+    <Hero tag="project quality" title="Repository health checklist">
+      <p class="intro">
+        A healthy repository helps people understand what a project is, whether
+        it is active, how to contribute and where to look for evidence. This
+        checklist is a practical starting point for any open-source project.
+      </p>
+    </Hero>
+
+    <Section tag="checklist" title="What a useful repository should make clear" id="checklist">
+      <div class="checklist-grid">
+        {
+          checklist.map((section) => (
+            <article>
+              <h3>{section.title}</h3>
+              <ul>
+                {section.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section tag="how to use" title="Use it as a review aid, not a gate" id="use">
+      <div class="prose">
+        <p>
+          Repository health is not a single score. Young projects, research
+          prototypes and mature infrastructure projects will look different.
+          The useful question is whether a reasonable reviewer, contributor or
+          user can understand the project without private context.
+        </p>
+        <p>
+          Projects can use this checklist before applying to PRAGMA, before
+          asking for public funding, before onboarding new maintainers, or as a
+          periodic self-review. The gaps it surfaces are often good candidates
+          for small documentation and governance improvements.
+        </p>
+      </div>
+    </Section>
+
+    <Section tag="resources" title="Related resources" id="resources">
+      <div class="resource-list">
+        {
+          resources.map((resource) => (
+            <a class="resource-link no-effect" href={resource.href}>
+              <h3>{resource.title}</h3>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  main :global(section) {
+    align-items: stretch;
+  }
+
+  .intro,
+  .prose {
+    max-width: 52rem;
+    margin: 0 auto;
+    color: var(--pragma-muted);
+    line-height: 1.6;
+  }
+
+  .intro {
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    text-align: center;
+  }
+
+  .prose {
+    display: grid;
+    gap: var(--gap-sm);
+  }
+
+  .prose p {
+    margin: 0;
+  }
+
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-md);
+    max-width: min(72rem, 100%);
+    margin: 0 auto;
+  }
+
+  .checklist-grid article {
+    border: 1px solid var(--pragma-border);
+    border-radius: 8px;
+    padding: var(--gap-md);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .checklist-grid h3,
+  .resource-link h3 {
+    margin: 0;
+    color: var(--pragma-ink);
+    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+    line-height: 1.12;
+  }
+
+  .checklist-grid ul {
+    display: grid;
+    gap: 0.65rem;
+    margin: var(--gap-sm) 0 0;
+    padding-left: 1.1rem;
+    color: var(--pragma-muted);
+    line-height: 1.45;
+  }
+
+  .resource-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-md);
+    max-width: min(72rem, 100%);
+    margin: 0 auto;
+  }
+
+  .resource-link {
+    display: block;
+    min-height: 10rem;
+    border: 1px solid var(--pragma-border);
+    border-radius: 8px;
+    padding: var(--gap-md);
+    background: rgba(255, 255, 255, 0.72);
+    transition:
+      border-color 0.18s ease,
+      transform 0.18s ease,
+      background 0.18s ease;
+  }
+
+  .resource-link:hover,
+  .resource-link:focus-visible {
+    border-color: rgba(11, 30, 54, 0.45);
+    background: rgba(255, 255, 255, 0.92);
+    transform: translateY(-1px);
+  }
+
+  .resource-link p {
+    margin: 0.75rem 0 0;
+    color: var(--pragma-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .checklist-grid,
+    .resource-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
