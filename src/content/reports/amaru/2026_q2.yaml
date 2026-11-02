@@ -1,0 +1,23 @@
+period: Q2 2026
+project_name: Amaru
+
+# Project status (active, inactive, initiating, etc.)
+status: Active
+
+# Problems that require board attention
+problems: None yet.
+
+# Community changes (last committer addition)
+changelog: |
+ - Facilitated the [Porto node diversity workshop in June](https://forum.cardano.org/t/cardano-node-diversity-workshop-in-porto-june-2026/155216)
+ - Revised contracts for each scope given the unfavorable market conditions, see [contracts in 2026 Journal](https://github.com/pragma-org/amaru-treasury/tree/main/journal/2026/contracts);
+ - [Amaru demo on May 29th](https://drive.google.com/file/d/1d_rNAmOvqE-7glqzkkaUZ6y1-RlFGqgg/view?usp=drive_link) showcasing how to run Amaru as a relay;
+ 
+# Next planned steps (new releases, significant changes, etc.)
+next: |
+  - Work towards the block producer release
+  - Identify what would be the next big items to build with Amaru beyond block production
+  - Start organizing the second node diversity workshop of the year
+
+# Reflection & Performance:
+comments: |
