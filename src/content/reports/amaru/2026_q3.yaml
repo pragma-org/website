@@ -1,0 +1,23 @@
+period: Q3 2026
+project_name: Amaru
+
+# Project status (active, inactive, initiating, etc.)
+status: Active
+
+# Problems that require board attention
+problems: None yet.
+
+# Community changes (last committer addition)
+changelog: |
+ - Planned the [London node diversity workshop in November](https://hackmd.io/@Amaru/NodeDiversityLondon);
+ - Next demo showcasing block production to be done on the second day (13th November) of the node diversity workshop in London with SPOs as a crowd;
+ - Started to map the 2027 budget topics, timelines, fixed costs and FTE estimates. First draft to be made available on the 23rd of November.
+ 
+# Next planned steps (new releases, significant changes, etc.)
+next: |
+  - Amaru block producer release on November 5th;
+  - Refine the content, timeline and costs of the 2027 proposal using feedback from attendees of London workshop and do some public reviews throughout Q4 26;
+  - Facilitate the workshop in London towards "Cardano first" topics.
+
+# Reflection & Performance:
+comments: |
