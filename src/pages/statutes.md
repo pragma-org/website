@@ -36,6 +36,8 @@ The objectives of PRAGMA are:
 4. creation of software codes for the public good which are freely available, emphasising accessibility, inclusivity and societal impact of the projects;
 5. building enduring and impactful projects in various areas related to blockchain software development, focusing on long-term public sustainability and a lasting positive effect on the open-source software community and beyond.
 
+PRAGMA is a non-profit organization and as such does not pursue commercial purposes.
+
 ### Article 3 – Languages
 
 1. The working languages of the association are English and German. All official documentation issued by PRAGMA will be issued in one or both of these languages.
@@ -59,7 +61,7 @@ The objectives of PRAGMA are:
    1. The **Maintainer Committees**, each of which organises, manages and implements a specific blockchain software project; and
    1. If instated by the General Assembly, a project committee.
 
-2. The Administrative Board shall propose to the General Assembly the creation of new maintainer committees for the implementation of additional blockchain software or other related projects. The maintainer committees’ organisation, responsibilities and authority shall be set out in regulations to be approved by the Administrative Board.
+2. The Administrative Board shall propose to the General Assembly the creation of new maintainer committees for the implementation of additional blockchain software or other related projects. The maintainer committees’ organisation, responsibilities and authority shall be set out in regulations elaborated by the maintainer committees and submitted to the Administrative Board for approval.
 
 ## III. Membership
 
@@ -191,6 +193,9 @@ The General Assembly has the following indefeasible competences:
 2. Of the up to four ordinary member seats, one position is that of Lead Administrator. Unless otherwise unanimously agreed by the Administrative Board members, this position shall rotate among the ordinary members on an annual basis, changing after the end of the General Assembly at which the annual financial statements are approved by the members.
 3. The General Assembly may decide how many members shall sit on the Administrative Board in the year before elections are due.
 4. All members of the Administrative Board are elected for four-year terms. They may be elected for no more than three terms or twelve years in total.
+5. The ordinary members of the Administrative Board perform their work on a voluntary basis and only have the right to reimbursement of their actual expenses and cash outlays.
+6. The independent member of the Administrative Board can be remunerated appropriately.
+
 
 ### Article 20 – Board Members’ Eligibility
 
@@ -209,14 +214,17 @@ The General Assembly has the following indefeasible competences:
 
 ### Article 22 – Powers
 
-1. The Administrative Board has the following main powers:
+The Administrative Board has the following main powers:
    1. Development of strategic direction for PRAGMA, subject to approval by the General Assembly;
-   1. Implementation, management and oversight of the administration of PRAGMA;
-   1. Organisation and management of the services provided to members, including selection and appointment of appropriate service providers;
-   1. Management of PRAGMA’s financial affairs;
-   1. Organisation of the General Assembly and reporting to the General Assembly on all activities of PRAGMA;
-   1. Upon decision by the General Assembly to create a project committee, set-up of a project committee and appoint its members;
-   1. Upon decision of the General Assembly to create one or several maintainer committee(s), appoint the maintainer committee lead(s) for such maintainer committee(s);
+   2. Implementation, management and oversight of the administration of PRAGMA;
+   3. Organisation and management of the services provided to members, including selection and appointment of appropriate service providers;
+   4. Management of PRAGMA’s financial affairs;
+   5. Organisation of the General Assembly and reporting to the General Assembly on all activities of PRAGMA;
+   6. Upon decision by the General Assembly to create a project committee, set-up of a project committee and appoint its members;
+   7. Upon decision of the General Assembly to create one or several maintainer committee(s), appoint the maintainer committee lead(s) for such maintainer committee(s);
+   8. Approval of the quarterly reports by maintainer committees and, if instated, by the project committee
+   9. Removal of any maintainer committee and its members or, if instated, the project committee and its members in the event of committee dysfunction or breach of PRAGMA regulations, policies, or these Statutes
+   10. Issuance of regulations, guidelines, circulars, etc.
 2. The Administrative Board shall deal with any matter relating to PRAGMA that these Statutes do not assign to any other body.
 
 ### Article 23 – Powers of Representation
@@ -230,7 +238,7 @@ Members of the Administrative Board shall represent PRAGMA legally and each have
    1. Record-keeping of the meetings of the Administrative Board; and
    1. Management of PRAGMA’s files.
 
-### Article 25 – Administrative Board Lead
+### Article 25 – Lead Administrator 
 
 1. The Lead of the Administrative Board is appointed by the Administrative Board for a term of one year.
 2. Their duties are:
@@ -282,7 +290,7 @@ The tribunal shall have its seat in Zurich and the language of the proceedings s
 
 ### Article 33 – Dissolution of the association
 
-If PRAGMA is dissolved, the General Assembly shall vote on the disposal of the association’s assets and devote them to a nonprofit organisation pursuing similar goals.
+The remaining funds after dissolution of the association shall be allocated to a tax-exempt institution based in Switzerland with similar or related purposes. Distribution of funds among the members is not permitted.
 
 ### Article 34 – Entry into force
 
